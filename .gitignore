@@ -1,0 +1,24 @@
+﻿﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/projectSettingsUpdater.xml
+# /.idea.C21 Ex02 TalYacob 208632778 YakirBenHillel 209509348.iml
+/contentModel.xml
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+
+
+# --- My addition: ---
+/.idea
+/.vs
+/**/bin
+/**/obj
+# DotSettings ignored files
+/*.user
+/*.DotSettings
+# --- My addition: ---
