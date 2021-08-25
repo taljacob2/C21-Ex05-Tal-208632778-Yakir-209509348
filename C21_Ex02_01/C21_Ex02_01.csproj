@@ -45,42 +45,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Com\Team\Engine\Database\Board\Board.cs" />
+    <Compile Include="Com\Team\Engine\Database\Board\Coin\Coin.cs" />
+    <Compile Include="Com\Team\Engine\Database\Board\Coin\Coordinate.cs" />
+    <Compile Include="Com\Team\Engine\Database\Board\EvaluationBoard.cs" />
+    <Compile Include="Com\Team\Engine\Database\Board\IBoardActuator.cs" />
+    <Compile Include="Com\Team\Engine\Database\Board\Matrix\Wrapper\MatrixWrapper.cs" />
+    <Compile Include="Com\Team\Engine\Database\Database.cs" />
+    <Compile Include="Com\Team\Engine\Database\Players\Players.cs" />
+    <Compile Include="Com\Team\Engine\Database\Players\Player\AIPlayer.cs" />
+    <Compile Include="Com\Team\Engine\Database\Players\Player\AI\IAI.cs" />
+    <Compile Include="Com\Team\Engine\Database\Players\Player\AI\MinMaxAI.cs" />
+    <Compile Include="Com\Team\Engine\Database\Players\Player\ComputerPlayer.cs" />
+    <Compile Include="Com\Team\Engine\Database\Players\Player\eID.cs" />
+    <Compile Include="Com\Team\Engine\Database\Players\Player\eType.cs" />
+    <Compile Include="Com\Team\Engine\Database\Players\Player\HumanPlayer.cs" />
+    <Compile Include="Com\Team\Engine\Database\Players\Player\Player.cs" />
+    <Compile Include="Com\Team\Engine\Database\Players\Settings.cs" />
+    <Compile Include="Com\Team\Engine\Engine.cs" />
+    <Compile Include="Com\Team\Engine\Service\IActuatorService.cs" />
+    <Compile Include="Com\Team\Engine\Service\Impl\ActuatorServiceImpl.cs" />
+    <Compile Include="Com\Team\Engine\Service\Impl\RequesterServiceImpl.cs" />
+    <Compile Include="Com\Team\Engine\Service\Impl\ResponderServiceImpl.cs" />
+    <Compile Include="Com\Team\Engine\Service\IRequesterService.cs" />
+    <Compile Include="Com\Team\Engine\Service\IResponderService.cs" />
+    <Compile Include="Com\Team\Misc\EnumeratorGetter.cs" />
+    <Compile Include="Com\Team\Misc\InputUtil.cs" />
+    <Compile Include="Com\Team\Misc\ObjectExtensions.cs" />
+    <Compile Include="Com\Team\Misc\StringIndentation.cs" />
+    <Compile Include="Com\Team\UI\Console\ConsoleUI.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Team\Engine\Database\Board\Board.cs" />
-    <Compile Include="Team\Engine\Database\Board\Coin\Coin.cs" />
-    <Compile Include="Team\Engine\Database\Board\Coin\Coordinate.cs" />
-    <Compile Include="Team\Engine\Database\Board\EvaluationBoard.cs" />
-    <Compile Include="Team\Engine\Database\Board\IBoardActuator.cs" />
-    <Compile Include="Team\Engine\Database\Board\Matrix\Wrapper\MatrixWrapper.cs" />
-    <Compile Include="Team\Engine\Database\Database.cs" />
-    <Compile Include="Team\Engine\Database\Players\Players.cs" />
-    <Compile Include="Team\Engine\Database\Players\Player\AIPlayer.cs" />
-    <Compile Include="Team\Engine\Database\Players\Player\AI\IAI.cs" />
-    <Compile Include="Team\Engine\Database\Players\Player\AI\MinMaxAI.cs" />
-    <Compile Include="Team\Engine\Database\Players\Player\ComputerPlayer.cs" />
-    <Compile Include="Team\Engine\Database\Players\Player\eID.cs" />
-    <Compile Include="Team\Engine\Database\Players\Player\eType.cs" />
-    <Compile Include="Team\Engine\Database\Players\Player\HumanPlayer.cs" />
-    <Compile Include="Team\Engine\Database\Players\Player\Player.cs" />
-    <Compile Include="Team\Engine\Database\Players\Settings.cs" />
-    <Compile Include="Team\Engine\Engine.cs" />
-    <Compile Include="Team\Engine\Service\IActuatorService.cs" />
-    <Compile Include="Team\Engine\Service\Impl\ActuatorServiceImpl.cs" />
-    <Compile Include="Team\Engine\Service\Impl\RequesterServiceImpl.cs" />
-    <Compile Include="Team\Engine\Service\Impl\ResponderServiceImpl.cs" />
-    <Compile Include="Team\Engine\Service\IRequesterService.cs" />
-    <Compile Include="Team\Engine\Service\IResponderService.cs" />
-    <Compile Include="Team\Misc\EnumeratorGetter.cs" />
-    <Compile Include="Team\Misc\InputUtil.cs" />
-    <Compile Include="Team\Misc\ObjectExtensions.cs" />
-    <Compile Include="Team\UI\Console\ConsoleUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Team\Engine\Database\Players\Player\AIPlayer.puml" />
+    <Folder Include="Com" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Com\Team\Engine\Database\Players\Player\AIPlayer.puml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
