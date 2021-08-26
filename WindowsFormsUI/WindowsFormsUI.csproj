@@ -103,5 +103,9 @@
         <Name>C21_Ex02_01</Name>
       </ProjectReference>
     </ItemGroup>
+    <ItemGroup>
+      <Content Include="Com\Team\Form\GameFormDesignerNotes.txt" />
+      <Content Include="Com\Team\Form\GameFormNotes.txt" />
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
