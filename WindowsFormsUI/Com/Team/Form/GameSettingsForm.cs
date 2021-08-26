@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using WindowsFormsUI.Com.Team.Form.Debug;
 using C21_Ex02_01.Com.Team.Engine;
 using C21_Ex02_01.Com.Team.Engine.Database;
 using C21_Ex02_01.Com.Team.Engine.Database.Board;
@@ -32,11 +33,11 @@ namespace WindowsFormsUI.Com.Team.Form
             initializeDatabase();
 
             // DEBUG:
-            buttonPlay.Text = Engine.Database.ToStringExtension();
-            Application.Run(new PrintPreviewDialog());
+            DebugForm debugForm = new DebugForm();
+            debugForm.label1.Text = Engine.Database.ToStringExtension();
+            debugForm.ShowDialog();
 
-            // DEBUG:
-            // Close();
+            Close();
         }
 
         private void checkBoxPlayer2_CheckedChanged(object i_Sender,

@@ -55,7 +55,7 @@ namespace WindowsFormsUI.Com.Team.Form.Debug
             this.ResumeLayout(false);
         }
 
-        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.Label label1;
 
         #endregion
     }
