@@ -17,7 +17,7 @@ namespace WindowsFormsUI
             InitializeComponent();
         }
 
-        private void ButtonOK_Click(object i_Sender, EventArgs i_)
+        private void ButtonPlay_Click(object i_Sender, EventArgs i_)
         {
             this.Close();
         }
