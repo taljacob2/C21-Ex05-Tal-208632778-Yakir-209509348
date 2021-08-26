@@ -37,9 +37,10 @@ namespace WindowsFormsUI.Com.Team.Form.Debug
             // 
             // label1
             // 
+            this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(82, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(648, 388);
+            this.label1.Size = new System.Drawing.Size(46, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "label1";
 
@@ -48,11 +49,13 @@ namespace WindowsFormsUI.Com.Team.Form.Debug
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(760, 460);
             this.Controls.Add(this.label1);
             this.Name = "DebugForm";
             this.Text = "DebugForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         public System.Windows.Forms.Label label1;
