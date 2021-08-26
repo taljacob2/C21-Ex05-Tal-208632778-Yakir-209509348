@@ -74,9 +74,19 @@ namespace WindowsFormsUI.Com.Team.Form
             this.AutoSize = true;
             this.Padding = new Padding(k_Padding);
             this.Name = "GameForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            manualCenterPosition();
             this.Text = "Connect 4";
             this.ResumeLayout(false);
+        }
+
+        private void manualCenterPosition()
+        {
+            // this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = FormStartPosition.Manual;
+            this.Top = (Screen.PrimaryScreen.Bounds.Height -
+                        (this.m_MaxButtonCoinHeight +
+                         this.buttonForfeit.Size.Height * 2))/2;
+            this.Left = (Screen.PrimaryScreen.Bounds.Width - (m_MaxButtonCoinWidth - m_CenterWidth))/2;
         }
         
         private System.Windows.Forms.Button buttonForfeit;

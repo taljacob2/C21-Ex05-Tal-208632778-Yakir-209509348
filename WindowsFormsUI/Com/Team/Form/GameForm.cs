@@ -21,7 +21,7 @@ namespace WindowsFormsUI.Com.Team.Form
             buttonCoins = new Button[Engine.Database.Board.Rows,
                 Engine.Database.Board.Cols];
             buttonColumns = new Button[Engine.Database.Board.Cols];
-
+            
             InitializeComponent();
         }
 
