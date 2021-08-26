@@ -21,6 +21,18 @@ namespace WindowsFormsUI
         {
             this.Close();
         }
-        
+
+        private void CheckBoxPlayer2_CheckedChanged(object i_Sender, EventArgs i_)
+        {
+            if(this.CheckBoxPlayer2.Checked){
+                this.TextBoxPlayer2.Text = "";
+                this.TextBoxPlayer2.Enabled = true;
+            }
+            else
+            {
+                this.TextBoxPlayer2.Text = @"[Computer]";
+                this.TextBoxPlayer2.Enabled = false;
+            }
+        }
     }
 }

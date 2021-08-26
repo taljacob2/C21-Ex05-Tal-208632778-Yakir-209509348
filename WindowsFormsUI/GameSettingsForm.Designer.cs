@@ -40,6 +40,8 @@ namespace WindowsFormsUI
             this.ColsNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.LabelRows = new System.Windows.Forms.Label();
             this.LabelCols = new System.Windows.Forms.Label();
+            this.TextBoxPlayer1 = new System.Windows.Forms.TextBox();
+            this.TextBoxPlayer2 = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize) (this.RowsNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize) (this.ColsNumericUpDown)).BeginInit();
             this.SuspendLayout();
@@ -85,6 +87,7 @@ namespace WindowsFormsUI
             this.CheckBoxPlayer2.TabIndex = 4;
             this.CheckBoxPlayer2.Text = "Player 2:";
             this.CheckBoxPlayer2.UseVisualStyleBackColor = true;
+            this.CheckBoxPlayer2.CheckedChanged += new System.EventHandler(this.CheckBoxPlayer2_CheckedChanged);
 
             // 
             // LabelBoardSize
@@ -100,17 +103,23 @@ namespace WindowsFormsUI
             // RowsNumericUpDown
             // 
             this.RowsNumericUpDown.Location = new System.Drawing.Point(117, 190);
+            this.RowsNumericUpDown.Maximum = new decimal(new int[] {10, 0, 0, 0});
+            this.RowsNumericUpDown.Minimum = new decimal(new int[] {4, 0, 0, 0});
             this.RowsNumericUpDown.Name = "RowsNumericUpDown";
             this.RowsNumericUpDown.Size = new System.Drawing.Size(51, 22);
             this.RowsNumericUpDown.TabIndex = 6;
+            this.RowsNumericUpDown.Value = new decimal(new int[] {4, 0, 0, 0});
 
             // 
             // ColsNumericUpDown
             // 
             this.ColsNumericUpDown.Location = new System.Drawing.Point(258, 190);
+            this.ColsNumericUpDown.Maximum = new decimal(new int[] {10, 0, 0, 0});
+            this.ColsNumericUpDown.Minimum = new decimal(new int[] {4, 0, 0, 0});
             this.ColsNumericUpDown.Name = "ColsNumericUpDown";
             this.ColsNumericUpDown.Size = new System.Drawing.Size(51, 22);
             this.ColsNumericUpDown.TabIndex = 7;
+            this.ColsNumericUpDown.Value = new decimal(new int[] {4, 0, 0, 0});
 
             // 
             // LabelRows
@@ -133,11 +142,33 @@ namespace WindowsFormsUI
             this.LabelCols.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
             // 
+            // TextBoxPlayer1
+            // 
+            this.TextBoxPlayer1.Location = new System.Drawing.Point(209, 44);
+            this.TextBoxPlayer1.MaxLength = 10;
+            this.TextBoxPlayer1.Name = "TextBoxPlayer1";
+            this.TextBoxPlayer1.Size = new System.Drawing.Size(100, 22);
+            this.TextBoxPlayer1.TabIndex = 10;
+
+            // 
+            // TextBoxPlayer2
+            // 
+            this.TextBoxPlayer2.Enabled = false;
+            this.TextBoxPlayer2.Location = new System.Drawing.Point(209, 82);
+            this.TextBoxPlayer2.MaxLength = 10;
+            this.TextBoxPlayer2.Name = "TextBoxPlayer2";
+            this.TextBoxPlayer2.Size = new System.Drawing.Size(100, 22);
+            this.TextBoxPlayer2.TabIndex = 11;
+            this.TextBoxPlayer2.Text = "[Computer]";
+
+            // 
             // GameSettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(376, 336);
+            this.Controls.Add(this.TextBoxPlayer2);
+            this.Controls.Add(this.TextBoxPlayer1);
             this.Controls.Add(this.LabelCols);
             this.Controls.Add(this.LabelRows);
             this.Controls.Add(this.ColsNumericUpDown);
@@ -154,6 +185,7 @@ namespace WindowsFormsUI
             ((System.ComponentModel.ISupportInitialize) (this.RowsNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize) (this.ColsNumericUpDown)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         private System.Windows.Forms.Button ButtonPlay;
@@ -165,6 +197,8 @@ namespace WindowsFormsUI
         private System.Windows.Forms.Label LabelPlayers;
         private System.Windows.Forms.Label LabelRows;
         private System.Windows.Forms.NumericUpDown RowsNumericUpDown;
+        private System.Windows.Forms.TextBox TextBoxPlayer1;
+        private System.Windows.Forms.TextBox TextBoxPlayer2;
 
         #endregion
     }
