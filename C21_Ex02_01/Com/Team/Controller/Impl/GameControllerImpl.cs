@@ -49,7 +49,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         {
             while (true)
             {
-                ResponderService.PrintBoard();
+                // ResponderService.PrintBoard();
 
                 if (Database.Board.IsFull())
                 {
@@ -80,8 +80,9 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         private void setTie()
         {
             ActuatorService.SetTie(); // Database Update.
-            ResponderService.PrintTie(); // UI Response.
-            ResponderService.PrintScores(Database.Players); // UI Response.
+            ResponderService.PrintTie(); // UI Response. // TODO: implement
+            ResponderService.PrintScores(Database
+                .Players); // UI Response. // TODO: implement
         }
 
         private static bool isWinnerPlayerHandled()
@@ -115,8 +116,9 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 
         public void PostChooseColumnAsHumanPlayer(byte i_ChosenColumnIndex)
         {
-            Database.Players.GetCurrentPlayer().ChosenColumnIndex =
-                i_ChosenColumnIndex;
+            Player currentPlayer = Database.Players.GetCurrentPlayer();
+            currentPlayer.ChosenColumnIndex = i_ChosenColumnIndex;
+            currentPlayer.PlayTurn();
         }
     }
 }
