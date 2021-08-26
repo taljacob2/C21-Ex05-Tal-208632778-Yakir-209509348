@@ -15,7 +15,6 @@ namespace C21_Ex02_01.Com.Team.Database.Board
 {
     public class Board : MatrixWrapper<Coin.Coin>, IBoardActuator
     {
-
         private const char k_Delimiter = '|';
         private const char k_RowSeparator = '=';
 
@@ -134,9 +133,12 @@ namespace C21_Ex02_01.Com.Team.Database.Board
             {
                 for (byte j = 0; j < Cols; j++)
                 {
-                    Matrix[i, j] =
-                        new Coin.Coin(new Coordinate(j, i),
-                            i_CharToFill);
+                    Coin.Coin coin = new Coin.Coin(new Coordinate(j, i),
+                        i_CharToFill);
+                    Matrix[i, j] = coin;
+
+                    // Notify event handler:
+                    coin.CharModified();
                 }
             }
         }

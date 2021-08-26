@@ -68,6 +68,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         private void setTie()
         {
             ActuatorService.SetTie(); // Database Update.
+
             // ResponderService.PrintTie(); // UI Response. // TODO: implement
             // ResponderService.PrintScores(Database
             //     .Players); // UI Response. // TODO: implement
@@ -132,6 +133,13 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             Player currentPlayer = Database.Players.GetCurrentPlayer();
             currentPlayer.ChosenColumnIndex = i_ChosenColumnIndex;
             currentPlayer.PlayTurn();
+        }
+
+        public void NewGame()
+        {
+            Database.Players.SwitchCurrentPlayerTurn(Database.Players
+                .GetPlayerTwo());
+            Database.Board.ResetBoard();
         }
     }
 }

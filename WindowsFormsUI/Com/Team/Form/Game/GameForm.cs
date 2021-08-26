@@ -70,7 +70,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             checkForAnotherGameDialogAndInvoke(isGameOver, winnerPlayer);
         }
 
-        private static void checkForAnotherGameDialogAndInvoke(
+        private void checkForAnotherGameDialogAndInvoke(
             bool i_IsGameOver, Player i_WinnerPlayer)
         {
             const string k_AnotherGameMessage =
@@ -92,7 +92,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             }
         }
 
-        private static void showTieDialog(string i_TieMessage,
+        private void showTieDialog(string i_TieMessage,
             string i_AnotherGameMessage)
         {
             DialogResult dialogResult = MessageBox.Show(
@@ -101,7 +101,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             switchDialogGameReplay(dialogResult);
         }
 
-        private static void showWinnerDialog(Player i_WinnerPlayer,
+        private void showWinnerDialog(Player i_WinnerPlayer,
             string i_AnotherGameMessage)
         {
             DialogResult dialogResult = MessageBox.Show(
@@ -116,15 +116,15 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             return "The winner is Player " + i_WinnerPlayer.ID + "!";
         }
 
-        private static void switchDialogGameReplay(DialogResult i_DialogResult)
+        private void switchDialogGameReplay(DialogResult i_DialogResult)
         {
             if (i_DialogResult == DialogResult.Yes)
             {
-                //do something
+                GameController.NewGame();
             }
             else if (i_DialogResult == DialogResult.No)
             {
-                //do something else
+                this.Close();
             }
         }
 
