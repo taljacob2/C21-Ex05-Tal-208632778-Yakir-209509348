@@ -6,7 +6,7 @@ using C21_Ex02_01.Com.Team.Engine.Database;
 using C21_Ex02_01.Com.Team.Engine.Database.Board;
 using C21_Ex02_01.Com.Team.Engine.Database.Players;
 using C21_Ex02_01.Com.Team.Engine.Database.Players.Player;
-using Ex02.ConsoleUtils;
+
 using static C21_Ex02_01.Com.Team.Misc.InputUtil;
 
 #endregion
@@ -211,7 +211,7 @@ namespace C21_Ex02_01.Com.Team.UI
 
             public void PrintBoardWithScreenClearBeforePrint()
             {
-                Screen.Clear();
+                System.Console.Clear();
                 printBoard();
             }
 
