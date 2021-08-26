@@ -74,8 +74,7 @@ namespace WindowsFormsUI.Com.Team.Form
                     button.TabIndex = row + col;
                     button.Text =
                         Engine.Database.Board.GetElement((byte) (row - 1),
-                            (byte)
-                            (col - 1)).Char.ToString();
+                            (byte) (col - 1)).Char.ToString();
                     button.UseVisualStyleBackColor = false;
 
                     // Set button:
