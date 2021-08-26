@@ -10,13 +10,17 @@ using System.Windows.Forms;
 
 namespace WindowsFormsUI
 {
-    public partial class Form1 : Form
+    public partial class GameSettingsForm : Form
     {
-        public Form1()
+        public GameSettingsForm()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object i_Sender, EventArgs i_E) {}
+        private void ButtonOK_Click(object i_Sender, EventArgs i_)
+        {
+            this.Close();
+        }
+        
     }
 }
