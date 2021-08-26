@@ -9,6 +9,8 @@ namespace WindowsFormsUI.Com.Team.Form
 {
     public partial class GameForm : System.Windows.Forms.Form
     {
+        const int k_Width = 69;
+        
         public GameForm()
         {
             // Run settings windows.
@@ -27,7 +29,6 @@ namespace WindowsFormsUI.Com.Team.Form
             for (int i = 1; i <= Engine.Database.Board.Cols; i++)
             {
                 Button button = new Button();
-                const int k_Width = 69;
                 const int k_Height = 34;
                 const int k_X = 12;
                 const int k_Y = 12;
@@ -61,22 +62,22 @@ namespace WindowsFormsUI.Com.Team.Form
                 for (byte col = 1; col <= Engine.Database.Board.Cols; col++)
                 {
                     Button button = new Button();
-                    const int k_Width = 69;
-                    const int k_Height = 34;
+                    const int k_Height = k_Width;
                     const int k_X = 12;
-                    const int k_Y = 12;
+                    const int k_Y = 56;
 
-                    button.BackColor = SystemColors.Highlight;
+                    button.BackColor = System.Drawing.SystemColors.Control;
+                    button.Font = new System.Drawing.Font("Microsoft Sans Serif",
+                        12F);
                     button.Location = new Point(
                         k_X + (col - 1) * k_Width,
                         k_Y + (row - 1) * k_Height);
-                    button.Name = "buttonColumn" + ((row + col).ToString());
+                    button.Name = "buttonCoin" + ((row + col).ToString());
                     button.Size = new Size(k_Width, k_Height);
                     button.TabIndex = (row + col);
                     button.Text =
                         Engine.Database.Board.GetElement((byte) (row - 1), (byte)
-                                (col - 1)).Char
-                            .ToString();
+                                (col - 1)).Char.ToString();
                     button.UseVisualStyleBackColor = false;
                     
                     // Set button:
