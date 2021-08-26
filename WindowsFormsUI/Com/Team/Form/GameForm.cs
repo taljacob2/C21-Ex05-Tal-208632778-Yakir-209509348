@@ -6,6 +6,7 @@ namespace WindowsFormsUI.Com.Team.Form
 {
     public partial class GameForm : System.Windows.Forms.Form
     {
+        private const int k_Padding = 12;
         private const int k_Width = 69;
 
         public GameForm()
@@ -27,8 +28,8 @@ namespace WindowsFormsUI.Com.Team.Form
             {
                 Button button = new Button();
                 const int k_Height = 34;
-                const int k_X = 12;
-                const int k_Y = 12;
+                const int k_X = k_Padding;
+                const int k_Y = k_Padding;
 
                 button.BackColor = SystemColors.Highlight;
                 button.Location = new Point(k_X + (i - 1) * k_Width, k_Y);
@@ -60,7 +61,7 @@ namespace WindowsFormsUI.Com.Team.Form
                 {
                     Button button = new Button();
                     const int k_Height = k_Width;
-                    const int k_X = 12;
+                    const int k_X = k_Padding;
                     const int k_Y = 56;
 
                     button.BackColor = SystemColors.Control;
