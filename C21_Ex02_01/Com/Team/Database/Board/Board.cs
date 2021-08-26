@@ -134,7 +134,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board
                 for (byte j = 0; j < Cols; j++)
                 {
                     Matrix[i, j] =
-                        new Coin.Coin(new Coordinate(i, j),
+                        new Coin.Coin(new Coordinate(j, i),
                             i_CharToFill);
                 }
             }
