@@ -85,7 +85,7 @@ namespace WindowsFormsUI.Com.Team.Form
             this.StartPosition = FormStartPosition.Manual;
             this.Top = (Screen.PrimaryScreen.Bounds.Height -
                         (this.m_MaxButtonCoinHeight +
-                         this.buttonForfeit.Size.Height * 2))/2;
+                         this.buttonForfeit.Size.Height * 2)) / 2;
             this.Left = ((Screen.PrimaryScreen.Bounds.Width - m_CenterWidth * 2) / 2);
         }
         
