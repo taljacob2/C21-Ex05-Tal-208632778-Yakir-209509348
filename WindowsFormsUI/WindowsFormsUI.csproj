@@ -5,7 +5,7 @@
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
         <ProjectGuid>{AC221314-203C-498B-88CA-4D12E5F0BE79}</ProjectGuid>
-        <OutputType>WinExe</OutputType>
+        <OutputType>Exe</OutputType>
         <RootNamespace>WindowsFormsUI</RootNamespace>
         <AssemblyName>WindowsFormsUI</AssemblyName>
         <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
@@ -46,24 +46,24 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Com\Team\Form\GameForm.cs">
+        <Compile Include="Com\Team\Form\Game\GameForm.cs">
           <SubType>Form</SubType>
         </Compile>
-        <Compile Include="Com\Team\Form\GameForm.Designer.cs">
+        <Compile Include="Com\Team\Form\Game\GameForm.Designer.cs">
           <DependentUpon>GameForm.cs</DependentUpon>
         </Compile>
-        <Compile Include="Com\Team\Form\GameSettingsForm.cs">
+        <Compile Include="Com\Team\Form\Game\GameSettingsForm.cs">
           <SubType>Form</SubType>
         </Compile>
-        <Compile Include="Com\Team\Form\GameSettingsForm.Designer.cs">
+        <Compile Include="Com\Team\Form\Game\GameSettingsForm.Designer.cs">
           <DependentUpon>GameSettingsForm.cs</DependentUpon>
         </Compile>
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <EmbeddedResource Include="Com\Team\Form\GameForm.resx">
+        <EmbeddedResource Include="Com\Team\Form\Game\GameForm.resx">
           <DependentUpon>GameForm.cs</DependentUpon>
         </EmbeddedResource>
-        <EmbeddedResource Include="Com\Team\Form\GameSettingsForm.resx">
+        <EmbeddedResource Include="Com\Team\Form\Game\GameSettingsForm.resx">
           <DependentUpon>GameSettingsForm.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="Properties\Resources.resx">
@@ -93,10 +93,6 @@
         <Project>{b067c2b0-d664-48c2-a735-6516e7256af6}</Project>
         <Name>C21_Ex02_01</Name>
       </ProjectReference>
-    </ItemGroup>
-    <ItemGroup>
-      <Content Include="Com\Team\Form\GameFormDesignerNotes.txt" />
-      <Content Include="Com\Team\Form\GameFormNotes.txt" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

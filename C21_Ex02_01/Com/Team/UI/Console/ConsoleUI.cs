@@ -2,11 +2,9 @@
 
 using System;
 using System.Collections.Generic;
-using C21_Ex02_01.Com.Team.Engine.Database;
-using C21_Ex02_01.Com.Team.Engine.Database.Board;
-using C21_Ex02_01.Com.Team.Engine.Database.Players;
-using C21_Ex02_01.Com.Team.Engine.Database.Players.Player;
-
+using C21_Ex02_01.Com.Team.Database.Board;
+using C21_Ex02_01.Com.Team.Database.Players;
+using C21_Ex02_01.Com.Team.Database.Players.Player;
 using static C21_Ex02_01.Com.Team.Misc.InputUtil;
 
 #endregion
@@ -68,7 +66,7 @@ namespace C21_Ex02_01.Com.Team.UI
                     new Players(
                         new Settings(i_Type));
 
-                Engine.Engine.Database = new Database(board, players);
+                Controller.Impl.Engine.Database = new Database.Database(board, players);
             }
 
             private static void requestBoard(out byte o_Rows, out byte o_Cols)
@@ -158,7 +156,7 @@ namespace C21_Ex02_01.Com.Team.UI
                 byte i_MinimumRange)
             {
                 char charMinimumRange = i_MinimumRange.ToString()[0];
-                Database database = Engine.Engine.Database;
+                Database.Database database = Controller.Impl.Engine.Database;
                 byte maxColumnsRange = database.Board.Cols;
                 char charMaxColumnsRange = maxColumnsRange.ToString()[0];
                 string message =
@@ -180,7 +178,7 @@ namespace C21_Ex02_01.Com.Team.UI
 
             private static string requestChosenColumnHumanPlayerMessage(
                 HumanPlayer i_HumanPlayer, byte i_MinimumRange,
-                Database i_Database)
+                Database.Database i_Database)
             {
                 if (i_HumanPlayer == null)
                 {
@@ -206,7 +204,7 @@ namespace C21_Ex02_01.Com.Team.UI
         {
             private void printBoard()
             {
-                Console.Out.WriteLine(Engine.Engine.Database.Board);
+                Console.Out.WriteLine(Controller.Impl.Engine.Database.Board);
             }
 
             public void PrintBoardWithScreenClearBeforePrint()

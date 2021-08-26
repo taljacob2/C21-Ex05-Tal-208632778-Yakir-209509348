@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using WindowsFormsUI.Com.Team.Form;
+using WindowsFormsUI.Com.Team.Form.Game;
 
 namespace WindowsFormsUI
 {
@@ -12,6 +13,7 @@ namespace WindowsFormsUI
         [STAThread]
         public static void Main()
         {
+            // TODO : remove console, and set this project as WindowsApplication.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GameForm());
