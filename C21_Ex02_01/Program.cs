@@ -10,8 +10,8 @@ namespace C21_Ex02_01
     {
         public static void Main(string[] i_Args)
         {
-            GameControllerImpl gameControllerImpl = new GameControllerImpl();
-            gameControllerImpl.RunGame();
+            // GameControllerImpl gameControllerImpl = new GameControllerImpl();
+            // gameControllerImpl.RunGame();
         }
     }
 }

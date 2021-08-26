@@ -11,12 +11,6 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
     {
         public const byte k_QuitSignal = 255;
 
-        private readonly IRequesterService r_RequesterService =
-            Controller.Impl.GameControllerImpl.RequesterService;
-
-        private readonly IResponderService r_ResponderService =
-            Controller.Impl.GameControllerImpl.ResponderService;
-
         public HumanPlayer(eID i_ID, char i_Char) : base(i_ID, i_Char) {}
 
         public override void PlayTurn()

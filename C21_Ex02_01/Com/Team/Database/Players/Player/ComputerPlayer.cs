@@ -11,8 +11,6 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
 {
     public class ComputerPlayer : Player
     {
-        private readonly IRequesterService r_RequesterService =
-            Controller.Impl.GameControllerImpl.RequesterService;
 
         public ComputerPlayer(eID i_ID, char i_Char) : base(i_ID, i_Char) {}
 
@@ -29,8 +27,7 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
         private void chooseColumnAndTryToInsert(
             List<byte> i_ListOfIndexesOfNotFullColumns, Database i_Database)
         {
-            r_RequesterService.ChooseColumnAsComputerPlayer(this,
-                i_ListOfIndexesOfNotFullColumns);
+            chooseColumnAsComputerPlayer(this, i_ListOfIndexesOfNotFullColumns);
             try
             {
                 Thread.Sleep(300); // Add delay for realism.
@@ -42,6 +39,26 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
                 chooseColumnAndTryToInsert(i_ListOfIndexesOfNotFullColumns,
                     i_Database);
             }
+        }
+        
+        /// <summary>
+        ///     <remarks>
+        ///         Implemented in Engine's-side (and not UI-side).
+        ///     </remarks>
+        /// </summary>
+        /// <param name="io_ComputerPlayer" />
+        /// <param name="i_ListOfIndexesOfNotFullColumns">
+        ///     Each element represents an index of a not-full column.
+        /// </param>
+        private void chooseColumnAsComputerPlayer(
+            ComputerPlayer io_ComputerPlayer,
+            List<byte> i_ListOfIndexesOfNotFullColumns)
+        {
+            Random random = new Random();
+            int randomIndex =
+                random.Next(i_ListOfIndexesOfNotFullColumns.Count);
+            io_ComputerPlayer.ChosenColumnIndex =
+                i_ListOfIndexesOfNotFullColumns[(byte) randomIndex];
         }
 
         private static List<byte> initializeListOfIndexesOfNotFullColumns(

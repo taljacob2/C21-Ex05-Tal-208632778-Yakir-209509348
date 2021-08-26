@@ -1,5 +1,6 @@
 ﻿#region
 
+using System;
 using C21_Ex02_01.Com.Team.Database.Players.Player;
 using C21_Ex02_01.Com.Team.Service;
 using C21_Ex02_01.Com.Team.Service.Impl;
@@ -10,67 +11,54 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 {
     public class GameControllerImpl : IGameController
     {
-        static GameControllerImpl()
-        {
-            // Caution: `ResponderService` MUST be defined HERE:
-            // ResponderService = new ResponderServiceImpl();
-        }
-
-        public GameControllerImpl()
-        {
-            // Caution: the order here is important:
-            // RequesterService = new RequesterServiceImpl();
-            // RequesterService.ConstructEngine(); // UI Request.
-            // ActuatorService = new ActuatorServiceImpl();
-        }
-
         public static Database.Database Database { get; set; }
 
-        public static IRequesterService RequesterService { get; private set; }
+        // public static IRequesterService RequesterService { get; private set; }
 
-        public static IResponderService ResponderService { get; }
+        // public static IResponderService ResponderService { get; }
 
-        public static IActuatorService ActuatorService { get; private set; }
+        public static IActuatorService ActuatorService { get; set; }
 
-        public void RunGame()
-        {
-            bool continuePlay;
-            do
-            {
-                Database.Players.SwitchCurrentPlayerTurn(Database.Players
-                    .GetPlayerTwo());
-                Database.Board.ResetBoard();
-                whileRunGame();
-                continuePlay = RequesterService.RequestNewGame();
-            } while (continuePlay);
-        }
+        // public void RunGame()
+        // {
+        //     bool continuePlay;
+        //     do
+        //     {
+        //         Database.Players.SwitchCurrentPlayerTurn(Database.Players
+        //             .GetPlayerTwo());
+        //         Database.Board.ResetBoard();
+        //
+        //         // whileRunGame();
+        //         continuePlay = RequesterService.RequestNewGame();
+        //     } while (continuePlay);
+        // }
 
-        private void whileRunGame()
-        {
-            while (true)
-            {
-                // ResponderService.PrintBoard();
-
-                if (Database.Board.IsFull())
-                {
-                    // It is a TIE.
-                    setTie();
-                    break;
-                }
-
-                Database.Players.PlayTurn();
-                Database.Players.SwitchCurrentPlayerTurn(Database.Players
-                    .GetCurrentPlayer());
-
-                if (!isWinnerPlayerHandled())
-                {
-                    continue;
-                }
-
-                // Winner found, and was handled.
-                return;
-            }
-        }
+        // private void whileRunGame()
+        // {
+        //     while (true)
+        //     {
+        //         // ResponderService.PrintBoard();
+        //
+        //         if (Database.Board.IsFull())
+        //         {
+        //             // It is a TIE.
+        //             setTie();
+        //             break;
+        //         }
+        //
+        //         Database.Players.PlayTurn();
+        //         Database.Players.SwitchCurrentPlayerTurn(Database.Players
+        //             .GetCurrentPlayer());
+        //
+        //         if (!getWinnerPlayer())
+        //         {
+        //             continue;
+        //         }
+        //
+        //         // Winner found, and was handled.
+        //         return;
+        //     }
+        // }
 
         private static void resetForfeitAndWinner()
         {
@@ -80,27 +68,20 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         private void setTie()
         {
             ActuatorService.SetTie(); // Database Update.
-            ResponderService.PrintTie(); // UI Response. // TODO: implement
-            ResponderService.PrintScores(Database
-                .Players); // UI Response. // TODO: implement
+            // ResponderService.PrintTie(); // UI Response. // TODO: implement
+            // ResponderService.PrintScores(Database
+            //     .Players); // UI Response. // TODO: implement
         }
 
-        private static bool isWinnerPlayerHandled()
+        private static Player getWinnerPlayer()
         {
-            bool returnValue = true;
-
             // Check for algorithm WIN here:
-            Player winnerPlayer =
+            Player returnValue =
                 ActuatorService.GetWinnerPlayer(); // Database Update.
 
-            if (winnerPlayer == null)
-            {
-                returnValue = false;
-            }
-            else
+            if (returnValue != null)
             {
                 // Winner Found. Handle it.
-                printWinResponse(winnerPlayer);
                 resetForfeitAndWinner(); // Database Update.
             }
 
@@ -109,12 +90,44 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 
         private static void printWinResponse(Player i_WinnerPlayer)
         {
-            ResponderService.PrintBoard(); // UI Response.
-            ResponderService.PrintWinner(i_WinnerPlayer); // UI Response.
-            ResponderService.PrintScores(Database.Players); // UI Response.
+            // ResponderService.PrintBoard(); // UI Response.
+            // ResponderService.PrintWinner(i_WinnerPlayer); // UI Response.
+            // ResponderService.PrintScores(Database.Players); // UI Response.
         }
 
-        public void PostChooseColumnAsHumanPlayer(byte i_ChosenColumnIndex)
+        /// <summary />
+        /// <param name="i_ChosenColumnIndex" />
+        /// <param name="o_WinnerPlayer">
+        ///     If this is <see langword="null" />
+        ///     and <paramref name="o_IsGameOver" /> is <see langword="true" /> then
+        ///     it means the game was over with a TIE.
+        /// </param>
+        /// <param name="o_IsGameOver" />
+        public void PostChooseColumnAsHumanPlayer(byte i_ChosenColumnIndex,
+            out Player o_WinnerPlayer, out bool o_IsGameOver)
+        {
+            o_WinnerPlayer = null;
+            o_IsGameOver = false;
+
+            if (Database.Board.IsFull())
+            {
+                // It is a TIE.
+                setTie();
+                o_IsGameOver = true;
+                return;
+            }
+
+            playTurn(i_ChosenColumnIndex);
+            Database.Players.SwitchCurrentPlayerTurn(Database.Players
+                .GetCurrentPlayer());
+            o_WinnerPlayer = getWinnerPlayer();
+            if (o_WinnerPlayer != null)
+            {
+                o_IsGameOver = true;
+            }
+        }
+
+        private static void playTurn(byte i_ChosenColumnIndex)
         {
             Player currentPlayer = Database.Players.GetCurrentPlayer();
             currentPlayer.ChosenColumnIndex = i_ChosenColumnIndex;

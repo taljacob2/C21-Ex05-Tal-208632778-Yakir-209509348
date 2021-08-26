@@ -15,6 +15,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board
 {
     public class Board : MatrixWrapper<Coin.Coin>, IBoardActuator
     {
+
         private const char k_Delimiter = '|';
         private const char k_RowSeparator = '=';
 

@@ -4,7 +4,9 @@ using System.Windows.Forms;
 using C21_Ex02_01.Com.Team.Controller;
 using C21_Ex02_01.Com.Team.Controller.Impl;
 using C21_Ex02_01.Com.Team.Database.Board.Coin;
+using C21_Ex02_01.Com.Team.Database.Players.Player;
 using C21_Ex02_01.Com.Team.Misc;
+using C21_Ex02_01.Com.Team.Service.Impl;
 
 namespace WindowsFormsUI.Com.Team.Form.Game
 {
@@ -23,6 +25,9 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         {
             // Run settings windows.
             Application.Run(new GameSettingsForm());
+
+            // set ActuatorService:
+            GameControllerImpl.ActuatorService = new ActuatorServiceImpl();
 
             // Create arrays:
             buttonCoins = new Button[GameControllerImpl.Database.Board.Rows,
@@ -59,9 +64,77 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void buttonColumn_Click(object i_Sender, EventArgs i_)
         {
+            postButtonColumnClick(i_Sender, out Player winnerPlayer,
+                out bool isGameOver);
+
+            checkForAnotherGameDialogAndInvoke(isGameOver, winnerPlayer);
+        }
+
+        private static void checkForAnotherGameDialogAndInvoke(
+            bool i_IsGameOver, Player i_WinnerPlayer)
+        {
+            const string k_AnotherGameMessage =
+                "Do you want to play another game?";
+            const string k_TieMessage = "It is a tie!";
+
+            if (i_IsGameOver)
+            {
+                if (i_WinnerPlayer != null)
+                {
+                    // There is a WIN, and there is a winnerPlayer:
+                    showWinnerDialog(i_WinnerPlayer, k_AnotherGameMessage);
+                }
+                else
+                {
+                    // It is a TIE:
+                    showTieDialog(k_TieMessage, k_AnotherGameMessage);
+                }
+            }
+        }
+
+        private static void showTieDialog(string i_TieMessage,
+            string i_AnotherGameMessage)
+        {
+            DialogResult dialogResult = MessageBox.Show(
+                i_AnotherGameMessage,
+                i_TieMessage, MessageBoxButtons.YesNo);
+            switchDialogGameReplay(dialogResult);
+        }
+
+        private static void showWinnerDialog(Player i_WinnerPlayer,
+            string i_AnotherGameMessage)
+        {
+            DialogResult dialogResult = MessageBox.Show(
+                i_AnotherGameMessage,
+                winnerPlayerMessage(i_WinnerPlayer),
+                MessageBoxButtons.YesNo);
+            switchDialogGameReplay(dialogResult);
+        }
+
+        private static string winnerPlayerMessage(Player i_WinnerPlayer)
+        {
+            return "The winner is Player " + i_WinnerPlayer.ID + "!";
+        }
+
+        private static void switchDialogGameReplay(DialogResult i_DialogResult)
+        {
+            if (i_DialogResult == DialogResult.Yes)
+            {
+                //do something
+            }
+            else if (i_DialogResult == DialogResult.No)
+            {
+                //do something else
+            }
+        }
+
+        private void postButtonColumnClick(object i_Sender,
+            out Player o_WinnerPlayer, out bool o_IsGameOver)
+        {
             string text = ((Button) i_Sender).Text;
             GameController.PostChooseColumnAsHumanPlayer(
-                (byte) (byte.Parse(text) - 1));
+                (byte) (byte.Parse(text) - 1),
+                out o_WinnerPlayer, out o_IsGameOver);
         }
 
         private void addButtonColumns()
@@ -110,8 +183,8 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
             // Add event handler:
             GameControllerImpl.Database.Board
-                    .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
-                    .CharModify += new EventHandler(buttonCoin_CharModify);
+                .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
+                .CharModify += new EventHandler(buttonCoin_CharModify);
         }
 
         private static void createButtonCoin(Button i_Button, int i_X,
