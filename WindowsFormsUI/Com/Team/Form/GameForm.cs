@@ -10,38 +10,81 @@ namespace WindowsFormsUI.Com.Team.Form
         public GameForm()
         {
             Application.Run(new GameSettingsForm()); // Run settings windows.
+
+            buttonCoins = new Button[Engine.Database.Board.Rows,
+                Engine.Database.Board.Cols];
+            buttonColumns = new Button[Engine.Database.Board.Cols];
+
             InitializeComponent();
         }
 
-        // private void createColumnButtons()
-        // {
-        //     for (int i = 1; i <= Engine.Database.Board.Cols; i++)
-        //     {
-        //         Button button = new Button();
-        //         const int k_Width = 69;
-        //         const int k_Height = 34;
-        //         const int k_X = 12;
-        //         const int k_Y = 12;
-        //
-        //         button.BackColor = SystemColors.Highlight;
-        //         button.Location = new Point(k_X + (i - 1) * k_Width, k_Y);
-        //         button.Name = "buttonColumn" + i;
-        //         button.Size = new Size(k_Width, k_Height);
-        //         button.TabIndex = i;
-        //         button.Text = i.ToString();
-        //         button.UseVisualStyleBackColor = false;
-        //
-        //         // Add button to list:
-        //         buttonColumnList.Add(button);
-        //     }
-        // }
+        private void createButtonColumns()
+        {
+            for (int i = 1; i <= Engine.Database.Board.Cols; i++)
+            {
+                Button button = new Button();
+                const int k_Width = 69;
+                const int k_Height = 34;
+                const int k_X = 12;
+                const int k_Y = 12;
 
-        // private void addColumnButtons()
-        // {
-        //     foreach (Button button in buttonColumnList)
-        //     {
-        //         Controls.Add(button);
-        //     }
-        // }
+                button.BackColor = SystemColors.Highlight;
+                button.Location = new Point(k_X + (i - 1) * k_Width, k_Y);
+                button.Name = "buttonColumn" + i;
+                button.Size = new Size(k_Width, k_Height);
+                button.TabIndex = i;
+                button.Text = i.ToString();
+                button.UseVisualStyleBackColor = false;
+
+                // Set button:
+                buttonColumns[i - 1] = button;
+            }
+        }
+
+        private void addButtonColumns()
+        {
+            foreach (Button button in buttonColumns)
+            {
+                Controls.Add(button);
+            }
+        }
+
+        private void createButtonCoins()
+        {
+            for (byte row = 1; row <= Engine.Database.Board.Rows; row++)
+            {
+                for (byte col = 1; col <= Engine.Database.Board.Cols; col++)
+                {
+                    Button button = new Button();
+                    const int k_Width = 69;
+                    const int k_Height = 34;
+                    const int k_X = 12;
+                    const int k_Y = 12;
+
+                    button.BackColor = SystemColors.Highlight;
+                    button.Location = new Point(
+                        k_X + (col - 1) * k_Width,
+                        k_Y + (row - 1) * k_Height);
+                    button.Name = "buttonColumn" + ((row + col).ToString());
+                    button.Size = new Size(k_Width, k_Height);
+                    button.TabIndex = (row + col);
+                    button.Text =
+                        Engine.Database.Board.GetElement(row, col).Char
+                            .ToString();
+                    button.UseVisualStyleBackColor = false;
+
+                    // Set button:
+                    buttonCoins[row - 1, col - 1] = button;
+                }
+            }
+        }
+
+        private void addButtonCoins()
+        {
+            foreach (Button button in buttonColumns)
+            {
+                Controls.Add(button);
+            }
+        }
     }
 }

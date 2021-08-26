@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using C21_Ex02_01.Com.Team.Engine;
 
 namespace WindowsFormsUI.Com.Team.Form
 {
@@ -45,6 +46,16 @@ namespace WindowsFormsUI.Com.Team.Form
             this.buttonForfeit.TabIndex = 0;
             this.buttonForfeit.Text = "Forfeit";
             this.buttonForfeit.UseVisualStyleBackColor = false;
+            
+            // 
+            // buttonColumns
+            // 
+            createButtonColumns();
+            
+            // 
+            // buttonCoins
+            // 
+            createButtonCoins();
 
             // 
             // GameForm
@@ -52,6 +63,8 @@ namespace WindowsFormsUI.Com.Team.Form
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            addButtonColumns();
+            addButtonCoins();
             this.Controls.Add(this.buttonForfeit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "GameForm";
@@ -59,8 +72,12 @@ namespace WindowsFormsUI.Com.Team.Form
             this.Text = "Connect 4";
             this.ResumeLayout(false);
         }
-
+        
         private System.Windows.Forms.Button buttonForfeit;
+
+        private Button[] buttonColumns; 
+
+        private Button[,] buttonCoins;
 
         #endregion
     }
