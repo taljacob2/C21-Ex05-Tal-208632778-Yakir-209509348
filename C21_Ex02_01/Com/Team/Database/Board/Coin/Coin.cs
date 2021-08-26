@@ -1,4 +1,6 @@
-﻿namespace C21_Ex02_01.Com.Team.Database.Board.Coin
+﻿using System;
+
+namespace C21_Ex02_01.Com.Team.Database.Board.Coin
 {
     public class Coin
     {
@@ -14,6 +16,8 @@
 
         public char Char { get; set; }
 
+        public event EventHandler CharModify;
+    
         public override bool Equals(object i_Obj)
         {
             if (ReferenceEquals(null, i_Obj))
@@ -67,6 +71,16 @@
         public static bool operator !=(Coin i_A, Coin i_B)
         {
             return i_A?.Char != i_B?.Char;
+        }
+
+        protected virtual void OnCharModify()
+        {
+            CharModify?.Invoke(this, EventArgs.Empty);
+        }
+        
+        public void CharModified()
+        {
+            OnCharModify();
         }
     }
 }

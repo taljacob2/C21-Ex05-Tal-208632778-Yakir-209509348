@@ -3,6 +3,8 @@ using System.Drawing;
 using System.Windows.Forms;
 using C21_Ex02_01.Com.Team.Controller;
 using C21_Ex02_01.Com.Team.Controller.Impl;
+using C21_Ex02_01.Com.Team.Database.Board.Coin;
+using C21_Ex02_01.Com.Team.Misc;
 
 namespace WindowsFormsUI.Com.Team.Form.Game
 {
@@ -71,28 +73,21 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void createButtonCoins()
         {
-            for (byte row = 1; row <= GameControllerImpl.Database.Board.Rows; row++)
+            for (byte row = 1;
+                row <= GameControllerImpl.Database.Board.Rows;
+                row++)
             {
-                for (byte col = 1; col <= GameControllerImpl.Database.Board.Cols; col++)
+                for (byte col = 1;
+                    col <= GameControllerImpl.Database.Board.Cols;
+                    col++)
                 {
                     Button button = new Button();
                     const int k_Height = k_Width;
                     const int k_X = k_Padding;
                     const int k_Y = 56;
 
-                    button.BackColor = SystemColors.Control;
-                    button.Font = new Font("Microsoft Sans Serif",
-                        12F);
-                    button.Location = new Point(
-                        k_X + (col - 1) * k_Width,
-                        k_Y + (row - 1) * k_Height);
-                    button.Name = "buttonCoin" + (row + col);
-                    button.Size = new Size(k_Width, k_Height);
-                    button.TabIndex = row + col;
-                    button.Text =
-                        GameControllerImpl.Database.Board.GetElement((byte) (row - 1),
-                            (byte) (col - 1)).Char.ToString();
-                    button.UseVisualStyleBackColor = false;
+                    createButtonCoinWithEventHandler(button, k_X, col, k_Y, row,
+                        k_Height);
 
                     // Update max height and width
                     m_MaxButtonCoinHeight = k_Y + (row - 1) * k_Height;
@@ -105,6 +100,49 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     buttonCoins[row - 1, col - 1] = button;
                 }
             }
+        }
+
+        private void createButtonCoinWithEventHandler(Button i_Button, int i_X,
+            byte i_Col, int i_Y, byte i_Row, int i_Height)
+        {
+            createButtonCoin(i_Button, i_X, i_Col, i_Y, i_Row, i_Height);
+
+            // Add event handler:
+            GameControllerImpl.Database.Board
+                    .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
+                    .CharModify +=
+                new EventHandler(buttonCoin_CharModify);
+        }
+
+        private static void createButtonCoin(Button i_Button, int i_X,
+            byte i_Col, int i_Y, byte i_Row, int i_Height)
+        {
+            i_Button.BackColor = SystemColors.Control;
+            i_Button.Font = new Font("Microsoft Sans Serif",
+                12F);
+            i_Button.Location = new Point(
+                i_X + (i_Col - 1) * k_Width,
+                i_Y + (i_Row - 1) * i_Height);
+            i_Button.Name = "buttonCoin" + (i_Row + i_Col);
+            i_Button.Size = new Size(k_Width, i_Height);
+            i_Button.TabIndex = i_Row + i_Col;
+            i_Button.Text =
+                GameControllerImpl.Database.Board.GetElement(
+                    (byte) (i_Row - 1),
+                    (byte) (i_Col - 1)).Char.ToString();
+            i_Button.UseVisualStyleBackColor = false;
+        }
+
+        private void buttonCoin_CharModify(object i_Sender, EventArgs i_)
+        {
+            char coinChar = ((Coin) i_Sender).Char;
+            Coordinate coinCoordinate = ((Coin) i_Sender).Coordinate;
+            this.buttonCoins[coinCoordinate.Y, coinCoordinate.X].Text =
+                coinChar.ToString();
+
+            // DEBUG:
+            Console.Out.WriteLine("i_Sender = {0}",
+                i_Sender.ToStringExtension());
         }
 
         private void addButtonCoins()

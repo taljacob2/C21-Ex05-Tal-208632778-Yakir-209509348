@@ -51,6 +51,9 @@ namespace C21_Ex02_01.Com.Team.Database.Board
             if (emptyElementInColumn != null)
             {
                 emptyElementInColumn.Char = i_CharCoin;
+
+                // Notify event handler:
+                emptyElementInColumn.CharModified();
             }
             else
             {
