@@ -46,24 +46,33 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="GameForm.cs">
-            <SubType>Form</SubType>
-        </Compile>
-        <Compile Include="GameForm.Designer.cs">
-            <DependentUpon>GameForm.cs</DependentUpon>
-        </Compile>
-        <Compile Include="GameSettingsForm.cs">
+        <Compile Include="Com\Team\Form\Debug\DebugForm.cs">
           <SubType>Form</SubType>
         </Compile>
-        <Compile Include="GameSettingsForm.Designer.cs">
+        <Compile Include="Com\Team\Form\Debug\DebugForm.Designer.cs">
+          <DependentUpon>DebugForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Com\Team\Form\GameForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="Com\Team\Form\GameForm.Designer.cs">
+          <DependentUpon>GameForm.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Com\Team\Form\GameSettingsForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="Com\Team\Form\GameSettingsForm.Designer.cs">
           <DependentUpon>GameSettingsForm.cs</DependentUpon>
         </Compile>
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <EmbeddedResource Include="GameForm.resx">
+        <EmbeddedResource Include="Com\Team\Form\Debug\DebugForm.resx">
+          <DependentUpon>DebugForm.cs</DependentUpon>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Com\Team\Form\GameForm.resx">
           <DependentUpon>GameForm.cs</DependentUpon>
         </EmbeddedResource>
-        <EmbeddedResource Include="GameSettingsForm.resx">
+        <EmbeddedResource Include="Com\Team\Form\GameSettingsForm.resx">
           <DependentUpon>GameSettingsForm.cs</DependentUpon>
         </EmbeddedResource>
         <EmbeddedResource Include="Properties\Resources.resx">
@@ -87,6 +96,12 @@
     </ItemGroup>
     <ItemGroup>
         <None Include="App.config" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\C21_Ex02_01\C21_Ex02_01.csproj">
+        <Project>{b067c2b0-d664-48c2-a735-6516e7256af6}</Project>
+        <Name>C21_Ex02_01</Name>
+      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

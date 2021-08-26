@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace WindowsFormsUI
+﻿namespace WindowsFormsUI.Com.Team.Form
 {
     partial class GameSettingsForm
     {
