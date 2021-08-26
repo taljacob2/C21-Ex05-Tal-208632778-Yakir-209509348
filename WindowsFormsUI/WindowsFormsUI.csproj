@@ -5,7 +5,7 @@
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
         <ProjectGuid>{AC221314-203C-498B-88CA-4D12E5F0BE79}</ProjectGuid>
-        <OutputType>WinExe</OutputType>
+        <OutputType>Exe</OutputType>
         <RootNamespace>WindowsFormsUI</RootNamespace>
         <AssemblyName>WindowsFormsUI</AssemblyName>
         <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>

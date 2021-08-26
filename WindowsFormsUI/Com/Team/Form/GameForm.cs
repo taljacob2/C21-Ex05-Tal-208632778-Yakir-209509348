@@ -1,7 +1,9 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
 using C21_Ex02_01.Com.Team.Engine;
+using C21_Ex02_01.Com.Team.Misc;
 
 namespace WindowsFormsUI.Com.Team.Form
 {
@@ -9,8 +11,10 @@ namespace WindowsFormsUI.Com.Team.Form
     {
         public GameForm()
         {
-            Application.Run(new GameSettingsForm()); // Run settings windows.
+            // Run settings windows.
+            Application.Run(new GameSettingsForm());
 
+            // Create arrays:
             buttonCoins = new Button[Engine.Database.Board.Rows,
                 Engine.Database.Board.Cols];
             buttonColumns = new Button[Engine.Database.Board.Cols];
@@ -35,6 +39,7 @@ namespace WindowsFormsUI.Com.Team.Form
                 button.TabIndex = i;
                 button.Text = i.ToString();
                 button.UseVisualStyleBackColor = false;
+                button.Cursor = Cursors.Hand;
 
                 // Set button:
                 buttonColumns[i - 1] = button;
@@ -69,10 +74,11 @@ namespace WindowsFormsUI.Com.Team.Form
                     button.Size = new Size(k_Width, k_Height);
                     button.TabIndex = (row + col);
                     button.Text =
-                        Engine.Database.Board.GetElement(row, col).Char
+                        Engine.Database.Board.GetElement((byte) (row - 1), (byte)
+                                (col - 1)).Char
                             .ToString();
                     button.UseVisualStyleBackColor = false;
-
+                    
                     // Set button:
                     buttonCoins[row - 1, col - 1] = button;
                 }
@@ -81,7 +87,7 @@ namespace WindowsFormsUI.Com.Team.Form
 
         private void addButtonCoins()
         {
-            foreach (Button button in buttonColumns)
+            foreach (Button button in buttonCoins)
             {
                 Controls.Add(button);
             }

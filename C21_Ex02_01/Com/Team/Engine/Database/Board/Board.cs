@@ -24,8 +24,7 @@ namespace C21_Ex02_01.Com.Team.Engine.Database.Board
         public Board(byte i_Rows, byte i_Cols) : base(i_Rows, i_Cols)
         {
             s_EvaluationBoard = new EvaluationBoard(i_Rows, i_Cols);
-
-            // ResetBoard();
+            ResetBoard();
         }
 
         /// <summary>
