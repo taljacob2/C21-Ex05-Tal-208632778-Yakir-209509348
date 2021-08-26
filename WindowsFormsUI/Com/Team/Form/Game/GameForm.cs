@@ -238,5 +238,11 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 Controls.Add(button);
             }
         }
+
+        private void buttonForfeit_Click(object i_Sender, EventArgs i_E)
+        {
+            GameController.Forfeit(out Player winnerPlayer);
+            checkForAnotherGameDialogAndInvoke(true, winnerPlayer);
+        }
     }
 }

@@ -45,9 +45,11 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
             playerTwo.Score++;
         }
 
-        public void Forfeit()
+        public void Forfeit(out Player o_WinnerPlayer)
         {
-            setWinnerPlayer(r_Players.GetNotCurrentPlayer());
+            o_WinnerPlayer = r_Players.GetNotCurrentPlayer();
+            // setWinnerPlayer(o_WinnerPlayer);
+            ResetForfeitAndWinner();
         }
 
         public void ResetForfeitAndWinner()

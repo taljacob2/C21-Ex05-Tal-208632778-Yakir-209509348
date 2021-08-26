@@ -24,8 +24,9 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
             Database database = Controller.Impl.GameControllerImpl.Database;
             if (ChosenColumnIndex == k_QuitSignal)
             {
-                Controller.Impl.GameControllerImpl.ActuatorService
-                    .Forfeit(); // Database Update.
+                // Database Update.
+                Controller.Impl.GameControllerImpl.ActuatorService.Forfeit(out Player
+                    winnerPlayer);
                 return;
             }
 

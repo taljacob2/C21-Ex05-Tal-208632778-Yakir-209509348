@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace WindowsFormsUI.Com.Team.Form.Game
 {
@@ -43,6 +44,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             this.buttonForfeit.TabIndex = 0;
             this.buttonForfeit.Text = "Forfeit";
             this.buttonForfeit.UseVisualStyleBackColor = false;
+            this.buttonForfeit.Click += new EventHandler(buttonForfeit_Click);
             
             // 
             // buttonColumns

@@ -11,5 +11,7 @@ namespace C21_Ex02_01.Com.Team.Controller
             out bool o_IsGameOver);
 
         void NewGame();
+
+        void Forfeit(out Player o_WinnerPlayer);
     }
 }

@@ -16,7 +16,7 @@ namespace C21_Ex02_01.Com.Team.Service
 
         void SetTie();
 
-        void Forfeit();
+        void Forfeit(out Player o_WinnerPlayer);
 
         void ResetForfeitAndWinner();
     }

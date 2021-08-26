@@ -2,6 +2,7 @@
 
 using System;
 using System.Runtime.CompilerServices;
+using C21_Ex02_01.Com.Team.Database.Board;
 using C21_Ex02_01.Com.Team.Database.Players.Player;
 using C21_Ex02_01.Com.Team.Service;
 using C21_Ex02_01.Com.Team.Service.Impl;
@@ -108,11 +109,6 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         public void PostChooseColumnAsHumanPlayer(byte i_ChosenColumnIndex,
             out Player o_WinnerPlayer, out bool o_IsGameOver)
         {
-            if (isTie(out o_WinnerPlayer, out o_IsGameOver))
-            {
-                return;
-            }
-
             playTurn(i_ChosenColumnIndex);
             Database.Players.SwitchCurrentPlayerTurn(Database.Players
                 .GetCurrentPlayer());
@@ -121,6 +117,8 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             {
                 o_IsGameOver = true;
             }
+
+            isTie(out o_IsGameOver);
         }
 
         /// <summary />
@@ -134,8 +132,9 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             out Player o_WinnerPlayer,
             out bool o_IsGameOver)
         {
-            if (isComputerPlayerNotExists(out o_WinnerPlayer, out o_IsGameOver))
+            if (isComputerPlayerNotExists(out o_IsGameOver))
             {
+                o_WinnerPlayer = null;
                 return;
             }
 
@@ -146,12 +145,14 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             {
                 o_IsGameOver = true;
             }
+            
+            isTie(out o_IsGameOver);
         }
 
-        private bool isComputerPlayerNotExists(out Player o_WinnerPlayer,
+        private bool isComputerPlayerNotExists(
             out bool o_IsGameOver)
         {
-            bool returnValue = isTie(out o_WinnerPlayer, out o_IsGameOver) ||
+            bool returnValue = isTie(out o_IsGameOver) ||
                                !isComputerPlayerExistsAndPlayed();
 
             return returnValue;
@@ -174,10 +175,8 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             return returnValue;
         }
 
-        private bool isTie(out Player o_WinnerPlayer,
-            out bool o_IsGameOver)
+        private bool isTie(out bool o_IsGameOver)
         {
-            o_WinnerPlayer = null;
             o_IsGameOver = false;
             bool returnValue = Database.Board.IsFull();
             if (returnValue)
@@ -202,6 +201,11 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             Database.Players.SwitchCurrentPlayerTurn(Database.Players
                 .GetPlayerTwo());
             Database.Board.ResetCoinChars();
+        }
+
+        public void Forfeit(out Player o_WinnerPlayer)
+        {
+            ActuatorService.Forfeit(out o_WinnerPlayer);
         }
     }
 }
