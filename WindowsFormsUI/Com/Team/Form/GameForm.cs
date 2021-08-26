@@ -1,16 +1,13 @@
-﻿using System;
-using System.Drawing;
-using System.Drawing.Text;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using C21_Ex02_01.Com.Team.Engine;
-using C21_Ex02_01.Com.Team.Misc;
 
 namespace WindowsFormsUI.Com.Team.Form
 {
     public partial class GameForm : System.Windows.Forms.Form
     {
-        const int k_Width = 69;
-        
+        private const int k_Width = 69;
+
         public GameForm()
         {
             // Run settings windows.
@@ -66,20 +63,21 @@ namespace WindowsFormsUI.Com.Team.Form
                     const int k_X = 12;
                     const int k_Y = 56;
 
-                    button.BackColor = System.Drawing.SystemColors.Control;
-                    button.Font = new System.Drawing.Font("Microsoft Sans Serif",
+                    button.BackColor = SystemColors.Control;
+                    button.Font = new Font("Microsoft Sans Serif",
                         12F);
                     button.Location = new Point(
                         k_X + (col - 1) * k_Width,
                         k_Y + (row - 1) * k_Height);
-                    button.Name = "buttonCoin" + ((row + col).ToString());
+                    button.Name = "buttonCoin" + (row + col);
                     button.Size = new Size(k_Width, k_Height);
-                    button.TabIndex = (row + col);
+                    button.TabIndex = row + col;
                     button.Text =
-                        Engine.Database.Board.GetElement((byte) (row - 1), (byte)
-                                (col - 1)).Char.ToString();
+                        Engine.Database.Board.GetElement((byte) (row - 1),
+                            (byte)
+                            (col - 1)).Char.ToString();
                     button.UseVisualStyleBackColor = false;
-                    
+
                     // Set button:
                     buttonCoins[row - 1, col - 1] = button;
                 }

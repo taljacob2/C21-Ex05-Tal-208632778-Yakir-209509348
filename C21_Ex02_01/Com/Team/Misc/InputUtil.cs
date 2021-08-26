@@ -1,13 +1,13 @@
-﻿﻿#region
+﻿#region
 
- using System;
- using System.Collections.Generic;
- using System.ComponentModel;
- using System.Linq;
- using System.Text.RegularExpressions;
- using MiscUtil;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Linq;
+using System.Text.RegularExpressions;
+using MiscUtil;
 
- #endregion
+#endregion
 
 namespace C21_Ex02_01.Com.Team.Misc
 {
@@ -60,7 +60,7 @@ namespace C21_Ex02_01.Com.Team.Misc
 
             return converted;
         }
-        
+
         public static string ConvertWithAssertByRegexWithException(
             string i_Message, Regex i_Regex)
         {
@@ -74,7 +74,7 @@ namespace C21_Ex02_01.Com.Team.Misc
 
             return converted;
         }
-        
+
         public static string ConvertWithAssertByRegex(
             string i_Message, Regex i_Regex)
         {
@@ -88,7 +88,7 @@ namespace C21_Ex02_01.Com.Team.Misc
 
             return converted;
         }
-        
+
         /// <summary>
         ///     Generic comparison by range.
         ///     <see cref="Operator" />

@@ -1,12 +1,12 @@
-﻿﻿#region
+﻿#region
 
- using System;
- using System.Collections.Generic;
- using System.Reflection;
- using System.Text;
- using C21_Ex02_01.Com.Team.Misc.ArrayExtensions;
+using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Text;
+using C21_Ex02_01.Com.Team.Misc.ArrayExtensions;
 
- #endregion
+#endregion
 
 namespace C21_Ex02_01.Com.Team.Misc
 {
@@ -105,7 +105,7 @@ namespace C21_Ex02_01.Com.Team.Misc
 
                 return (T) propertyInfo.GetValue(i_SourceInstance, null);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 if (i_InformIfUnfound)
                 {
