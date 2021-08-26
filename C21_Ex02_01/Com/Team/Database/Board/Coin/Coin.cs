@@ -1,4 +1,5 @@
 ﻿using System;
+using C21_Ex02_01.Com.Team.Misc;
 
 namespace C21_Ex02_01.Com.Team.Database.Board.Coin
 {
@@ -55,7 +56,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board.Coin
 
         public override string ToString()
         {
-            return $"{Char}";
+            return this.ToStringExtension();
         }
 
         public bool IsEmpty()
