@@ -15,7 +15,7 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
 
         public override void PlayTurn()
         {
-            Database database = Controller.Impl.Engine.Database;
+            Database database = Controller.Impl.GameControllerImpl.Database;
 
             // Thread.Sleep(300); // Add delay for realism.
             database.Board.InsertCoin(getBestMove(), Char);
@@ -23,7 +23,7 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
 
         private byte getBestMove()
         {
-            return r_MinMaxAI.GetBestMove(this, Controller.Impl.Engine.Database.Board);
+            return r_MinMaxAI.GetBestMove(this, Controller.Impl.GameControllerImpl.Database.Board);
         }
     }
 }

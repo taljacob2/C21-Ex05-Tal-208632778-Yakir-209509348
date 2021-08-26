@@ -15,7 +15,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         private int m_MaxButtonCoinWidth;
 
         public IGameController GameController { get; private set; } =
-            new Engine();
+            new GameControllerImpl();
 
         public GameForm()
         {
@@ -23,16 +23,16 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             Application.Run(new GameSettingsForm());
 
             // Create arrays:
-            buttonCoins = new Button[Engine.Database.Board.Rows,
-                Engine.Database.Board.Cols];
-            buttonColumns = new Button[Engine.Database.Board.Cols];
+            buttonCoins = new Button[GameControllerImpl.Database.Board.Rows,
+                GameControllerImpl.Database.Board.Cols];
+            buttonColumns = new Button[GameControllerImpl.Database.Board.Cols];
 
             InitializeComponent();
         }
 
         private void createButtonColumns()
         {
-            for (int i = 1; i <= Engine.Database.Board.Cols; i++)
+            for (int i = 1; i <= GameControllerImpl.Database.Board.Cols; i++)
             {
                 Button button = new Button();
                 const int k_Height = 34;
@@ -71,9 +71,9 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void createButtonCoins()
         {
-            for (byte row = 1; row <= Engine.Database.Board.Rows; row++)
+            for (byte row = 1; row <= GameControllerImpl.Database.Board.Rows; row++)
             {
-                for (byte col = 1; col <= Engine.Database.Board.Cols; col++)
+                for (byte col = 1; col <= GameControllerImpl.Database.Board.Cols; col++)
                 {
                     Button button = new Button();
                     const int k_Height = k_Width;
@@ -90,7 +90,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     button.Size = new Size(k_Width, k_Height);
                     button.TabIndex = row + col;
                     button.Text =
-                        Engine.Database.Board.GetElement((byte) (row - 1),
+                        GameControllerImpl.Database.Board.GetElement((byte) (row - 1),
                             (byte) (col - 1)).Char.ToString();
                     button.UseVisualStyleBackColor = false;
 

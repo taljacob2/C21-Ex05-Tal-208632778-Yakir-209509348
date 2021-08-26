@@ -12,13 +12,13 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
     public class ComputerPlayer : Player
     {
         private readonly IRequesterService r_RequesterService =
-            Controller.Impl.Engine.RequesterService;
+            Controller.Impl.GameControllerImpl.RequesterService;
 
         public ComputerPlayer(eID i_ID, char i_Char) : base(i_ID, i_Char) {}
 
         public override void PlayTurn()
         {
-            Database database = Controller.Impl.Engine.Database;
+            Database database = Controller.Impl.GameControllerImpl.Database;
             byte numberOfColumns = database.Board.Cols;
             List<byte> listOfIndexesOfNotFullColumns =
                 initializeListOfIndexesOfNotFullColumns(numberOfColumns);

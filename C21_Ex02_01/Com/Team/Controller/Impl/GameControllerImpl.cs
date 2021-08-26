@@ -8,15 +8,15 @@ using C21_Ex02_01.Com.Team.Service.Impl;
 
 namespace C21_Ex02_01.Com.Team.Controller.Impl
 {
-    public class Engine : IGameController
+    public class GameControllerImpl : IGameController
     {
-        static Engine()
+        static GameControllerImpl()
         {
             // Caution: `ResponderService` MUST be defined HERE:
             // ResponderService = new ResponderServiceImpl();
         }
 
-        public Engine()
+        public GameControllerImpl()
         {
             // Caution: the order here is important:
             // RequesterService = new RequesterServiceImpl();

@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Com\Team\Controller\IGameController.cs" />
-    <Compile Include="Com\Team\Controller\Impl\Engine.cs" />
+    <Compile Include="Com\Team\Controller\Impl\GameControllerImpl.cs" />
     <Compile Include="Com\Team\Database\Board\Board.cs" />
     <Compile Include="Com\Team\Database\Board\Coin\Coin.cs" />
     <Compile Include="Com\Team\Database\Board\Coin\Coordinate.cs" />

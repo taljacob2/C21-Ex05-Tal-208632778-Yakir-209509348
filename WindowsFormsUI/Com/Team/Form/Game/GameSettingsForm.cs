@@ -18,7 +18,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void initializeDatabase()
         {
-            Engine.Database =
+            GameControllerImpl.Database =
                 new Database(
                     new Board((byte) rowsNumericUpDown.Value,
                         (byte) colsNumericUpDown.Value),

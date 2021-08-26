@@ -10,8 +10,8 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
 {
     public class ActuatorServiceImpl : IActuatorService
     {
-        private readonly Board r_Board = Controller.Impl.Engine.Database.Board;
-        private readonly Players r_Players = Controller.Impl.Engine.Database.Players;
+        private readonly Board r_Board = Controller.Impl.GameControllerImpl.Database.Board;
+        private readonly Players r_Players = Controller.Impl.GameControllerImpl.Database.Players;
 
         public Player WinnerPlayer { get; set; }
 
