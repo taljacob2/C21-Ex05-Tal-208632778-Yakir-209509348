@@ -10,7 +10,7 @@ using C21_Ex02_01.Com.Team.Misc.ArrayExtensions;
 
 namespace C21_Ex02_01.Com.Team.Misc
 {
-    public static class ObjectExtensions // TODO: check if required.
+    public static class ObjectExtensions
     {
         private static readonly MethodInfo sr_CloneMethod =
             typeof(object).GetMethod("MemberwiseClone",

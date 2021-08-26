@@ -60,7 +60,8 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         private void buttonColumn_Click(object i_Sender, EventArgs i_)
         {
             string text = ((Button) i_Sender).Text;
-            GameController.PostChooseColumnAsHumanPlayer(byte.Parse(text));
+            GameController.PostChooseColumnAsHumanPlayer(
+                (byte) (byte.Parse(text) - 1));
         }
 
         private void addButtonColumns()
@@ -139,10 +140,6 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             Coordinate coinCoordinate = ((Coin) i_Sender).Coordinate;
             this.buttonCoins[coinCoordinate.Y, coinCoordinate.X].Text =
                 coinChar.ToString();
-
-            // DEBUG:
-            Console.Out.WriteLine("i_Sender = {0}",
-                i_Sender.ToStringExtension());
         }
 
         private void addButtonCoins()
