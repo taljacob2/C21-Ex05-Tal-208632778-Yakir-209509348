@@ -30,7 +30,7 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
             chooseColumnAsComputerPlayer(this, i_ListOfIndexesOfNotFullColumns);
             try
             {
-                Thread.Sleep(300); // Add delay for realism.
+                // Thread.Sleep(300); // Add delay for realism.
                 i_Database.Board.InsertCoin(ChosenColumnIndex, Char);
             }
             catch (Exception)

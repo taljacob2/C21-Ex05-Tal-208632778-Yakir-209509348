@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Runtime.CompilerServices;
 using C21_Ex02_01.Com.Team.Database.Players.Player;
 using C21_Ex02_01.Com.Team.Service;
 using C21_Ex02_01.Com.Team.Service.Impl;
@@ -107,14 +108,8 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         public void PostChooseColumnAsHumanPlayer(byte i_ChosenColumnIndex,
             out Player o_WinnerPlayer, out bool o_IsGameOver)
         {
-            o_WinnerPlayer = null;
-            o_IsGameOver = false;
-
-            if (Database.Board.IsFull())
+            if (isTie(out o_WinnerPlayer, out o_IsGameOver))
             {
-                // It is a TIE.
-                setTie();
-                o_IsGameOver = true;
                 return;
             }
 
@@ -126,6 +121,73 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             {
                 o_IsGameOver = true;
             }
+        }
+
+        /// <summary />
+        /// <param name="o_WinnerPlayer">
+        ///     If this is <see langword="null" />
+        ///     and <paramref name="o_IsGameOver" /> is <see langword="true" /> then
+        ///     it means the game was over with a TIE.
+        /// </param>
+        /// <param name="o_IsGameOver" />
+        public void PostChooseColumnAsComputerPlayerIfExists(
+            out Player o_WinnerPlayer,
+            out bool o_IsGameOver)
+        {
+            if (isComputerPlayerNotExists(out o_WinnerPlayer, out o_IsGameOver))
+            {
+                return;
+            }
+
+            Database.Players.SwitchCurrentPlayerTurn(Database.Players
+                .GetCurrentPlayer());
+            o_WinnerPlayer = getWinnerPlayer();
+            if (o_WinnerPlayer != null)
+            {
+                o_IsGameOver = true;
+            }
+        }
+
+        private bool isComputerPlayerNotExists(out Player o_WinnerPlayer,
+            out bool o_IsGameOver)
+        {
+            bool returnValue = isTie(out o_WinnerPlayer, out o_IsGameOver) ||
+                               !isComputerPlayerExistsAndPlayed();
+
+            return returnValue;
+        }
+
+        private static bool isComputerPlayerExistsAndPlayed()
+        {
+            bool returnValue = true;
+            Player currentPlayer = Database.Players.GetCurrentPlayer();
+
+            if (currentPlayer is ComputerPlayer)
+            {
+                currentPlayer.PlayTurn();
+            }
+            else
+            {
+                returnValue = false;
+            }
+
+            return returnValue;
+        }
+
+        private bool isTie(out Player o_WinnerPlayer,
+            out bool o_IsGameOver)
+        {
+            o_WinnerPlayer = null;
+            o_IsGameOver = false;
+            bool returnValue = Database.Board.IsFull();
+            if (returnValue)
+            {
+                // It is a TIE.
+                setTie();
+                o_IsGameOver = true;
+            }
+
+            return returnValue;
         }
 
         private static void playTurn(byte i_ChosenColumnIndex)
