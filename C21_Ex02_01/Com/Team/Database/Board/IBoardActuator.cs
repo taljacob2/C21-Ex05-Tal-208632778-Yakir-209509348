@@ -8,7 +8,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board
 {
     public interface IBoardActuator
     {
-        void ResetBoard();
+        void ResetCoinChars();
 
         void InsertCoin(byte i_ColumnIndexToInsertTo, char i_CharCoin);
 

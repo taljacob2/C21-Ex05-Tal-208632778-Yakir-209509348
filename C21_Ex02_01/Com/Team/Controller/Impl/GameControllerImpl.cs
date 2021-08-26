@@ -139,7 +139,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         {
             Database.Players.SwitchCurrentPlayerTurn(Database.Players
                 .GetPlayerTwo());
-            Database.Board.ResetBoard();
+            Database.Board.ResetCoinChars();
         }
     }
 }

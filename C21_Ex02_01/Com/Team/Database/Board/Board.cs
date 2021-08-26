@@ -24,7 +24,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board
         public Board(byte i_Rows, byte i_Cols) : base(i_Rows, i_Cols)
         {
             s_EvaluationBoard = new EvaluationBoard(i_Rows, i_Cols);
-            ResetBoard();
+            initializeBoard();
         }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board
             }
         }
 
-        public void ResetBoard()
+        private void initializeBoard()
         {
             fillCoins(Coin.Coin.k_EmptyCoin);
         }
@@ -136,9 +136,20 @@ namespace C21_Ex02_01.Com.Team.Database.Board
                     Coin.Coin coin = new Coin.Coin(new Coordinate(j, i),
                         i_CharToFill);
                     Matrix[i, j] = coin;
+                }
+            }
+        }
 
+        public void ResetCoinChars()
+        {
+            for (byte i = 0; i < Rows; i++)
+            {
+                for (byte j = 0; j < Cols; j++)
+                {
+                    Matrix[i, j].Char = Coin.Coin.k_EmptyCoin;
+                    
                     // Notify event handler:
-                    coin.CharModified();
+                    Matrix[i, j].CharModified();
                 }
             }
         }
