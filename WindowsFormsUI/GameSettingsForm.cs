@@ -17,12 +17,12 @@ namespace WindowsFormsUI
             InitializeComponent();
         }
 
-        private void ButtonPlay_Click(object i_Sender, EventArgs i_)
+        private void buttonPlay_Click(object i_Sender, EventArgs i_)
         {
             this.Close();
         }
 
-        private void CheckBoxPlayer2_CheckedChanged(object i_Sender, EventArgs i_)
+        private void checkBoxPlayer2_CheckedChanged(object i_Sender, EventArgs i_)
         {
             if(this.checkBoxPlayer2.Checked){
                 this.textBoxPlayer2.Text = "";

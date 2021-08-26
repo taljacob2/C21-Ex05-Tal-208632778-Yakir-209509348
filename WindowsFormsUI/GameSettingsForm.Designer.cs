@@ -56,7 +56,7 @@ namespace WindowsFormsUI
             this.buttonPlay.TabIndex = 0;
             this.buttonPlay.Text = "Play";
             this.buttonPlay.UseVisualStyleBackColor = false;
-            this.buttonPlay.Click += new System.EventHandler(this.ButtonPlay_Click);
+            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
 
             // 
             // labelPlayers
@@ -87,7 +87,7 @@ namespace WindowsFormsUI
             this.checkBoxPlayer2.TabIndex = 4;
             this.checkBoxPlayer2.Text = "Player 2:";
             this.checkBoxPlayer2.UseVisualStyleBackColor = true;
-            this.checkBoxPlayer2.CheckedChanged += new System.EventHandler(this.CheckBoxPlayer2_CheckedChanged);
+            this.checkBoxPlayer2.CheckedChanged += new System.EventHandler(this.checkBoxPlayer2_CheckedChanged);
 
             // 
             // labelBoardSize
