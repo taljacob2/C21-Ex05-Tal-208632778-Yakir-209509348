@@ -55,6 +55,8 @@ namespace WindowsFormsUI.Com.Team.Form
             // buttonCoins
             // 
             createButtonCoins();
+            
+            // set Location of `buttonForfeit`:
             this.buttonForfeit.Location = 
                 new System.Drawing.Point(m_CenterWidth, m_MaxButtonCoinHeight
                  + this.buttonForfeit.Size.Height * 2);
@@ -64,7 +66,7 @@ namespace WindowsFormsUI.Com.Team.Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(200, 200);
+            this.ClientSize = new System.Drawing.Size(100,100);
             addButtonColumns();
             addButtonCoins();
             this.Controls.Add(this.buttonForfeit);
