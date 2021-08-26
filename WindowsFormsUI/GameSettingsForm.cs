@@ -24,14 +24,14 @@ namespace WindowsFormsUI
 
         private void CheckBoxPlayer2_CheckedChanged(object i_Sender, EventArgs i_)
         {
-            if(this.CheckBoxPlayer2.Checked){
-                this.TextBoxPlayer2.Text = "";
-                this.TextBoxPlayer2.Enabled = true;
+            if(this.checkBoxPlayer2.Checked){
+                this.textBoxPlayer2.Text = "";
+                this.textBoxPlayer2.Enabled = true;
             }
             else
             {
-                this.TextBoxPlayer2.Text = @"[Computer]";
-                this.TextBoxPlayer2.Enabled = false;
+                this.textBoxPlayer2.Text = @"[Computer]";
+                this.textBoxPlayer2.Enabled = false;
             }
         }
     }
