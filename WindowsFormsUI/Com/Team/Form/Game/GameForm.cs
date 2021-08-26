@@ -111,8 +111,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             // Add event handler:
             GameControllerImpl.Database.Board
                     .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
-                    .CharModify +=
-                new EventHandler(buttonCoin_CharModify);
+                    .CharModify += new EventHandler(buttonCoin_CharModify);
         }
 
         private static void createButtonCoin(Button i_Button, int i_X,
