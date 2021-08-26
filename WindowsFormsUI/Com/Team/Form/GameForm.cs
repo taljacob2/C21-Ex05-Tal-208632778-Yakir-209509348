@@ -8,6 +8,9 @@ namespace WindowsFormsUI.Com.Team.Form
     {
         private const int k_Padding = 12;
         private const int k_Width = 69;
+        private int m_CenterWidth;
+        private int m_MaxButtonCoinHeight;
+        private int m_MaxButtonCoinWidth;
 
         public GameForm()
         {
@@ -77,6 +80,13 @@ namespace WindowsFormsUI.Com.Team.Form
                         Engine.Database.Board.GetElement((byte) (row - 1),
                             (byte) (col - 1)).Char.ToString();
                     button.UseVisualStyleBackColor = false;
+
+                    // Update max height and width
+                    m_MaxButtonCoinHeight = k_Y + (row - 1) * k_Height;
+                    m_MaxButtonCoinWidth = k_X + (col - 1) * k_Width;
+                    m_CenterWidth =
+                        (m_MaxButtonCoinWidth - k_Width / 2 - k_Padding) / 2;
+
 
                     // Set button:
                     buttonCoins[row - 1, col - 1] = button;

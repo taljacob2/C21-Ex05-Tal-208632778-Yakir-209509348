@@ -40,7 +40,6 @@ namespace WindowsFormsUI.Com.Team.Form
             // buttonForfeit
             // 
             this.buttonForfeit.BackColor = System.Drawing.SystemColors.Highlight;
-            this.buttonForfeit.Location = new System.Drawing.Point(337, 394);
             this.buttonForfeit.Name = "buttonForfeit";
             this.buttonForfeit.Size = new System.Drawing.Size(128, 44);
             this.buttonForfeit.TabIndex = 0;
@@ -56,6 +55,9 @@ namespace WindowsFormsUI.Com.Team.Form
             // buttonCoins
             // 
             createButtonCoins();
+            this.buttonForfeit.Location = 
+                new System.Drawing.Point(m_CenterWidth, m_MaxButtonCoinHeight
+                 + this.buttonForfeit.Size.Height * 2);
 
             // 
             // GameForm
