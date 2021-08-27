@@ -49,7 +49,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         {
             if (checkBoxPlayer2.Checked)
             {
-                textBoxPlayer2.Text = "";
+                textBoxPlayer2.Text = @"Player 2";
                 textBoxPlayer2.Enabled = true;
                 Opponent = eType.Human;
             }

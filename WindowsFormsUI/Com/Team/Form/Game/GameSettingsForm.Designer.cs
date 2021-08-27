@@ -149,6 +149,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             this.textBoxPlayer1.Name = "textBoxPlayer1";
             this.textBoxPlayer1.Size = new System.Drawing.Size(100, 22);
             this.textBoxPlayer1.TabIndex = 10;
+            this.textBoxPlayer1.Text = "Player 1";
 
             // 
             // textBoxPlayer2

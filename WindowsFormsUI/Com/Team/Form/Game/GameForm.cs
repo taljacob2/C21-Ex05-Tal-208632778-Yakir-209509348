@@ -64,7 +64,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
             labelPlayer1.Text = k_LabelPlayer1Text + 0;
             labelPlayer1.Text += Environment.NewLine + player1Name;
-            labelPlayer2.Text = k_LabelPlayer1Text + 0;
+            labelPlayer2.Text = k_LabelPlayer2Text + 0;
             labelPlayer2.Text += Environment.NewLine + player2Name;
         }
 
