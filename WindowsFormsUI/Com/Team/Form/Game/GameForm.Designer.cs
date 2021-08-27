@@ -75,6 +75,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             // 
             const int k_LabelPlayer1Width = 80; 
             const int k_LabelPlayer1Height = 29;
+            const string labelPlayer1Text = "Player 1: ";
             this.labelPlayer1.Location = new System.Drawing
                 .Point(buttonForfeitWidthLocation - k_LabelPlayer1Width,
                     buttonForfeitHeightLocation);
@@ -82,12 +83,13 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             this.labelPlayer1.Size = new System.Drawing.Size(k_LabelPlayer1Width,
                 k_LabelPlayer1Height);
             this.labelPlayer1.TabIndex = 2;
-            this.labelPlayer1.Text = "Player 1:";
+            this.labelPlayer1.Text = labelPlayer1Text;
             this.labelPlayer1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             
             // 
             // labelPlayer2
             // 
+            const string labelPlayer2Text = "Player 2: ";
             this.labelPlayer2.Location = new System.Drawing
                 .Point(buttonForfeitWidthLocation + k_ButtonForfeitWidth,
                     buttonForfeitHeightLocation);
@@ -95,7 +97,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             this.labelPlayer2.Size = new System.Drawing.Size(k_LabelPlayer1Width,
                 k_LabelPlayer1Height);
             this.labelPlayer2.TabIndex = 3;
-            this.labelPlayer2.Text = "Player 2:";
+            this.labelPlayer2.Text = labelPlayer2Text;
             this.labelPlayer2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
             // 
