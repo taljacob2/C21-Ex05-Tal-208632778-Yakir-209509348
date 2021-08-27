@@ -169,7 +169,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         {
             Database.Players.SwitchCurrentPlayerTurn(Database.Players
                 .GetPlayerTwo());
-            Database.Board.ResetCoinChars();
+            Database.Board.ResetBoard();
         }
 
         public void Forfeit(out Player o_WinnerPlayer)

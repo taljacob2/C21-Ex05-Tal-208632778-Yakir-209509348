@@ -157,7 +157,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board
             }
         }
 
-        public void ResetCoinChars()
+        private void resetCoinChars()
         {
             for (byte i = 0; i < Rows; i++)
             {
@@ -168,6 +168,20 @@ namespace C21_Ex02_01.Com.Team.Database.Board
                     // Notify event handler:
                     Matrix[i, j].CharModified();
                 }
+            }
+        }
+
+        public void ResetBoard()
+        {
+            resetCoinChars();
+            resetColumnHeaders();
+        }
+
+        private void resetColumnHeaders()
+        {
+            foreach (var columnHeader in ColumnHeaders)
+            {
+                columnHeader.ColumnNotFull();
             }
         }
 

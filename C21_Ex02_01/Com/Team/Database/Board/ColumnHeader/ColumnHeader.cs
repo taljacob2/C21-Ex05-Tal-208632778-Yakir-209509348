@@ -12,6 +12,8 @@ namespace C21_Ex02_01.Com.Team.Database.Board.ColumnHeader
         public byte ColumnNumber { get; }
 
         public event EventHandler ColumnFilledUp;
+        
+        public event EventHandler ColumnNotFilledUp;
 
         protected virtual void OnColumnFilledUp()
         {
@@ -21,6 +23,16 @@ namespace C21_Ex02_01.Com.Team.Database.Board.ColumnHeader
         public void ColumnFull()
         {
             OnColumnFilledUp();
+        }
+
+        protected virtual void OnColumnNotFilledUp()
+        {
+            ColumnNotFilledUp?.Invoke(this, EventArgs.Empty);
+        }
+        
+        public void ColumnNotFull()
+        {
+            OnColumnNotFilledUp();
         }
     }
 }

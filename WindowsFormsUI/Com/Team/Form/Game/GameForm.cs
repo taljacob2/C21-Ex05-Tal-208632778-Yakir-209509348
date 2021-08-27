@@ -3,9 +3,13 @@ using System.Drawing;
 using System.Windows.Forms;
 using C21_Ex02_01.Com.Team.Controller;
 using C21_Ex02_01.Com.Team.Controller.Impl;
+using C21_Ex02_01.Com.Team.Database.Board;
 using C21_Ex02_01.Com.Team.Database.Board.Coin;
+using C21_Ex02_01.Com.Team.Database.Board.ColumnHeader;
 using C21_Ex02_01.Com.Team.Database.Players.Player;
 using C21_Ex02_01.Com.Team.Service.Impl;
+using ColumnHeader =
+    C21_Ex02_01.Com.Team.Database.Board.ColumnHeader.ColumnHeader;
 
 namespace WindowsFormsUI.Com.Team.Form.Game
 {
@@ -54,19 +58,54 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 const int k_X = k_Padding;
                 const int k_Y = k_Padding;
 
-                button.BackColor = SystemColors.Highlight;
-                button.Location = new Point(k_X + (i - 1) * k_Width, k_Y);
-                button.Name = "buttonColumn" + i;
-                button.Size = new Size(k_Width, k_Height);
-                button.TabIndex = i;
-                button.Text = i.ToString();
-                button.UseVisualStyleBackColor = false;
-                button.Cursor = Cursors.Hand;
-                button.Click += buttonColumn_Click;
+                createButtonColumnWithEventHandler(button, k_X, i, k_Y,
+                    k_Height);
 
                 // Set button:
                 buttonColumns[i - 1] = button;
             }
+        }
+
+        private void createButtonColumnWithEventHandler(Button io_Button,
+            int i_X, int i_I, int i_Y, int i_Height)
+        {
+            createButtonColumn(io_Button, i_X, i_I, i_Y, i_Height);
+
+            
+            ColumnHeader columnHeader =
+                GameControllerImpl.Database.Board.ColumnHeaders[i_I - 1];
+            
+            // Set ColumnFilledUp EventHandler:
+            columnHeader.ColumnFilledUp += buttonColumn_ColumnFilledUp;
+            
+            // Set ColumnNotFilledUp EventHandler:
+            columnHeader.ColumnNotFilledUp += buttonColumn_ColumnNotFilledUp;
+        }
+
+        private void buttonColumn_ColumnNotFilledUp(object i_Sender, EventArgs i_E)
+        {
+            byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
+            this.buttonColumns[columnNumber - 1].Enabled = true;
+        }
+
+        private void buttonColumn_ColumnFilledUp(object i_Sender, EventArgs i_E)
+        {
+            byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
+            this.buttonColumns[columnNumber - 1].Enabled = false;
+        }
+
+        private void createButtonColumn(Button io_Button, int i_X, int i_I,
+            int i_Y, int i_Height)
+        {
+            io_Button.BackColor = SystemColors.Highlight;
+            io_Button.Location = new Point(i_X + (i_I - 1) * k_Width, i_Y);
+            io_Button.Name = "buttonColumn" + i_I;
+            io_Button.Size = new Size(k_Width, i_Height);
+            io_Button.TabIndex = i_I;
+            io_Button.Text = i_I.ToString();
+            io_Button.UseVisualStyleBackColor = false;
+            io_Button.Cursor = Cursors.Hand;
+            io_Button.Click += buttonColumn_Click;
         }
 
         private void addButtonColumns()
@@ -131,7 +170,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         {
             createButtonCoin(io_Button, i_X, i_Col, i_Y, i_Row, i_Height);
 
-            // Set event handler:
+            // Set CharModify EventHandler:
             GameControllerImpl.Database.Board
                 .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
                 .CharModify += buttonCoin_CharModify;
