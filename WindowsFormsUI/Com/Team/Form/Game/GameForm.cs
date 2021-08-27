@@ -101,38 +101,37 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     m_CenterWidth =
                         (m_MaxButtonCoinWidth - k_Width / 2 - k_Padding) / 2;
 
-
                     // Set button:
                     buttonCoins[row - 1, col - 1] = button;
                 }
             }
         }
 
-        private static void createButtonCoin(Button i_Button, int i_X,
+        private static void createButtonCoin(Button io_Button, int i_X,
             byte i_Col, int i_Y, byte i_Row, int i_Height)
         {
-            i_Button.BackColor = SystemColors.Control;
-            i_Button.Font = new Font("Microsoft Sans Serif",
+            io_Button.BackColor = SystemColors.Control;
+            io_Button.Font = new Font("Microsoft Sans Serif",
                 12F);
-            i_Button.Location = new Point(
+            io_Button.Location = new Point(
                 i_X + (i_Col - 1) * k_Width,
                 i_Y + (i_Row - 1) * i_Height);
-            i_Button.Name = "buttonCoin" + (i_Row + i_Col);
-            i_Button.Size = new Size(k_Width, i_Height);
-            i_Button.TabIndex = i_Row + i_Col;
-            i_Button.Text =
+            io_Button.Name = "buttonCoin" + (i_Row + i_Col);
+            io_Button.Size = new Size(k_Width, i_Height);
+            io_Button.TabIndex = i_Row + i_Col;
+            io_Button.Text =
                 GameControllerImpl.Database.Board.GetElement(
                     (byte) (i_Row - 1),
                     (byte) (i_Col - 1)).Char.ToString();
-            i_Button.UseVisualStyleBackColor = false;
+            io_Button.UseVisualStyleBackColor = false;
         }
 
-        private void createButtonCoinWithEventHandler(Button i_Button, int i_X,
+        private void createButtonCoinWithEventHandler(Button io_Button, int i_X,
             byte i_Col, int i_Y, byte i_Row, int i_Height)
         {
-            createButtonCoin(i_Button, i_X, i_Col, i_Y, i_Row, i_Height);
+            createButtonCoin(io_Button, i_X, i_Col, i_Y, i_Row, i_Height);
 
-            // Add event handler:
+            // Set event handler:
             GameControllerImpl.Database.Board
                 .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
                 .CharModify += buttonCoin_CharModify;

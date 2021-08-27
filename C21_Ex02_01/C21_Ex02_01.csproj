@@ -50,6 +50,8 @@
     <Compile Include="Com\Team\Database\Board\Board.cs" />
     <Compile Include="Com\Team\Database\Board\Coin\Coin.cs" />
     <Compile Include="Com\Team\Database\Board\Coin\Coordinate.cs" />
+    <Compile Include="Com\Team\Database\Board\ColumnHeader\ColumnHeader.cs" />
+    <Compile Include="Com\Team\Database\Board\ColumnHeader\ColumnHeadersBuilder.cs" />
     <Compile Include="Com\Team\Database\Board\EvaluationBoard.cs" />
     <Compile Include="Com\Team\Database\Board\IBoardActuator.cs" />
     <Compile Include="Com\Team\Database\Board\Matrix\Wrapper\MatrixWrapper.cs" />

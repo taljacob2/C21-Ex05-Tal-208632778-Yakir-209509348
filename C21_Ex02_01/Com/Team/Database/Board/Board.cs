@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Text;
 using C21_Ex02_01.Com.Team.Database.Board.Coin;
+using C21_Ex02_01.Com.Team.Database.Board.ColumnHeader;
 using C21_Ex02_01.Com.Team.Database.Board.Matrix.Wrapper;
 using C21_Ex02_01.Com.Team.Misc;
 
@@ -20,6 +21,8 @@ namespace C21_Ex02_01.Com.Team.Database.Board
 
         // TODO: may need to change size
         private static EvaluationBoard s_EvaluationBoard;
+
+        public ColumnHeader.ColumnHeader[] ColumnHeaders { get; private set; }
 
         public Board(byte i_Rows, byte i_Cols) : base(i_Rows, i_Cols)
         {
@@ -60,6 +63,12 @@ namespace C21_Ex02_01.Com.Team.Database.Board
                 throw new IOException(
                     $"The column `{i_ColumnIndexToInsertTo + 1}` is full.");
             }
+
+            if (IsColumnFull(i_ColumnIndexToInsertTo))
+            {
+                // Notify event handler of ColumnFull:
+                ColumnHeaders[i_ColumnIndexToInsertTo].ColumnFull();
+            }
         }
 
         public bool IsColumnFull(byte i_ColumnIndex)
@@ -71,6 +80,8 @@ namespace C21_Ex02_01.Com.Team.Database.Board
         private void initializeBoard()
         {
             fillCoins(Coin.Coin.k_EmptyCoin);
+            ColumnHeadersBuilder builder = new ColumnHeadersBuilder(this);
+            ColumnHeaders = builder.Build();
         }
 
         public bool IsVictory()
@@ -457,5 +468,6 @@ namespace C21_Ex02_01.Com.Team.Database.Board
                 io_StringBuilder.Append(Environment.NewLine);
             }
         }
+        
     }
 }
