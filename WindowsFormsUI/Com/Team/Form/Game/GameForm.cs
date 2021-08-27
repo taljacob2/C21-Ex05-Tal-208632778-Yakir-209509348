@@ -38,7 +38,13 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         public IGameController GameController { get; } =
             new GameControllerImpl();
-
+        
+        private void buttonColumn_Click(object i_Sender, EventArgs i_)
+        {
+            postButtonColumnClick(i_Sender, out Player winnerPlayer,
+                out bool isGameOver);
+        }
+        
         private void createButtonColumns()
         {
             for (int i = 1; i <= GameControllerImpl.Database.Board.Cols; i++)
@@ -56,18 +62,11 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 button.Text = i.ToString();
                 button.UseVisualStyleBackColor = false;
                 button.Cursor = Cursors.Hand;
-                button.Click +=
-                    buttonColumn_Click;
+                button.Click += buttonColumn_Click;
 
                 // Set button:
                 buttonColumns[i - 1] = button;
             }
-        }
-
-        private void buttonColumn_Click(object i_Sender, EventArgs i_)
-        {
-            postButtonColumnClick(i_Sender, out Player winnerPlayer,
-                out bool isGameOver);
         }
 
         private void addButtonColumns()
@@ -108,18 +107,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 }
             }
         }
-
-        private void createButtonCoinWithEventHandler(Button i_Button, int i_X,
-            byte i_Col, int i_Y, byte i_Row, int i_Height)
-        {
-            createButtonCoin(i_Button, i_X, i_Col, i_Y, i_Row, i_Height);
-
-            // Add event handler:
-            GameControllerImpl.Database.Board
-                .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
-                .CharModify += buttonCoin_CharModify;
-        }
-
+        
         private static void createButtonCoin(Button i_Button, int i_X,
             byte i_Col, int i_Y, byte i_Row, int i_Height)
         {
@@ -138,15 +126,18 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     (byte) (i_Col - 1)).Char.ToString();
             i_Button.UseVisualStyleBackColor = false;
         }
-
-        private void buttonCoin_CharModify(object i_Sender, EventArgs i_)
+        
+        private void createButtonCoinWithEventHandler(Button i_Button, int i_X,
+            byte i_Col, int i_Y, byte i_Row, int i_Height)
         {
-            char coinChar = ((Coin) i_Sender).Char;
-            Coordinate coinCoordinate = ((Coin) i_Sender).Coordinate;
-            buttonCoins[coinCoordinate.Y, coinCoordinate.X].Text =
-                coinChar.ToString();
-        }
+            createButtonCoin(i_Button, i_X, i_Col, i_Y, i_Row, i_Height);
 
+            // Add event handler:
+            GameControllerImpl.Database.Board
+                .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
+                .CharModify += buttonCoin_CharModify;
+        }
+        
         private void addButtonCoins()
         {
             foreach (Button button in buttonCoins)
@@ -154,7 +145,15 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 Controls.Add(button);
             }
         }
-
+        
+        private void buttonCoin_CharModify(object i_Sender, EventArgs i_)
+        {
+            char coinChar = ((Coin) i_Sender).Char;
+            Coordinate coinCoordinate = ((Coin) i_Sender).Coordinate;
+            buttonCoins[coinCoordinate.Y, coinCoordinate.X].Text =
+                coinChar.ToString();
+        }
+        
         private void buttonForfeit_Click(object i_Sender, EventArgs i_E)
         {
             GameController.Forfeit(out Player winnerPlayer);
