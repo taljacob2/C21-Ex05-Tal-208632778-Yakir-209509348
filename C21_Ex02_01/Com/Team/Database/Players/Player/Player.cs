@@ -20,6 +20,8 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
 
         public event EventHandler ScoreModify;
 
+        public string Name { get; set; }
+
         public abstract void PlayTurn();
 
         public override string ToString()

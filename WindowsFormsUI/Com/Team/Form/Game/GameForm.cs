@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using C21_Ex02_01.Com.Team.Controller;
 using C21_Ex02_01.Com.Team.Controller.Impl;
 using C21_Ex02_01.Com.Team.Database.Board.Coin;
+using C21_Ex02_01.Com.Team.Database.Players;
 using C21_Ex02_01.Com.Team.Database.Players.Player;
 using C21_Ex02_01.Com.Team.Service.Impl;
 using ColumnHeader =
@@ -46,8 +47,14 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void initializeLabelPlayersScoreEventHandler()
         {
+            Players players = GameControllerImpl.Database.Players;
+            string player1Name = players.GetPlayerOne().Name;
+            string player2Name = players.GetPlayerTwo().Name;
+            
             labelPlayer1.Text = k_LabelPlayer1Text + 0;
+            labelPlayer1.Text += Environment.NewLine + player1Name;
             labelPlayer2.Text = k_LabelPlayer1Text + 0;
+            labelPlayer2.Text += Environment.NewLine + player2Name;
 
             // Set ScoreModify EventHandler:
             GameControllerImpl.Database.Players.GetPlayerOne().ScoreModify +=
@@ -59,13 +66,19 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         private void labelPlayer1_ScoreModify(object i_Sender, EventArgs i_)
         {
             byte score = ((Player) i_Sender).Score;
+            Players players = GameControllerImpl.Database.Players;
+            string player1Name = players.GetPlayerOne().Name;
             labelPlayer1.Text = k_LabelPlayer1Text + score;
+            labelPlayer1.Text += Environment.NewLine + player1Name;
         }
 
         private void labelPlayer2_ScoreModify(object i_Sender, EventArgs i_)
         {
             byte score = ((Player) i_Sender).Score;
+            Players players = GameControllerImpl.Database.Players;
+            string player2Name = players.GetPlayerTwo().Name;
             labelPlayer2.Text = k_LabelPlayer2Text + score;
+            labelPlayer2.Text += Environment.NewLine + player2Name;
         }
 
         private void buttonColumn_Click(object i_Sender, EventArgs i_)

@@ -18,11 +18,24 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void initializeDatabase()
         {
+            initializeBoard();
+            initializePlayersNames();
+        }
+
+        private void initializeBoard()
+        {
             GameControllerImpl.Database =
                 new Database(
                     new Board((byte) rowsNumericUpDown.Value,
                         (byte) colsNumericUpDown.Value),
                     new Players(new Settings(Opponent)));
+        }
+        
+        private void initializePlayersNames()
+        {
+            Players players = GameControllerImpl.Database.Players;
+            players.GetPlayerOne().Name = textBoxPlayer1.Text;
+            players.GetPlayerTwo().Name = textBoxPlayer2.Text;
         }
 
         private void buttonPlay_Click(object i_Sender, EventArgs i_)
@@ -30,7 +43,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             initializeDatabase();
             Close();
         }
-
+        
         private void checkBoxPlayer2_CheckedChanged(object i_Sender,
             EventArgs i_)
         {
