@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace WindowsFormsUI.Com.Team.Form.Game
@@ -74,6 +75,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             this.AutoSize = true;
             this.Padding = new Padding(k_Padding);
             this.Name = "GameForm";
+            this.BackColor = Color.CadetBlue;
             manualCenterPosition();
             this.Text = "Connect 4";
             this.ResumeLayout(false);

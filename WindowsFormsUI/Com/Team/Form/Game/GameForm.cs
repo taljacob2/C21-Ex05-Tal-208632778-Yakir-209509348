@@ -165,6 +165,13 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     (byte) (i_Row - 1),
                     (byte) (i_Col - 1)).Char.ToString();
             io_Button.UseVisualStyleBackColor = false;
+            disableAndColorButtonCoin(io_Button);
+        }
+
+        private static void disableAndColorButtonCoin(Button io_Button)
+        {
+            io_Button.Enabled = false;
+            io_Button.BackColor = Color.Azure;
         }
 
         private void createButtonCoinWithEventHandler(Button io_Button, int i_X,

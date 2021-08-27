@@ -1,4 +1,6 @@
-﻿namespace WindowsFormsUI.Com.Team.Form.Game
+﻿using System.Drawing;
+
+namespace WindowsFormsUI.Com.Team.Form.Game
 {
     partial class GameSettingsForm
     {
@@ -178,6 +180,7 @@
             this.Controls.Add(this.buttonPlay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "GameSettingsForm";
+            this.BackColor = Color.CadetBlue;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game Settings";
             ((System.ComponentModel.ISupportInitialize) (this.rowsNumericUpDown)).EndInit();
