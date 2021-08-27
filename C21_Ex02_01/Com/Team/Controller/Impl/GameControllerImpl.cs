@@ -113,12 +113,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             Database.Players.SwitchCurrentPlayerTurn(Database.Players
                 .GetCurrentPlayer());
             o_WinnerPlayer = getWinnerPlayer();
-            if (o_WinnerPlayer != null)
-            {
-                o_IsGameOver = true;
-            }
-
-            isTie(out o_IsGameOver);
+            o_IsGameOver = isTie() || (o_WinnerPlayer != null);
         }
 
         /// <summary />
@@ -129,33 +124,19 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         /// </param>
         /// <param name="o_IsGameOver" />
         public void PostChooseColumnAsComputerPlayerIfExists(
-            out Player o_WinnerPlayer,
-            out bool o_IsGameOver)
+            out Player o_WinnerPlayer, out bool o_IsGameOver)
         {
-            if (isComputerPlayerNotExists(out o_IsGameOver))
+            if (!isComputerPlayerExistsAndPlayed())
             {
                 o_WinnerPlayer = null;
+                o_IsGameOver = false;
                 return;
             }
 
             Database.Players.SwitchCurrentPlayerTurn(Database.Players
                 .GetCurrentPlayer());
             o_WinnerPlayer = getWinnerPlayer();
-            if (o_WinnerPlayer != null)
-            {
-                o_IsGameOver = true;
-            }
-            
-            isTie(out o_IsGameOver);
-        }
-
-        private bool isComputerPlayerNotExists(
-            out bool o_IsGameOver)
-        {
-            bool returnValue = isTie(out o_IsGameOver) ||
-                               !isComputerPlayerExistsAndPlayed();
-
-            return returnValue;
+            o_IsGameOver = isTie() || (o_WinnerPlayer != null);
         }
 
         private static bool isComputerPlayerExistsAndPlayed()
@@ -175,15 +156,14 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             return returnValue;
         }
 
-        private bool isTie(out bool o_IsGameOver)
+        private bool isTie()
         {
-            o_IsGameOver = false;
             bool returnValue = Database.Board.IsFull();
+            
             if (returnValue)
             {
                 // It is a TIE.
                 setTie();
-                o_IsGameOver = true;
             }
 
             return returnValue;
