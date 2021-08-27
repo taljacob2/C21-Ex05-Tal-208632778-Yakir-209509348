@@ -54,8 +54,7 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
         public void Forfeit(out Player o_WinnerPlayer)
         {
             o_WinnerPlayer = r_Players.GetNotCurrentPlayer();
-
-            // setWinnerPlayer(o_WinnerPlayer);
+            setWinnerPlayer(o_WinnerPlayer);
             ResetForfeitAndWinner();
         }
 

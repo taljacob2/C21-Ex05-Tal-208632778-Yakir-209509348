@@ -46,6 +46,9 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void initializeLabelPlayersScoreEventHandler()
         {
+            labelPlayer1.Text = k_LabelPlayer1Text + 0;
+            labelPlayer2.Text = k_LabelPlayer1Text + 0;
+
             // Set ScoreModify EventHandler:
             GameControllerImpl.Database.Players.GetPlayerOne().ScoreModify +=
                 labelPlayer1_ScoreModify;
@@ -58,7 +61,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             byte score = ((Player) i_Sender).Score;
             labelPlayer1.Text = k_LabelPlayer1Text + score;
         }
-        
+
         private void labelPlayer2_ScoreModify(object i_Sender, EventArgs i_)
         {
             byte score = ((Player) i_Sender).Score;
