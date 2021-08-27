@@ -18,7 +18,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board.Coin
         public char Char { get; set; }
 
         public event EventHandler CharModify;
-    
+
         public override bool Equals(object i_Obj)
         {
             if (ReferenceEquals(null, i_Obj))
@@ -78,7 +78,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board.Coin
         {
             CharModify?.Invoke(this, EventArgs.Empty);
         }
-        
+
         public void CharModified()
         {
             OnCharModify();

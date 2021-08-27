@@ -22,8 +22,6 @@ namespace C21_Ex02_01.Com.Team.Database.Board
         // TODO: may need to change size
         private static EvaluationBoard s_EvaluationBoard;
 
-        public ColumnHeader.ColumnHeader[] ColumnHeaders { get; private set; }
-
         public Board(byte i_Rows, byte i_Cols) : base(i_Rows, i_Cols)
         {
             s_EvaluationBoard = new EvaluationBoard(i_Rows, i_Cols);
@@ -38,6 +36,8 @@ namespace C21_Ex02_01.Com.Team.Database.Board
         {
             Matrix = i_Board.Matrix.Copy();
         }
+
+        public ColumnHeader.ColumnHeader[] ColumnHeaders { get; private set; }
 
         /// <summary>
         ///     Inserts a Coin into a column, while checking that the column is not full.
@@ -75,13 +75,6 @@ namespace C21_Ex02_01.Com.Team.Database.Board
         {
             return getBottommostEmptyElementInColumn(i_ColumnIndex) ==
                    null;
-        }
-
-        private void initializeBoard()
-        {
-            fillCoins(Coin.Coin.k_EmptyCoin);
-            ColumnHeadersBuilder builder = new ColumnHeadersBuilder(this);
-            ColumnHeaders = builder.Build();
         }
 
         public bool IsVictory()
@@ -133,6 +126,19 @@ namespace C21_Ex02_01.Com.Team.Database.Board
             return validMoves;
         }
 
+        public void ResetBoard()
+        {
+            resetCoinChars();
+            resetColumnHeaders();
+        }
+
+        private void initializeBoard()
+        {
+            fillCoins(Coin.Coin.k_EmptyCoin);
+            ColumnHeadersBuilder builder = new ColumnHeadersBuilder(this);
+            ColumnHeaders = builder.Build();
+        }
+
         public static void CopyBoardMatrix(Board i_Source, Board i_Destination)
         {
             for (int i = 0; i < i_Source.Rows; i++)
@@ -171,15 +177,9 @@ namespace C21_Ex02_01.Com.Team.Database.Board
             }
         }
 
-        public void ResetBoard()
-        {
-            resetCoinChars();
-            resetColumnHeaders();
-        }
-
         private void resetColumnHeaders()
         {
-            foreach (var columnHeader in ColumnHeaders)
+            foreach (ColumnHeader.ColumnHeader columnHeader in ColumnHeaders)
             {
                 columnHeader.ColumnNotFull();
             }
@@ -482,6 +482,5 @@ namespace C21_Ex02_01.Com.Team.Database.Board
                 io_StringBuilder.Append(Environment.NewLine);
             }
         }
-        
     }
 }

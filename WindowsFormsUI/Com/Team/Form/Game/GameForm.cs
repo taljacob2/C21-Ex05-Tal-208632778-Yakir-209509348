@@ -3,9 +3,7 @@ using System.Drawing;
 using System.Windows.Forms;
 using C21_Ex02_01.Com.Team.Controller;
 using C21_Ex02_01.Com.Team.Controller.Impl;
-using C21_Ex02_01.Com.Team.Database.Board;
 using C21_Ex02_01.Com.Team.Database.Board.Coin;
-using C21_Ex02_01.Com.Team.Database.Board.ColumnHeader;
 using C21_Ex02_01.Com.Team.Database.Players.Player;
 using C21_Ex02_01.Com.Team.Service.Impl;
 using ColumnHeader =
@@ -17,9 +15,9 @@ namespace WindowsFormsUI.Com.Team.Form.Game
     {
         private const int k_Padding = 12;
         private const int k_Width = 69;
-        private int m_CenterWidth;
 
         private readonly Dialog r_Dialog;
+        private int m_CenterWidth;
         private int m_MaxButtonCoinHeight;
         private int m_MaxButtonCoinWidth;
 
@@ -70,27 +68,28 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             int i_X, int i_I, int i_Y, int i_Height)
         {
             createButtonColumn(io_Button, i_X, i_I, i_Y, i_Height);
-            
+
             ColumnHeader columnHeader =
                 GameControllerImpl.Database.Board.ColumnHeaders[i_I - 1];
-            
+
             // Set ColumnFilledUp EventHandler:
             columnHeader.ColumnFilledUp += buttonColumn_ColumnFilledUp;
-            
+
             // Set ColumnNotFilledUp EventHandler:
             columnHeader.ColumnNotFilledUp += buttonColumn_ColumnNotFilledUp;
         }
 
-        private void buttonColumn_ColumnNotFilledUp(object i_Sender, EventArgs i_E)
+        private void buttonColumn_ColumnNotFilledUp(object i_Sender,
+            EventArgs i_E)
         {
             byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
-            this.buttonColumns[columnNumber - 1].Enabled = true;
+            buttonColumns[columnNumber - 1].Enabled = true;
         }
 
         private void buttonColumn_ColumnFilledUp(object i_Sender, EventArgs i_E)
         {
             byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
-            this.buttonColumns[columnNumber - 1].Enabled = false;
+            buttonColumns[columnNumber - 1].Enabled = false;
         }
 
         private void createButtonColumn(Button io_Button, int i_X, int i_I,

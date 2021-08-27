@@ -1,5 +1,6 @@
 ﻿#region
 
+using C21_Ex02_01.Com.Team.Controller.Impl;
 using C21_Ex02_01.Com.Team.Database.Board;
 using C21_Ex02_01.Com.Team.Database.Players;
 using C21_Ex02_01.Com.Team.Database.Players.Player;
@@ -10,8 +11,10 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
 {
     public class ActuatorServiceImpl : IActuatorService
     {
-        private readonly Board r_Board = Controller.Impl.GameControllerImpl.Database.Board;
-        private readonly Players r_Players = Controller.Impl.GameControllerImpl.Database.Players;
+        private readonly Board r_Board = GameControllerImpl.Database.Board;
+
+        private readonly Players
+            r_Players = GameControllerImpl.Database.Players;
 
         public Player WinnerPlayer { get; set; }
 
@@ -48,6 +51,7 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
         public void Forfeit(out Player o_WinnerPlayer)
         {
             o_WinnerPlayer = r_Players.GetNotCurrentPlayer();
+
             // setWinnerPlayer(o_WinnerPlayer);
             ResetForfeitAndWinner();
         }

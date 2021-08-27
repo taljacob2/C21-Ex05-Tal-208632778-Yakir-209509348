@@ -29,11 +29,6 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
             r_Requester.RequestAndConstructEngine();
         }
 
-        public void ChooseColumnAsHumanPlayer(HumanPlayer io_HumanPlayer)
-        {
-            r_Requester.RequestChosenColumnHumanPlayer(io_HumanPlayer);
-        }
-
         /// <summary>
         ///     <remarks>
         ///         Implemented in Engine's-side (and not UI-side).
@@ -58,6 +53,11 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
             List<byte> i_ListOfIndexesOfNotFullColumns)
         {
             throw new NotImplementedException();
+        }
+
+        public void ChooseColumnAsHumanPlayer(HumanPlayer io_HumanPlayer)
+        {
+            r_Requester.RequestChosenColumnHumanPlayer(io_HumanPlayer);
         }
     }
 }

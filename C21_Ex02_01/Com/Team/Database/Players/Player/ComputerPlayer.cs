@@ -2,8 +2,7 @@
 
 using System;
 using System.Collections.Generic;
-using System.Threading;
-using C21_Ex02_01.Com.Team.Service;
+using C21_Ex02_01.Com.Team.Controller.Impl;
 
 #endregion
 
@@ -11,12 +10,11 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
 {
     public class ComputerPlayer : Player
     {
-
         public ComputerPlayer(eID i_ID, char i_Char) : base(i_ID, i_Char) {}
 
         public override void PlayTurn()
         {
-            Database database = Controller.Impl.GameControllerImpl.Database;
+            Database database = GameControllerImpl.Database;
             byte numberOfColumns = database.Board.Cols;
             List<byte> listOfIndexesOfNotFullColumns =
                 initializeListOfIndexesOfNotFullColumns(numberOfColumns);
@@ -40,7 +38,7 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
                     i_Database);
             }
         }
-        
+
         /// <summary>
         ///     <remarks>
         ///         Implemented in Engine's-side (and not UI-side).

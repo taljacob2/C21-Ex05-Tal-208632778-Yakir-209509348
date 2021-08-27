@@ -2,12 +2,12 @@
 {
     public class ColumnHeadersBuilder
     {
-        public Board Board { get; }
-
         public ColumnHeadersBuilder(Board i_Board)
         {
             Board = i_Board;
         }
+
+        public Board Board { get; }
 
         public ColumnHeader[] Build()
         {
@@ -19,6 +19,5 @@
 
             return columnHeaders;
         }
-        
     }
 }

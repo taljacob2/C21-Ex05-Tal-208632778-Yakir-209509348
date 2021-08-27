@@ -1,7 +1,7 @@
 ﻿#region
 
 using System;
-using C21_Ex02_01.Com.Team.Service;
+using C21_Ex02_01.Com.Team.Controller.Impl;
 
 #endregion
 
@@ -21,11 +21,11 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
         private void chooseColumnAndTryToInsert()
         {
             // r_RequesterService.ChooseColumnAsHumanPlayer(this); // UI Request.
-            Database database = Controller.Impl.GameControllerImpl.Database;
+            Database database = GameControllerImpl.Database;
             if (ChosenColumnIndex == k_QuitSignal)
             {
                 // Database Update.
-                Controller.Impl.GameControllerImpl.ActuatorService.Forfeit(out Player
+                GameControllerImpl.ActuatorService.Forfeit(out Player
                     winnerPlayer);
                 return;
             }

@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using C21_Ex02_01.Com.Team.Controller.Impl;
 using C21_Ex02_01.Com.Team.Database.Board;
 using C21_Ex02_01.Com.Team.Database.Players;
 using C21_Ex02_01.Com.Team.Database.Players.Player;
@@ -66,7 +67,8 @@ namespace C21_Ex02_01.Com.Team.UI
                     new Players(
                         new Settings(i_Type));
 
-                Controller.Impl.GameControllerImpl.Database = new Database.Database(board, players);
+                GameControllerImpl.Database =
+                    new Database.Database(board, players);
             }
 
             private static void requestBoard(out byte o_Rows, out byte o_Cols)
@@ -156,7 +158,7 @@ namespace C21_Ex02_01.Com.Team.UI
                 byte i_MinimumRange)
             {
                 char charMinimumRange = i_MinimumRange.ToString()[0];
-                Database.Database database = Controller.Impl.GameControllerImpl.Database;
+                Database.Database database = GameControllerImpl.Database;
                 byte maxColumnsRange = database.Board.Cols;
                 char charMaxColumnsRange = maxColumnsRange.ToString()[0];
                 string message =
@@ -204,12 +206,12 @@ namespace C21_Ex02_01.Com.Team.UI
         {
             private void printBoard()
             {
-                Console.Out.WriteLine(Controller.Impl.GameControllerImpl.Database.Board);
+                Console.Out.WriteLine(GameControllerImpl.Database.Board);
             }
 
             public void PrintBoardWithScreenClearBeforePrint()
             {
-                System.Console.Clear();
+                Console.Clear();
                 printBoard();
             }
 

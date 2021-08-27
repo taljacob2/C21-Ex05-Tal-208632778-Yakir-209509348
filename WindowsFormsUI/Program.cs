@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using WindowsFormsUI.Com.Team.Form;
 using WindowsFormsUI.Com.Team.Form.Game;
 
 namespace WindowsFormsUI
