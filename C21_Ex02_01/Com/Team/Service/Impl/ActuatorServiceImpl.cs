@@ -35,6 +35,7 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
                 Player nonCurrentPlayer = r_Players.GetNotCurrentPlayer();
                 returnValue = nonCurrentPlayer;
                 nonCurrentPlayer.Score++;
+                nonCurrentPlayer.ScoreModified();
             }
 
             return returnValue;
@@ -45,7 +46,9 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
             Player playerOne = r_Players.GetPlayerOne();
             Player playerTwo = r_Players.GetPlayerTwo();
             playerOne.Score++;
+            playerOne.ScoreModified();
             playerTwo.Score++;
+            playerTwo.ScoreModified();
         }
 
         public void Forfeit(out Player o_WinnerPlayer)
@@ -70,6 +73,7 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
         {
             WinnerPlayer = io_Player;
             WinnerPlayer.Score++;
+            WinnerPlayer.ScoreModified();
         }
     }
 }

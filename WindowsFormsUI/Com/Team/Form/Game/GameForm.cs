@@ -15,6 +15,8 @@ namespace WindowsFormsUI.Com.Team.Form.Game
     {
         private const int k_Padding = 12;
         private const int k_Width = 69;
+        private const string k_LabelPlayer1Text = "Player 1: ";
+        private const string k_LabelPlayer2Text = "Player 2: ";
 
         private readonly Dialog r_Dialog;
         private int m_CenterWidth;
@@ -35,11 +37,33 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             buttonColumns = new Button[GameControllerImpl.Database.Board.Cols];
 
             InitializeComponent();
+            initializeLabelPlayersScoreEventHandler();
             r_Dialog = new Dialog(this);
         }
 
         public IGameController GameController { get; } =
             new GameControllerImpl();
+
+        private void initializeLabelPlayersScoreEventHandler()
+        {
+            // Set ScoreModify EventHandler:
+            GameControllerImpl.Database.Players.GetPlayerOne().ScoreModify +=
+                labelPlayer1_ScoreModify;
+            GameControllerImpl.Database.Players.GetPlayerTwo().ScoreModify +=
+                labelPlayer2_ScoreModify;
+        }
+
+        private void labelPlayer1_ScoreModify(object i_Sender, EventArgs i_)
+        {
+            byte score = ((Player) i_Sender).Score;
+            labelPlayer1.Text = k_LabelPlayer1Text + score;
+        }
+        
+        private void labelPlayer2_ScoreModify(object i_Sender, EventArgs i_)
+        {
+            byte score = ((Player) i_Sender).Score;
+            labelPlayer1.Text = k_LabelPlayer2Text + score;
+        }
 
         private void buttonColumn_Click(object i_Sender, EventArgs i_)
         {

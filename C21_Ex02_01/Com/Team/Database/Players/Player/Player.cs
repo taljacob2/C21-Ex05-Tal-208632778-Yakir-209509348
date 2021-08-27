@@ -1,4 +1,6 @@
-﻿namespace C21_Ex02_01.Com.Team.Database.Players.Player
+﻿using System;
+
+namespace C21_Ex02_01.Com.Team.Database.Players.Player
 {
     public abstract class Player
     {
@@ -15,6 +17,8 @@
         public byte ChosenColumnIndex { get; set; } = 0;
 
         public byte Score { get; set; } = 0;
+        
+        public event EventHandler ScoreModify;
 
         public abstract void PlayTurn();
 
@@ -22,6 +26,16 @@
         {
             return
                 $"{nameof(ID)}: {ID}, {nameof(Char)}: {Char}, {nameof(Score)}: {Score}";
+        }
+
+        protected virtual void OnScoreModify()
+        {
+            ScoreModify?.Invoke(this, EventArgs.Empty);
+        }
+        
+        public void ScoreModified()
+        {
+            OnScoreModify();
         }
     }
 }
