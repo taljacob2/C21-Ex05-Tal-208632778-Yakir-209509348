@@ -70,7 +70,6 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             int i_X, int i_I, int i_Y, int i_Height)
         {
             createButtonColumn(io_Button, i_X, i_I, i_Y, i_Height);
-
             
             ColumnHeader columnHeader =
                 GameControllerImpl.Database.Board.ColumnHeaders[i_I - 1];
