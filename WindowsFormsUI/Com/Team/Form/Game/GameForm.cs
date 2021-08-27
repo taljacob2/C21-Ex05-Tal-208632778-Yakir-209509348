@@ -47,20 +47,25 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void initializeLabelPlayersScoreEventHandler()
         {
-            Players players = GameControllerImpl.Database.Players;
-            string player1Name = players.GetPlayerOne().Name;
-            string player2Name = players.GetPlayerTwo().Name;
-            
-            labelPlayer1.Text = k_LabelPlayer1Text + 0;
-            labelPlayer1.Text += Environment.NewLine + player1Name;
-            labelPlayer2.Text = k_LabelPlayer1Text + 0;
-            labelPlayer2.Text += Environment.NewLine + player2Name;
+            initializeLabelPlayersText();
 
             // Set ScoreModify EventHandler:
             GameControllerImpl.Database.Players.GetPlayerOne().ScoreModify +=
                 labelPlayer1_ScoreModify;
             GameControllerImpl.Database.Players.GetPlayerTwo().ScoreModify +=
                 labelPlayer2_ScoreModify;
+        }
+
+        private void initializeLabelPlayersText()
+        {
+            Players players = GameControllerImpl.Database.Players;
+            string player1Name = players.GetPlayerOne().Name;
+            string player2Name = players.GetPlayerTwo().Name;
+
+            labelPlayer1.Text = k_LabelPlayer1Text + 0;
+            labelPlayer1.Text += Environment.NewLine + player1Name;
+            labelPlayer2.Text = k_LabelPlayer1Text + 0;
+            labelPlayer2.Text += Environment.NewLine + player2Name;
         }
 
         private void labelPlayer1_ScoreModify(object i_Sender, EventArgs i_)
