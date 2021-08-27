@@ -16,6 +16,8 @@ namespace C21_Ex02_01.Com.Team.Database.Board
 
         bool IsFull();
 
+        bool IsColumnFull(byte i_ColumnIndex);
+
         /// <summary>
         ///     Function to get the valid moves
         /// </summary>

@@ -38,13 +38,13 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         public IGameController GameController { get; } =
             new GameControllerImpl();
-        
+
         private void buttonColumn_Click(object i_Sender, EventArgs i_)
         {
             postButtonColumnClick(i_Sender, out Player winnerPlayer,
                 out bool isGameOver);
         }
-        
+
         private void createButtonColumns()
         {
             for (int i = 1; i <= GameControllerImpl.Database.Board.Cols; i++)
@@ -107,7 +107,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 }
             }
         }
-        
+
         private static void createButtonCoin(Button i_Button, int i_X,
             byte i_Col, int i_Y, byte i_Row, int i_Height)
         {
@@ -126,7 +126,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     (byte) (i_Col - 1)).Char.ToString();
             i_Button.UseVisualStyleBackColor = false;
         }
-        
+
         private void createButtonCoinWithEventHandler(Button i_Button, int i_X,
             byte i_Col, int i_Y, byte i_Row, int i_Height)
         {
@@ -137,7 +137,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
                 .CharModify += buttonCoin_CharModify;
         }
-        
+
         private void addButtonCoins()
         {
             foreach (Button button in buttonCoins)
@@ -145,7 +145,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 Controls.Add(button);
             }
         }
-        
+
         private void buttonCoin_CharModify(object i_Sender, EventArgs i_)
         {
             char coinChar = ((Coin) i_Sender).Char;
@@ -153,7 +153,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             buttonCoins[coinCoordinate.Y, coinCoordinate.X].Text =
                 coinChar.ToString();
         }
-        
+
         private void buttonForfeit_Click(object i_Sender, EventArgs i_E)
         {
             GameController.Forfeit(out Player winnerPlayer);
@@ -172,11 +172,10 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void postChooseColumnAsHumanPlayer(
             out Player o_WinnerPlayer,
-            out bool o_IsGameOver, string i_Text)
+            out bool o_IsGameOver, byte i_ColumnChosen)
         {
             GameController.PostChooseColumnAsHumanPlayer(
-                (byte) (byte.Parse(i_Text) - 1),
-                out o_WinnerPlayer, out o_IsGameOver);
+                i_ColumnChosen, out o_WinnerPlayer, out o_IsGameOver);
             r_Dialog.CheckForAnotherGameDialogAndInvoke(o_IsGameOver,
                 o_WinnerPlayer);
         }
@@ -185,12 +184,18 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             out Player o_WinnerPlayer, out bool o_IsGameOver)
         {
             string text = ((Button) i_Sender).Text;
+            byte columnChosen = (byte) (byte.Parse(text) - 1);
 
             postChooseColumnAsHumanPlayer(out o_WinnerPlayer,
-                out o_IsGameOver,
-                text);
+                out o_IsGameOver, columnChosen);
             postChooseColumnAsComputerPlayerIfExists(out o_WinnerPlayer,
                 out o_IsGameOver);
+
+            if (GameControllerImpl.Database.Board.IsColumnFull(columnChosen))
+            {
+                // Disable this columnButton.
+                // TODO: need to implement -> implement here, or in the logic module with events for bonus.
+            }
         }
 
         private class Dialog

@@ -52,7 +52,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board
             {
                 emptyElementInColumn.Char = i_CharCoin;
 
-                // Notify event handler:
+                // Notify event handler of CharModified:
                 emptyElementInColumn.CharModified();
             }
             else
@@ -60,6 +60,12 @@ namespace C21_Ex02_01.Com.Team.Database.Board
                 throw new IOException(
                     $"The column `{i_ColumnIndexToInsertTo + 1}` is full.");
             }
+        }
+
+        public bool IsColumnFull(byte i_ColumnIndex)
+        {
+            return getBottommostEmptyElementInColumn(i_ColumnIndex) ==
+                   null;
         }
 
         private void initializeBoard()
@@ -147,7 +153,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board
                 for (byte j = 0; j < Cols; j++)
                 {
                     Matrix[i, j].Char = Coin.Coin.k_EmptyCoin;
-                    
+
                     // Notify event handler:
                     Matrix[i, j].CharModified();
                 }
