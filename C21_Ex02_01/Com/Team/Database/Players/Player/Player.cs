@@ -17,7 +17,7 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
         public byte ChosenColumnIndex { get; set; } = 0;
 
         public byte Score { get; set; } = 0;
-        
+
         public event EventHandler ScoreModify;
 
         public abstract void PlayTurn();
@@ -32,7 +32,7 @@ namespace C21_Ex02_01.Com.Team.Database.Players.Player
         {
             ScoreModify?.Invoke(this, EventArgs.Empty);
         }
-        
+
         public void ScoreModified()
         {
             OnScoreModify();

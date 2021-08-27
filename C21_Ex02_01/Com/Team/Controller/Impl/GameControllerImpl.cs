@@ -65,7 +65,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         {
             ActuatorService.Forfeit(out o_WinnerPlayer);
         }
-        
+
         private static void resetForfeitAndWinner()
         {
             ActuatorService.ResetForfeitAndWinner(); // Database Update.
