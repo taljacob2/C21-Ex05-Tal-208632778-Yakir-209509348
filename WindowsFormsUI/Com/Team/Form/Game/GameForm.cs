@@ -62,7 +62,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         private void labelPlayer2_ScoreModify(object i_Sender, EventArgs i_)
         {
             byte score = ((Player) i_Sender).Score;
-            labelPlayer1.Text = k_LabelPlayer2Text + score;
+            labelPlayer2.Text = k_LabelPlayer2Text + score;
         }
 
         private void buttonColumn_Click(object i_Sender, EventArgs i_)
