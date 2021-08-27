@@ -83,7 +83,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 k_LabelPlayer1Height);
             this.labelPlayer1.TabIndex = 2;
             this.labelPlayer1.Text = "Player 1:";
-            this.labelPlayer1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelPlayer1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             
             // 
             // labelPlayer2
@@ -96,7 +96,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 k_LabelPlayer1Height);
             this.labelPlayer2.TabIndex = 3;
             this.labelPlayer2.Text = "Player 2:";
-            this.labelPlayer2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelPlayer2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
             // 
             // GameForm
