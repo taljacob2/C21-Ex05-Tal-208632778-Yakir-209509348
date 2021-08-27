@@ -14,7 +14,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 {
     public partial class GameForm : System.Windows.Forms.Form
     {
-        private const int k_Padding = 12;
+        private const int k_Padding = 25;
         private const int k_Width = 69;
         private const string k_LabelPlayer1Text = "Player 1: ";
         private const string k_LabelPlayer2Text = "Player 2: ";
@@ -62,10 +62,10 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             string player1Name = players.GetPlayerOne().Name;
             string player2Name = players.GetPlayerTwo().Name;
 
-            labelPlayer1.Text = k_LabelPlayer1Text + 0;
-            labelPlayer1.Text += Environment.NewLine + player1Name;
-            labelPlayer2.Text = k_LabelPlayer2Text + 0;
-            labelPlayer2.Text += Environment.NewLine + player2Name;
+            labelPlayer1.Text = player1Name + ":";
+            labelPlayer1.Text +=  Environment.NewLine + 0;
+            labelPlayer2.Text = player2Name + ":";
+            labelPlayer2.Text +=  Environment.NewLine + 0;
         }
 
         private void labelPlayer1_ScoreModify(object i_Sender, EventArgs i_)
@@ -73,8 +73,8 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             byte score = ((Player) i_Sender).Score;
             Players players = GameControllerImpl.Database.Players;
             string player1Name = players.GetPlayerOne().Name;
-            labelPlayer1.Text = k_LabelPlayer1Text + score;
-            labelPlayer1.Text += Environment.NewLine + player1Name;
+            labelPlayer1.Text = player1Name + ":";
+            labelPlayer1.Text +=  Environment.NewLine + score;
         }
 
         private void labelPlayer2_ScoreModify(object i_Sender, EventArgs i_)
@@ -82,8 +82,8 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             byte score = ((Player) i_Sender).Score;
             Players players = GameControllerImpl.Database.Players;
             string player2Name = players.GetPlayerTwo().Name;
-            labelPlayer2.Text = k_LabelPlayer2Text + score;
-            labelPlayer2.Text += Environment.NewLine + player2Name;
+            labelPlayer2.Text = player2Name + ":";
+            labelPlayer2.Text +=  Environment.NewLine + score;
         }
 
         private void buttonColumn_Click(object i_Sender, EventArgs i_)
@@ -303,7 +303,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 bool i_IsGameOver, Player i_WinnerPlayer)
             {
                 const string k_AnotherGameMessage =
-                    "Do you want to play another game?";
+                    "Do you want to play another round?";
                 const string k_TieMessage = "It is a tie!";
 
                 if (i_IsGameOver)
@@ -342,7 +342,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
             private static string winnerPlayerMessage(Player i_WinnerPlayer)
             {
-                return "The winner is Player " + i_WinnerPlayer.ID + "!";
+                return "The winner is " + i_WinnerPlayer.Name + "!";
             }
 
             private void switchDialogGameReplay(DialogResult i_DialogResult)
