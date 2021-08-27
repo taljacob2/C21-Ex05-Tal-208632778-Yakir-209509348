@@ -65,48 +65,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         {
             ActuatorService.Forfeit(out o_WinnerPlayer);
         }
-
-        // public void RunGame()
-        // {
-        //     bool continuePlay;
-        //     do
-        //     {
-        //         Database.Players.SwitchCurrentPlayerTurn(Database.Players
-        //             .GetPlayerTwo());
-        //         Database.Board.ResetBoard();
-        //
-        //         // whileRunGame();
-        //         continuePlay = RequesterService.RequestNewGame();
-        //     } while (continuePlay);
-        // }
-
-        // private void whileRunGame()
-        // {
-        //     while (true)
-        //     {
-        //         // ResponderService.PrintBoard();
-        //
-        //         if (Database.Board.IsFull())
-        //         {
-        //             // It is a TIE.
-        //             setTie();
-        //             break;
-        //         }
-        //
-        //         Database.Players.PlayTurn();
-        //         Database.Players.SwitchCurrentPlayerTurn(Database.Players
-        //             .GetCurrentPlayer());
-        //
-        //         if (!getWinnerPlayer())
-        //         {
-        //             continue;
-        //         }
-        //
-        //         // Winner found, and was handled.
-        //         return;
-        //     }
-        // }
-
+        
         private static void resetForfeitAndWinner()
         {
             ActuatorService.ResetForfeitAndWinner(); // Database Update.
