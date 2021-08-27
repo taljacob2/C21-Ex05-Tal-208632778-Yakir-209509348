@@ -15,10 +15,6 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
     {
         public static Database.Database Database { get; set; }
 
-        // public static IRequesterService RequesterService { get; private set; }
-
-        // public static IResponderService ResponderService { get; }
-
         public static IActuatorService ActuatorService { get; set; }
 
         // public void RunGame()
@@ -89,13 +85,6 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             }
 
             return returnValue;
-        }
-
-        private static void printWinResponse(Player i_WinnerPlayer)
-        {
-            // ResponderService.PrintBoard(); // UI Response.
-            // ResponderService.PrintWinner(i_WinnerPlayer); // UI Response.
-            // ResponderService.PrintScores(Database.Players); // UI Response.
         }
 
         /// <summary />
