@@ -83,13 +83,17 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             EventArgs i_E)
         {
             byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
-            buttonColumns[columnNumber - 1].Enabled = true;
+            Button button = buttonColumns[columnNumber - 1];
+            button.Enabled = true;
+            button.BackColor = SystemColors.Highlight;
         }
 
         private void buttonColumn_ColumnFilledUp(object i_Sender, EventArgs i_E)
         {
             byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
-            buttonColumns[columnNumber - 1].Enabled = false;
+            Button button = buttonColumns[columnNumber - 1];
+            button.Enabled = false;
+            button.BackColor = SystemColors.GrayText;
         }
 
         private void createButtonColumn(Button io_Button, int i_X, int i_I,
