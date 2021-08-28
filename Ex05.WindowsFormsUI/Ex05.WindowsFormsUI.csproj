@@ -87,9 +87,6 @@
         </Compile>
     </ItemGroup>
     <ItemGroup>
-        <None Include="App.config" />
-    </ItemGroup>
-    <ItemGroup>
       <ProjectReference Include="..\Ex05.Logic\Ex05.Logic.csproj">
         <Project>{b067c2b0-d664-48c2-a735-6516e7256af6}</Project>
         <Name>Ex05.Logic</Name>
