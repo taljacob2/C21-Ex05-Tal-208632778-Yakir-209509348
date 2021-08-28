@@ -14,13 +14,7 @@ namespace C21_Ex02_01.Com.Team.Database.Board
             r_Cols = i_Cols;
             int numOfTurns = i_Rows * i_Cols;
             r_MaxNumOfTurnsForAPlayer = numOfTurns / 2;
-
-            // Matrix = new int[i_Rows, i_Cols];
-            // initializeMatrix();
         }
-
-        // public double[,] Matrix { get; }
-
 
         public int[,] Matrix { get; } =
         {
@@ -33,26 +27,6 @@ namespace C21_Ex02_01.Com.Team.Database.Board
             {2, 3, 4, 5, 7, 5, 4, 3, 2},
             {1, 1, 2, 3, 5, 3, 2, 1, 1}
         };
-
-        // private void initializeMatrix()
-        // {
-        //     int maximumValue = r_MaxNumOfTurnsForAPlayer / 2;
-        //     for (int i = 0; i < r_Rows; i++)
-        //     {
-        //         for (int j = 0; j < r_Cols; j++)
-        //         {
-        //             int currentValue = 0;
-        //             currentValue =
-        //                 calculateRowValue(i, ref currentValue, maximumValue);
-        //             currentValue =
-        //                 calculateColumnValue(j, ref currentValue, maximumValue);
-        //             Matrix[i, j] = currentValue;
-        //         }
-        //     }
-        //
-        //     // Console.Out.WriteLine("this = {0}", this); // debug
-        // }
-
 
         private double calculateColumnValue(int i_J, ref double io_CurrentValue,
             int i_MaximumValue)
