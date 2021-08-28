@@ -20,10 +20,11 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         private const string k_LabelPlayer2Text = "Player 2: ";
         private readonly ButtonColumnClickBuilder r_ButtonColumnClickBuilder;
         private readonly Dialog r_Dialog;
+        private readonly LabelPlayersBuilder r_LabelPlayersBuilder;
         private int m_CenterWidth;
         private int m_MaxButtonCoinHeight;
         private int m_MaxButtonCoinWidth;
-        
+
         public GameForm()
         {
             // Run settings windows.
@@ -39,60 +40,18 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 new Button[GameControllerImpl.Database.Board.Cols];
 
             initializeComponent();
-            initializeLabelPlayersScoreWithEventHandler();
             r_Dialog = new Dialog(this);
             r_ButtonColumnClickBuilder = new ButtonColumnClickBuilder(this);
+            r_LabelPlayersBuilder = new LabelPlayersBuilder(this);
         }
 
         public IGameController GameController { get; } =
             new GameControllerImpl();
 
-        private void initializeLabelPlayersScoreWithEventHandler()
-        {
-            initializeLabelPlayersText();
-
-            // Set ScoreModify EventHandler:
-            GameControllerImpl.Database.Players.GetPlayerOne().ScoreModify +=
-                labelPlayer1_ScoreModify;
-            GameControllerImpl.Database.Players.GetPlayerTwo().ScoreModify +=
-                labelPlayer2_ScoreModify;
-        }
-
-        private void initializeLabelPlayersText()
-        {
-            Players players = GameControllerImpl.Database.Players;
-            string player1Name = players.GetPlayerOne().Name;
-            string player2Name = players.GetPlayerTwo().Name;
-
-            LabelPlayer1.Text = player1Name + ":";
-            LabelPlayer1.Text += Environment.NewLine + 0;
-            LabelPlayer2.Text = player2Name + ":";
-            LabelPlayer2.Text += Environment.NewLine + 0;
-        }
-
-        private void labelPlayer1_ScoreModify(object i_Sender, EventArgs i_)
-        {
-            byte score = ((Player) i_Sender).Score;
-            Players players = GameControllerImpl.Database.Players;
-            string player1Name = players.GetPlayerOne().Name;
-            LabelPlayer1.Text = player1Name + ":";
-            LabelPlayer1.Text += Environment.NewLine + score;
-        }
-
-        private void labelPlayer2_ScoreModify(object i_Sender, EventArgs i_)
-        {
-            byte score = ((Player) i_Sender).Score;
-            Players players = GameControllerImpl.Database.Players;
-            string player2Name = players.GetPlayerTwo().Name;
-            LabelPlayer2.Text = player2Name + ":";
-            LabelPlayer2.Text += Environment.NewLine + score;
-        }
-
         private void buttonColumn_Click(object i_Sender, EventArgs i_)
         {
             r_ButtonColumnClickBuilder.PostButtonColumnClick(i_Sender,
-                out Player winnerPlayer,
-                out bool isGameOver);
+                out Player winnerPlayer, out bool isGameOver);
         }
 
         private void createButtonColumns()
@@ -350,7 +309,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 GameForm.GameController.PostChooseColumnAsHumanPlayer(
                     i_ColumnChosen, out o_WinnerPlayer, out o_IsGameOver);
                 GameForm.r_Dialog.CheckForAnotherGameDialogAndInvoke
-                (o_IsGameOver, o_WinnerPlayer);
+                    (o_IsGameOver, o_WinnerPlayer);
             }
 
             public void PostButtonColumnClick(object i_Sender,
@@ -363,6 +322,58 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     out o_IsGameOver, columnChosen);
                 postChooseColumnAsComputerPlayerIfExists(out o_WinnerPlayer,
                     out o_IsGameOver);
+            }
+        }
+
+        private class LabelPlayersBuilder
+        {
+            public LabelPlayersBuilder(GameForm i_GameGameForm)
+            {
+                GameForm = i_GameGameForm;
+                initializeLabelPlayersScoreWithEventHandler();
+            }
+
+            public GameForm GameForm { get; }
+
+            private void initializeLabelPlayersScoreWithEventHandler()
+            {
+                initializeLabelPlayersText();
+
+                // Set ScoreModify EventHandler:
+                GameControllerImpl.Database.Players.GetPlayerOne()
+                    .ScoreModify += labelPlayer1_ScoreModify;
+                GameControllerImpl.Database.Players.GetPlayerTwo()
+                    .ScoreModify += labelPlayer2_ScoreModify;
+            }
+
+            private void initializeLabelPlayersText()
+            {
+                Players players = GameControllerImpl.Database.Players;
+                string player1Name = players.GetPlayerOne().Name;
+                string player2Name = players.GetPlayerTwo().Name;
+
+                GameForm.LabelPlayer1.Text = player1Name + ":";
+                GameForm.LabelPlayer1.Text += Environment.NewLine + 0;
+                GameForm.LabelPlayer2.Text = player2Name + ":";
+                GameForm.LabelPlayer2.Text += Environment.NewLine + 0;
+            }
+
+            private void labelPlayer1_ScoreModify(object i_Sender, EventArgs i_)
+            {
+                byte score = ((Player) i_Sender).Score;
+                Players players = GameControllerImpl.Database.Players;
+                string player1Name = players.GetPlayerOne().Name;
+                GameForm.LabelPlayer1.Text = player1Name + ":";
+                GameForm.LabelPlayer1.Text += Environment.NewLine + score;
+            }
+
+            private void labelPlayer2_ScoreModify(object i_Sender, EventArgs i_)
+            {
+                byte score = ((Player) i_Sender).Score;
+                Players players = GameControllerImpl.Database.Players;
+                string player2Name = players.GetPlayerTwo().Name;
+                GameForm.LabelPlayer2.Text = player2Name + ":";
+                GameForm.LabelPlayer2.Text += Environment.NewLine + score;
             }
         }
     }
