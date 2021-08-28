@@ -11,7 +11,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
     {
         public GameSettingsForm()
         {
-            InitializeComponent();
+            initializeComponent();
         }
 
         public eType Opponent { get; private set; } = eType.Computer;

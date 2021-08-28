@@ -30,7 +30,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             base.Dispose(disposing);
         }
         
-        private void InitializeComponent()
+        private void initializeComponent()
         {
             this.m_ButtonForfeit = new System.Windows.Forms.Button();
             this.m_LabelPlayer1 = new System.Windows.Forms.Label();

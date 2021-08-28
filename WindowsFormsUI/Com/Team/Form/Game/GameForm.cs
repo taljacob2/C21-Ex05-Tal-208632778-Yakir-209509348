@@ -37,7 +37,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 GameControllerImpl.Database.Board.Cols];
             m_ButtonColumns = new Button[GameControllerImpl.Database.Board.Cols];
 
-            InitializeComponent();
+            initializeComponent();
             initializeLabelPlayersScoreEventHandler();
             r_Dialog = new Dialog(this);
         }

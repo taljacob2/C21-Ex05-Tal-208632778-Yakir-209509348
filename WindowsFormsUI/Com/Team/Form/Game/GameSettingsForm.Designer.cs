@@ -34,7 +34,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             base.Dispose(disposing);
         }
         
-        private void InitializeComponent()
+        private void initializeComponent()
         {
             this.m_ButtonPlay = new System.Windows.Forms.Button();
             this.m_LabelPlayers = new System.Windows.Forms.Label();
