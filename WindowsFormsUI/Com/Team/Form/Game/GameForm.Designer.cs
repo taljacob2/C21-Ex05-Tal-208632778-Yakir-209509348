@@ -41,7 +41,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             // 
             // buttonForfeit
             // 
-            const int k_ButtonForfeitWidth = 80;
+            const int k_ButtonForfeitWidth = 65;
             const int k_ButtonForfeitHeight = 44;
             this.buttonForfeit.BackColor = System.Drawing.SystemColors.Highlight;
             this.buttonForfeit.Name = "buttonForfeit";
@@ -66,7 +66,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             int buttonForfeitHeightLocation = m_MaxButtonCoinHeight
                                       + this.buttonForfeit.Size.Height * 2;
             int buttonForfeitWidthLocation = m_CenterWidth + 
-                                            (int)(k_Padding * 1.5);
+                                            (int)(k_Padding * 1.9);
             this.buttonForfeit.Location = 
                 new System.Drawing.Point(buttonForfeitWidthLocation,
                     buttonForfeitHeightLocation);
@@ -74,7 +74,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             // 
             // labelPlayer1
             // 
-            const int k_LabelPlayer1Width = 95; 
+            const int k_LabelPlayer1Width = 110; 
             const int k_LabelPlayer1Height = 60;
             this.labelPlayer1.Location = new System.Drawing
                 .Point(buttonForfeitWidthLocation - k_LabelPlayer1Width,
