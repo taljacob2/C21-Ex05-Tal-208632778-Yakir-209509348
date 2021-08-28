@@ -350,8 +350,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 GameForm.GameController.PostChooseColumnAsHumanPlayer(
                     i_ColumnChosen, out o_WinnerPlayer, out o_IsGameOver);
                 GameForm.r_Dialog.CheckForAnotherGameDialogAndInvoke
-                (o_IsGameOver,
-                    o_WinnerPlayer);
+                (o_IsGameOver, o_WinnerPlayer);
             }
 
             public void PostButtonColumnClick(object i_Sender,

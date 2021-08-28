@@ -12,7 +12,6 @@ namespace WindowsFormsUI
         [STAThread]
         public static void Main()
         {
-            // TODO : remove console, and set this project as WindowsApplication.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new GameForm());

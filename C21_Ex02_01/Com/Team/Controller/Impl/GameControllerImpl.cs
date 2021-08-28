@@ -74,10 +74,6 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         private void setTie()
         {
             ActuatorService.SetTie(); // Database Update.
-
-            // ResponderService.PrintTie(); // UI Response. // TODO: implement
-            // ResponderService.PrintScores(Database
-            //     .Players); // UI Response. // TODO: implement
         }
 
         private static Player getWinnerPlayer()
