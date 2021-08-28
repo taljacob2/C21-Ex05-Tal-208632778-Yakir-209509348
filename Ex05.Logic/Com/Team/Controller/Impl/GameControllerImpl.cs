@@ -28,7 +28,11 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             Database.Players.SwitchCurrentPlayerTurn(Database.Players
                 .GetCurrentPlayer());
             o_WinnerPlayer = getWinnerPlayer();
-            o_IsGameOver = isTie() || o_WinnerPlayer != null;
+            o_IsGameOver = o_WinnerPlayer != null;
+            if (!o_IsGameOver)
+            {
+                o_IsGameOver = isTie();
+            }
         }
 
         /// <summary />
@@ -51,7 +55,11 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             Database.Players.SwitchCurrentPlayerTurn(Database.Players
                 .GetCurrentPlayer());
             o_WinnerPlayer = getWinnerPlayer();
-            o_IsGameOver = isTie() || o_WinnerPlayer != null;
+            o_IsGameOver = o_WinnerPlayer != null;
+            if (!o_IsGameOver)
+            {
+                o_IsGameOver = isTie();
+            }
         }
 
         public void NewGame()
