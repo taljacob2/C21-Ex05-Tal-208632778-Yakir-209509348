@@ -224,8 +224,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
             private void buttonColumn_Click(object i_Sender, EventArgs i_)
             {
-                PostButtonColumnClick(i_Sender, out Player winnerPlayer,
-                    out bool isGameOver);
+                PostButtonColumnClick(i_Sender);
             }
 
             public void CreateButtonColumnWithEventHandler(Button io_Button,
@@ -262,37 +261,30 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 button.BackColor = SystemColors.GrayText;
             }
 
-            private void postChooseColumnAsComputerPlayerIfExists(
-                out Player o_WinnerPlayer,
-                out bool o_IsGameOver)
+            private void postChooseColumnAsComputerPlayerIfExists()
             {
                 GameForm.GameController.PostChooseColumnAsComputerPlayerIfExists
-                    (out o_WinnerPlayer, out o_IsGameOver);
+                    (out Player winnerPlayer, out bool isGameOver);
                 GameForm.r_Dialog.CheckForAnotherGameDialogAndInvoke
-                (o_IsGameOver,
-                    o_WinnerPlayer);
+                    (isGameOver, winnerPlayer);
             }
 
-            private void postChooseColumnAsHumanPlayer(
-                out Player o_WinnerPlayer,
-                out bool o_IsGameOver, byte i_ColumnChosen)
+            private void postChooseColumnAsHumanPlayer(byte i_ColumnChosen)
             {
                 GameForm.GameController.PostChooseColumnAsHumanPlayer(
-                    i_ColumnChosen, out o_WinnerPlayer, out o_IsGameOver);
+                    i_ColumnChosen, out Player winnerPlayer,
+                    out bool isGameOver);
                 GameForm.r_Dialog.CheckForAnotherGameDialogAndInvoke
-                    (o_IsGameOver, o_WinnerPlayer);
+                    (isGameOver, winnerPlayer);
             }
 
-            public void PostButtonColumnClick(object i_Sender,
-                out Player o_WinnerPlayer, out bool o_IsGameOver)
+            public void PostButtonColumnClick(object i_Sender)
             {
                 string text = ((Button) i_Sender).Text;
                 byte columnChosen = (byte) (byte.Parse(text) - 1);
 
-                postChooseColumnAsHumanPlayer(out o_WinnerPlayer,
-                    out o_IsGameOver, columnChosen);
-                postChooseColumnAsComputerPlayerIfExists(out o_WinnerPlayer,
-                    out o_IsGameOver);
+                postChooseColumnAsHumanPlayer(columnChosen);
+                postChooseColumnAsComputerPlayerIfExists();
             }
         }
 
