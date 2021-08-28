@@ -26,16 +26,16 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         {
             GameControllerImpl.Database =
                 new Database(
-                    new Board((byte) rowsNumericUpDown.Value,
-                        (byte) colsNumericUpDown.Value),
+                    new Board((byte) m_RowsNumericUpDown.Value,
+                        (byte) m_ColsNumericUpDown.Value),
                     new Players(new Settings(Opponent)));
         }
         
         private void initializePlayersNames()
         {
             Players players = GameControllerImpl.Database.Players;
-            players.GetPlayerOne().Name = textBoxPlayer1.Text;
-            players.GetPlayerTwo().Name = textBoxPlayer2.Text;
+            players.GetPlayerOne().Name = m_TextBoxPlayer1.Text;
+            players.GetPlayerTwo().Name = m_TextBoxPlayer2.Text;
         }
 
         private void buttonPlay_Click(object i_Sender, EventArgs i_)
@@ -47,16 +47,16 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         private void checkBoxPlayer2_CheckedChanged(object i_Sender,
             EventArgs i_)
         {
-            if (checkBoxPlayer2.Checked)
+            if (m_CheckBoxPlayer2.Checked)
             {
-                textBoxPlayer2.Text = @"Player 2";
-                textBoxPlayer2.Enabled = true;
+                m_TextBoxPlayer2.Text = @"Player 2";
+                m_TextBoxPlayer2.Enabled = true;
                 Opponent = eType.Human;
             }
             else
             {
-                textBoxPlayer2.Text = @"[Computer]";
-                textBoxPlayer2.Enabled = false;
+                m_TextBoxPlayer2.Text = @"[Computer]";
+                m_TextBoxPlayer2.Enabled = false;
                 Opponent = eType.Computer;
             }
         }

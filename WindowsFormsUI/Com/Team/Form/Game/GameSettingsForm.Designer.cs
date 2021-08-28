@@ -5,162 +5,167 @@ namespace WindowsFormsUI.Com.Team.Form.Game
     partial class GameSettingsForm
     {
         /// <summary>
-        /// Required designer variable.
+        ///     Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
-
+        private System.ComponentModel.IContainer m_Components = null;
+        private System.Windows.Forms.Button m_ButtonPlay;
+        private System.Windows.Forms.CheckBox m_CheckBoxPlayer2;
+        private System.Windows.Forms.NumericUpDown m_ColsNumericUpDown;
+        private System.Windows.Forms.Label m_LabelBoardSize;
+        private System.Windows.Forms.Label m_LabelCols;
+        private System.Windows.Forms.Label m_LabelPlayer1;
+        private System.Windows.Forms.Label m_LabelPlayers;
+        private System.Windows.Forms.Label m_LabelRows;
+        private System.Windows.Forms.NumericUpDown m_RowsNumericUpDown;
+        private System.Windows.Forms.TextBox m_TextBoxPlayer1;
+        private System.Windows.Forms.TextBox m_TextBoxPlayer2;
+        
         /// <summary>
-        /// Clean up any resources being used.
+        ///     Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            if (disposing && (components != null))
+            if (disposing && (m_Components != null))
             {
-                components.Dispose();
+                m_Components.Dispose();
             }
 
             base.Dispose(disposing);
         }
-
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
+        
         private void InitializeComponent()
         {
-            this.buttonPlay = new System.Windows.Forms.Button();
-            this.labelPlayers = new System.Windows.Forms.Label();
-            this.labelPlayer1 = new System.Windows.Forms.Label();
-            this.checkBoxPlayer2 = new System.Windows.Forms.CheckBox();
-            this.labelBoardSize = new System.Windows.Forms.Label();
-            this.rowsNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.colsNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.labelRows = new System.Windows.Forms.Label();
-            this.labelCols = new System.Windows.Forms.Label();
-            this.textBoxPlayer1 = new System.Windows.Forms.TextBox();
-            this.textBoxPlayer2 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize) (this.rowsNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize) (this.colsNumericUpDown)).BeginInit();
+            this.m_ButtonPlay = new System.Windows.Forms.Button();
+            this.m_LabelPlayers = new System.Windows.Forms.Label();
+            this.m_LabelPlayer1 = new System.Windows.Forms.Label();
+            this.m_CheckBoxPlayer2 = new System.Windows.Forms.CheckBox();
+            this.m_LabelBoardSize = new System.Windows.Forms.Label();
+            this.m_RowsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.m_ColsNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.m_LabelRows = new System.Windows.Forms.Label();
+            this.m_LabelCols = new System.Windows.Forms.Label();
+            this.m_TextBoxPlayer1 = new System.Windows.Forms.TextBox();
+            this.m_TextBoxPlayer2 = new System.Windows.Forms.TextBox();
+            ((System.ComponentModel.ISupportInitialize) (this.m_RowsNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize) (this.m_ColsNumericUpDown)).BeginInit();
             this.SuspendLayout();
 
             // 
             // buttonPlay
             // 
-            this.buttonPlay.BackColor = System.Drawing.SystemColors.Highlight;
-            this.buttonPlay.Location = new System.Drawing.Point(124, 246);
-            this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(128, 44);
-            this.buttonPlay.TabIndex = 0;
-            this.buttonPlay.Text = "Play";
-            this.buttonPlay.UseVisualStyleBackColor = false;
-            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
+            this.m_ButtonPlay.BackColor = System.Drawing.SystemColors.Highlight;
+            this.m_ButtonPlay.Location = new System.Drawing.Point(124, 246);
+            this.m_ButtonPlay.Name = "m_ButtonPlay";
+            this.m_ButtonPlay.Size = new System.Drawing.Size(128, 44);
+            this.m_ButtonPlay.TabIndex = 0;
+            this.m_ButtonPlay.Text = "Play";
+            this.m_ButtonPlay.UseVisualStyleBackColor = false;
+            this.m_ButtonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
 
             // 
             // labelPlayers
             // 
-            this.labelPlayers.Location = new System.Drawing.Point(12, 9);
-            this.labelPlayers.Name = "labelPlayers";
-            this.labelPlayers.Size = new System.Drawing.Size(85, 32);
-            this.labelPlayers.TabIndex = 1;
-            this.labelPlayers.Text = "Players:";
-            this.labelPlayers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_LabelPlayers.Location = new System.Drawing.Point(12, 9);
+            this.m_LabelPlayers.Name = "m_LabelPlayers";
+            this.m_LabelPlayers.Size = new System.Drawing.Size(85, 32);
+            this.m_LabelPlayers.TabIndex = 1;
+            this.m_LabelPlayers.Text = "Players:";
+            this.m_LabelPlayers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
             // 
             // labelPlayer1
             // 
-            this.labelPlayer1.Location = new System.Drawing.Point(46, 41);
-            this.labelPlayer1.Name = "labelPlayer1";
-            this.labelPlayer1.Size = new System.Drawing.Size(92, 29);
-            this.labelPlayer1.TabIndex = 2;
-            this.labelPlayer1.Text = "Player 1:";
-            this.labelPlayer1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_LabelPlayer1.Location = new System.Drawing.Point(46, 41);
+            this.m_LabelPlayer1.Name = "m_LabelPlayer1";
+            this.m_LabelPlayer1.Size = new System.Drawing.Size(92, 29);
+            this.m_LabelPlayer1.TabIndex = 2;
+            this.m_LabelPlayer1.Text = "Player 1:";
+            this.m_LabelPlayer1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
             // 
             // checkBoxPlayer2
             // 
-            this.checkBoxPlayer2.Location = new System.Drawing.Point(46, 73);
-            this.checkBoxPlayer2.Name = "checkBoxPlayer2";
-            this.checkBoxPlayer2.Size = new System.Drawing.Size(92, 42);
-            this.checkBoxPlayer2.TabIndex = 4;
-            this.checkBoxPlayer2.Text = "Player 2:";
-            this.checkBoxPlayer2.UseVisualStyleBackColor = true;
-            this.checkBoxPlayer2.CheckedChanged += new System.EventHandler(this.checkBoxPlayer2_CheckedChanged);
+            this.m_CheckBoxPlayer2.Location = new System.Drawing.Point(46, 73);
+            this.m_CheckBoxPlayer2.Name = "m_CheckBoxPlayer2";
+            this.m_CheckBoxPlayer2.Size = new System.Drawing.Size(92, 42);
+            this.m_CheckBoxPlayer2.TabIndex = 4;
+            this.m_CheckBoxPlayer2.Text = "Player 2:";
+            this.m_CheckBoxPlayer2.UseVisualStyleBackColor = true;
+            this.m_CheckBoxPlayer2.CheckedChanged += new System.EventHandler(this.checkBoxPlayer2_CheckedChanged);
 
             // 
             // labelBoardSize
             // 
-            this.labelBoardSize.Location = new System.Drawing.Point(12, 152);
-            this.labelBoardSize.Name = "labelBoardSize";
-            this.labelBoardSize.Size = new System.Drawing.Size(85, 32);
-            this.labelBoardSize.TabIndex = 5;
-            this.labelBoardSize.Text = "Board Size:";
-            this.labelBoardSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.m_LabelBoardSize.Location = new System.Drawing.Point(12, 152);
+            this.m_LabelBoardSize.Name = "m_LabelBoardSize";
+            this.m_LabelBoardSize.Size = new System.Drawing.Size(85, 32);
+            this.m_LabelBoardSize.TabIndex = 5;
+            this.m_LabelBoardSize.Text = "Board Size:";
+            this.m_LabelBoardSize.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
 
             // 
             // rowsNumericUpDown
             // 
-            this.rowsNumericUpDown.Location = new System.Drawing.Point(117, 190);
-            this.rowsNumericUpDown.Maximum = new decimal(new int[] {10, 0, 0, 0});
-            this.rowsNumericUpDown.Minimum = new decimal(new int[] {4, 0, 0, 0});
-            this.rowsNumericUpDown.Name = "rowsNumericUpDown";
-            this.rowsNumericUpDown.Size = new System.Drawing.Size(51, 22);
-            this.rowsNumericUpDown.TabIndex = 6;
-            this.rowsNumericUpDown.Value = new decimal(new int[] {4, 0, 0, 0});
+            this.m_RowsNumericUpDown.Location = new System.Drawing.Point(117, 190);
+            this.m_RowsNumericUpDown.Maximum = new decimal(new int[] {10, 0, 0, 0});
+            this.m_RowsNumericUpDown.Minimum = new decimal(new int[] {4, 0, 0, 0});
+            this.m_RowsNumericUpDown.Name = "m_RowsNumericUpDown";
+            this.m_RowsNumericUpDown.Size = new System.Drawing.Size(51, 22);
+            this.m_RowsNumericUpDown.TabIndex = 6;
+            this.m_RowsNumericUpDown.Value = new decimal(new int[] {4, 0, 0, 0});
 
             // 
             // colsNumericUpDown
             // 
-            this.colsNumericUpDown.Location = new System.Drawing.Point(258, 190);
-            this.colsNumericUpDown.Maximum = new decimal(new int[] {10, 0, 0, 0});
-            this.colsNumericUpDown.Minimum = new decimal(new int[] {4, 0, 0, 0});
-            this.colsNumericUpDown.Name = "colsNumericUpDown";
-            this.colsNumericUpDown.Size = new System.Drawing.Size(51, 22);
-            this.colsNumericUpDown.TabIndex = 7;
-            this.colsNumericUpDown.Value = new decimal(new int[] {4, 0, 0, 0});
+            this.m_ColsNumericUpDown.Location = new System.Drawing.Point(258, 190);
+            this.m_ColsNumericUpDown.Maximum = new decimal(new int[] {10, 0, 0, 0});
+            this.m_ColsNumericUpDown.Minimum = new decimal(new int[] {4, 0, 0, 0});
+            this.m_ColsNumericUpDown.Name = "m_ColsNumericUpDown";
+            this.m_ColsNumericUpDown.Size = new System.Drawing.Size(51, 22);
+            this.m_ColsNumericUpDown.TabIndex = 7;
+            this.m_ColsNumericUpDown.Value = new decimal(new int[] {4, 0, 0, 0});
 
             // 
             // labelRows
             // 
-            this.labelRows.Location = new System.Drawing.Point(46, 184);
-            this.labelRows.Name = "labelRows";
-            this.labelRows.Size = new System.Drawing.Size(65, 32);
-            this.labelRows.TabIndex = 8;
-            this.labelRows.Text = "Rows:";
-            this.labelRows.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.m_LabelRows.Location = new System.Drawing.Point(46, 184);
+            this.m_LabelRows.Name = "m_LabelRows";
+            this.m_LabelRows.Size = new System.Drawing.Size(65, 32);
+            this.m_LabelRows.TabIndex = 8;
+            this.m_LabelRows.Text = "Rows:";
+            this.m_LabelRows.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
             // 
             // labelCols
             // 
-            this.labelCols.Location = new System.Drawing.Point(187, 184);
-            this.labelCols.Name = "labelCols";
-            this.labelCols.Size = new System.Drawing.Size(65, 32);
-            this.labelCols.TabIndex = 9;
-            this.labelCols.Text = "Cols:";
-            this.labelCols.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.m_LabelCols.Location = new System.Drawing.Point(187, 184);
+            this.m_LabelCols.Name = "m_LabelCols";
+            this.m_LabelCols.Size = new System.Drawing.Size(65, 32);
+            this.m_LabelCols.TabIndex = 9;
+            this.m_LabelCols.Text = "Cols:";
+            this.m_LabelCols.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
             // 
             // textBoxPlayer1
             // 
-            this.textBoxPlayer1.Location = new System.Drawing.Point(209, 44);
-            this.textBoxPlayer1.MaxLength = 10;
-            this.textBoxPlayer1.Name = "textBoxPlayer1";
-            this.textBoxPlayer1.Size = new System.Drawing.Size(100, 22);
-            this.textBoxPlayer1.TabIndex = 10;
-            this.textBoxPlayer1.Text = "Player 1";
+            this.m_TextBoxPlayer1.Location = new System.Drawing.Point(209, 44);
+            this.m_TextBoxPlayer1.MaxLength = 10;
+            this.m_TextBoxPlayer1.Name = "m_TextBoxPlayer1";
+            this.m_TextBoxPlayer1.Size = new System.Drawing.Size(100, 22);
+            this.m_TextBoxPlayer1.TabIndex = 10;
+            this.m_TextBoxPlayer1.Text = "Player 1";
 
             // 
             // textBoxPlayer2
             // 
-            this.textBoxPlayer2.Enabled = false;
-            this.textBoxPlayer2.Location = new System.Drawing.Point(209, 82);
-            this.textBoxPlayer2.MaxLength = 10;
-            this.textBoxPlayer2.Name = "textBoxPlayer2";
-            this.textBoxPlayer2.Size = new System.Drawing.Size(100, 22);
-            this.textBoxPlayer2.TabIndex = 11;
-            this.textBoxPlayer2.Text = "[Computer]";
+            this.m_TextBoxPlayer2.Enabled = false;
+            this.m_TextBoxPlayer2.Location = new System.Drawing.Point(209, 82);
+            this.m_TextBoxPlayer2.MaxLength = 10;
+            this.m_TextBoxPlayer2.Name = "m_TextBoxPlayer2";
+            this.m_TextBoxPlayer2.Size = new System.Drawing.Size(100, 22);
+            this.m_TextBoxPlayer2.TabIndex = 11;
+            this.m_TextBoxPlayer2.Text = "[Computer]";
 
             // 
             // GameSettingsForm
@@ -168,40 +173,27 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(376, 336);
-            this.Controls.Add(this.textBoxPlayer2);
-            this.Controls.Add(this.textBoxPlayer1);
-            this.Controls.Add(this.labelCols);
-            this.Controls.Add(this.labelRows);
-            this.Controls.Add(this.colsNumericUpDown);
-            this.Controls.Add(this.rowsNumericUpDown);
-            this.Controls.Add(this.labelBoardSize);
-            this.Controls.Add(this.checkBoxPlayer2);
-            this.Controls.Add(this.labelPlayer1);
-            this.Controls.Add(this.labelPlayers);
-            this.Controls.Add(this.buttonPlay);
+            this.Controls.Add(this.m_TextBoxPlayer2);
+            this.Controls.Add(this.m_TextBoxPlayer1);
+            this.Controls.Add(this.m_LabelCols);
+            this.Controls.Add(this.m_LabelRows);
+            this.Controls.Add(this.m_ColsNumericUpDown);
+            this.Controls.Add(this.m_RowsNumericUpDown);
+            this.Controls.Add(this.m_LabelBoardSize);
+            this.Controls.Add(this.m_CheckBoxPlayer2);
+            this.Controls.Add(this.m_LabelPlayer1);
+            this.Controls.Add(this.m_LabelPlayers);
+            this.Controls.Add(this.m_ButtonPlay);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "GameSettingsForm";
             this.BackColor = Color.CadetBlue;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game Settings";
-            ((System.ComponentModel.ISupportInitialize) (this.rowsNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize) (this.colsNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.m_RowsNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize) (this.m_ColsNumericUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
-
-        private System.Windows.Forms.Button buttonPlay;
-        private System.Windows.Forms.CheckBox checkBoxPlayer2;
-        private System.Windows.Forms.NumericUpDown colsNumericUpDown;
-        private System.Windows.Forms.Label labelBoardSize;
-        private System.Windows.Forms.Label labelCols;
-        private System.Windows.Forms.Label labelPlayer1;
-        private System.Windows.Forms.Label labelPlayers;
-        private System.Windows.Forms.Label labelRows;
-        private System.Windows.Forms.NumericUpDown rowsNumericUpDown;
-        private System.Windows.Forms.TextBox textBoxPlayer1;
-        private System.Windows.Forms.TextBox textBoxPlayer2;
-
-        #endregion
+        
     }
 }
