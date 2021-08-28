@@ -148,9 +148,9 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             GameControllerImpl.ActuatorService = new ActuatorServiceImpl();
 
             // Create arrays:
-            m_ButtonCoins = new Button[GameControllerImpl.Database.Board.Rows,
+            ButtonCoins = new Button[GameControllerImpl.Database.Board.Rows,
                 GameControllerImpl.Database.Board.Cols];
-            m_ButtonColumns =
+            ButtonColumns =
                 new Button[GameControllerImpl.Database.Board.Cols];
 
             initializeComponent();
@@ -183,10 +183,10 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             string player1Name = players.GetPlayerOne().Name;
             string player2Name = players.GetPlayerTwo().Name;
 
-            m_LabelPlayer1.Text = player1Name + ":";
-            m_LabelPlayer1.Text += Environment.NewLine + 0;
-            m_LabelPlayer2.Text = player2Name + ":";
-            m_LabelPlayer2.Text += Environment.NewLine + 0;
+            LabelPlayer1.Text = player1Name + ":";
+            LabelPlayer1.Text += Environment.NewLine + 0;
+            LabelPlayer2.Text = player2Name + ":";
+            LabelPlayer2.Text += Environment.NewLine + 0;
         }
 
         private void labelPlayer1_ScoreModify(object i_Sender, EventArgs i_)
@@ -194,8 +194,8 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             byte score = ((Player) i_Sender).Score;
             Players players = GameControllerImpl.Database.Players;
             string player1Name = players.GetPlayerOne().Name;
-            m_LabelPlayer1.Text = player1Name + ":";
-            m_LabelPlayer1.Text += Environment.NewLine + score;
+            LabelPlayer1.Text = player1Name + ":";
+            LabelPlayer1.Text += Environment.NewLine + score;
         }
 
         private void labelPlayer2_ScoreModify(object i_Sender, EventArgs i_)
@@ -203,8 +203,8 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             byte score = ((Player) i_Sender).Score;
             Players players = GameControllerImpl.Database.Players;
             string player2Name = players.GetPlayerTwo().Name;
-            m_LabelPlayer2.Text = player2Name + ":";
-            m_LabelPlayer2.Text += Environment.NewLine + score;
+            LabelPlayer2.Text = player2Name + ":";
+            LabelPlayer2.Text += Environment.NewLine + score;
         }
 
         private void buttonColumn_Click(object i_Sender, EventArgs i_)
@@ -227,7 +227,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     k_Height);
 
                 // Set button:
-                m_ButtonColumns[i - 1] = button;
+                ButtonColumns[i - 1] = button;
             }
         }
 
@@ -250,7 +250,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             EventArgs i_E)
         {
             byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
-            Button button = m_ButtonColumns[columnNumber - 1];
+            Button button = ButtonColumns[columnNumber - 1];
             button.Enabled = true;
             button.BackColor = SystemColors.Highlight;
         }
@@ -258,7 +258,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         private void buttonColumn_ColumnFilledUp(object i_Sender, EventArgs i_E)
         {
             byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
-            Button button = m_ButtonColumns[columnNumber - 1];
+            Button button = ButtonColumns[columnNumber - 1];
             button.Enabled = false;
             button.BackColor = SystemColors.GrayText;
         }
@@ -279,7 +279,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void addButtonColumns()
         {
-            foreach (Button button in m_ButtonColumns)
+            foreach (Button button in ButtonColumns)
             {
                 Controls.Add(button);
             }
@@ -310,7 +310,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                         (m_MaxButtonCoinWidth - k_Width / 2 - k_Padding) / 2;
 
                     // Set button:
-                    m_ButtonCoins[row - 1, col - 1] = button;
+                    ButtonCoins[row - 1, col - 1] = button;
                 }
             }
         }
@@ -354,7 +354,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void addButtonCoins()
         {
-            foreach (Button button in m_ButtonCoins)
+            foreach (Button button in ButtonCoins)
             {
                 Controls.Add(button);
             }
@@ -364,7 +364,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         {
             char coinChar = ((Coin) i_Sender).Char;
             Coordinate coinCoordinate = ((Coin) i_Sender).Coordinate;
-            m_ButtonCoins[coinCoordinate.Y, coinCoordinate.X].Text =
+            ButtonCoins[coinCoordinate.Y, coinCoordinate.X].Text =
                 coinChar.ToString();
         }
 

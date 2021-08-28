@@ -10,11 +10,16 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         ///     Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer m_Components = null;
-        private System.Windows.Forms.Button m_ButtonForfeit;
-        private Button[] m_ButtonColumns;
-        private Button[,] m_ButtonCoins;
-        private System.Windows.Forms.Label m_LabelPlayer1;
-        private System.Windows.Forms.Label m_LabelPlayer2;
+
+        public Button ButtonForfeit { get; set; }
+
+        public Button[] ButtonColumns { get; set; }
+
+        public Button[,] ButtonCoins { get; set; }
+
+        public Label LabelPlayer1 { get; set; }
+
+        public Label LabelPlayer2 { get; set; }
 
         /// <summary>
         ///     Clean up any resources being used.
@@ -32,9 +37,9 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         
         private void initializeComponent()
         {
-            this.m_ButtonForfeit = new System.Windows.Forms.Button();
-            this.m_LabelPlayer1 = new System.Windows.Forms.Label();
-            this.m_LabelPlayer2 = new System.Windows.Forms.Label();
+            this.ButtonForfeit = new System.Windows.Forms.Button();
+            this.LabelPlayer1 = new System.Windows.Forms.Label();
+            this.LabelPlayer2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
 
             // 
@@ -42,13 +47,13 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             // 
             const int k_ButtonForfeitWidth = 65;
             const int k_ButtonForfeitHeight = 44;
-            this.m_ButtonForfeit.BackColor = System.Drawing.SystemColors.Highlight;
-            this.m_ButtonForfeit.Name = "m_ButtonForfeit";
-            this.m_ButtonForfeit.Size = new System.Drawing.Size(k_ButtonForfeitWidth, k_ButtonForfeitHeight);
-            this.m_ButtonForfeit.TabIndex = 0;
-            this.m_ButtonForfeit.Text = "Forfeit";
-            this.m_ButtonForfeit.UseVisualStyleBackColor = false;
-            this.m_ButtonForfeit.Click += new EventHandler(buttonForfeit_Click);
+            this.ButtonForfeit.BackColor = System.Drawing.SystemColors.Highlight;
+            this.ButtonForfeit.Name = "m_ButtonForfeit";
+            this.ButtonForfeit.Size = new System.Drawing.Size(k_ButtonForfeitWidth, k_ButtonForfeitHeight);
+            this.ButtonForfeit.TabIndex = 0;
+            this.ButtonForfeit.Text = "Forfeit";
+            this.ButtonForfeit.UseVisualStyleBackColor = false;
+            this.ButtonForfeit.Click += new EventHandler(buttonForfeit_Click);
             
             
             // 
@@ -63,10 +68,10 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             
             // set Location of `buttonForfeit`:
             int buttonForfeitHeightLocation = m_MaxButtonCoinHeight
-                                      + this.m_ButtonForfeit.Size.Height * 2;
+                                      + this.ButtonForfeit.Size.Height * 2;
             int buttonForfeitWidthLocation = m_CenterWidth + 
                                             (int)(k_Padding * 1.9);
-            this.m_ButtonForfeit.Location = 
+            this.ButtonForfeit.Location = 
                 new System.Drawing.Point(buttonForfeitWidthLocation,
                     buttonForfeitHeightLocation);
             
@@ -75,28 +80,28 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             // 
             const int k_LabelPlayer1Width = 110; 
             const int k_LabelPlayer1Height = 60;
-            this.m_LabelPlayer1.Location = new System.Drawing
+            this.LabelPlayer1.Location = new System.Drawing
                 .Point(buttonForfeitWidthLocation - k_LabelPlayer1Width,
                     buttonForfeitHeightLocation);
-            this.m_LabelPlayer1.Name = "m_LabelPlayer1";
-            this.m_LabelPlayer1.Size = new System.Drawing.Size(k_LabelPlayer1Width,
+            this.LabelPlayer1.Name = "m_LabelPlayer1";
+            this.LabelPlayer1.Size = new System.Drawing.Size(k_LabelPlayer1Width,
                 k_LabelPlayer1Height);
-            this.m_LabelPlayer1.TabIndex = 2;
-            this.m_LabelPlayer1.Text = k_LabelPlayer1Text;
-            this.m_LabelPlayer1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelPlayer1.TabIndex = 2;
+            this.LabelPlayer1.Text = k_LabelPlayer1Text;
+            this.LabelPlayer1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             
             // 
             // labelPlayer2
             // 
-            this.m_LabelPlayer2.Location = new System.Drawing
+            this.LabelPlayer2.Location = new System.Drawing
                 .Point(buttonForfeitWidthLocation + k_ButtonForfeitWidth,
                     buttonForfeitHeightLocation);
-            this.m_LabelPlayer2.Name = "m_LabelPlayer2";
-            this.m_LabelPlayer2.Size = new System.Drawing.Size(k_LabelPlayer1Width,
+            this.LabelPlayer2.Name = "m_LabelPlayer2";
+            this.LabelPlayer2.Size = new System.Drawing.Size(k_LabelPlayer1Width,
                 k_LabelPlayer1Height);
-            this.m_LabelPlayer2.TabIndex = 3;
-            this.m_LabelPlayer2.Text = k_LabelPlayer2Text;
-            this.m_LabelPlayer2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.LabelPlayer2.TabIndex = 3;
+            this.LabelPlayer2.Text = k_LabelPlayer2Text;
+            this.LabelPlayer2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
 
             // 
             // GameForm
@@ -106,9 +111,9 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             this.ClientSize = new System.Drawing.Size(100,100);
             addButtonColumns();
             addButtonCoins();
-            this.Controls.Add(this.m_ButtonForfeit);
-            this.Controls.Add(this.m_LabelPlayer1);
-            this.Controls.Add(this.m_LabelPlayer2);
+            this.Controls.Add(this.ButtonForfeit);
+            this.Controls.Add(this.LabelPlayer1);
+            this.Controls.Add(this.LabelPlayer2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.AutoSize = true;
             this.Padding = new Padding(k_Padding);
@@ -124,7 +129,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             this.StartPosition = FormStartPosition.Manual;
             this.Top = (Screen.PrimaryScreen.Bounds.Height -
                         (this.m_MaxButtonCoinHeight +
-                         this.m_ButtonForfeit.Size.Height * 2)) / 2;
+                         this.ButtonForfeit.Size.Height * 2)) / 2;
             this.Left = ((Screen.PrimaryScreen.Bounds.Width - m_CenterWidth * 2) / 2);
         }
         
