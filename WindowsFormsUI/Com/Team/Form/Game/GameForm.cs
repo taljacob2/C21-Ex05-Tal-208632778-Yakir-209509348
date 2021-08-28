@@ -364,13 +364,6 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     out o_IsGameOver, columnChosen);
                 postChooseColumnAsComputerPlayerIfExists(out o_WinnerPlayer,
                     out o_IsGameOver);
-
-                if (GameControllerImpl.Database.Board.IsColumnFull(columnChosen)
-                )
-                {
-                    // Disable this columnButton.
-                    // TODO: need to implement -> implement here, or in the logic module with events for bonus.
-                }
             }
         }
     }
