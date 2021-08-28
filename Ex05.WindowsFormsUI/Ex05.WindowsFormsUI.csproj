@@ -7,7 +7,7 @@
         <ProjectGuid>{AC221314-203C-498B-88CA-4D12E5F0BE79}</ProjectGuid>
         <OutputType>WinExe</OutputType>
         <RootNamespace>WindowsFormsUI</RootNamespace>
-        <AssemblyName>WindowsFormsUI</AssemblyName>
+        <AssemblyName>Ex05.WindowsFormsUI</AssemblyName>
         <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
         <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -90,9 +90,9 @@
         <None Include="App.config" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\C21_Ex02_01\C21_Ex02_01.csproj">
+      <ProjectReference Include="..\Ex05.Logic\Ex05.Logic.csproj">
         <Project>{b067c2b0-d664-48c2-a735-6516e7256af6}</Project>
-        <Name>C21_Ex02_01</Name>
+        <Name>Ex05.Logic</Name>
       </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

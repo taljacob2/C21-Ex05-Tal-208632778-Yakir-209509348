@@ -45,7 +45,7 @@ namespace WindowsFormsUI.Properties
                 {
                     global::System.Resources.ResourceManager temp =
                         new global::System.Resources.ResourceManager(
-                            "WindowsFormsUI.Properties.Resources",
+                            "Ex05.WindowsFormsUI.Properties.Resources",
                             typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
