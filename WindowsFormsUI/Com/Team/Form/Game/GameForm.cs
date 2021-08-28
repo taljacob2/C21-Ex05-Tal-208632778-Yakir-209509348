@@ -14,7 +14,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 {
     public partial class GameForm : System.Windows.Forms.Form
     {
-        private const int k_Padding = 25;
+        private const int k_Padding = 20;
         private const int k_Width = 69;
         private const string k_LabelPlayer1Text = "Player 1: ";
         private const string k_LabelPlayer2Text = "Player 2: ";
