@@ -48,11 +48,17 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         public IGameController GameController { get; } =
             new GameControllerImpl();
 
-        private void buttonColumn_Click(object i_Sender, EventArgs i_)
+        #region ButtonForfeit
+
+        private void buttonForfeit_Click(object i_Sender, EventArgs i_E)
         {
-            r_ButtonColumnClickBuilder.PostButtonColumnClick(i_Sender,
-                out Player winnerPlayer, out bool isGameOver);
+            GameController.Forfeit(out Player winnerPlayer);
+            r_Dialog.CheckForAnotherGameDialogAndInvoke(true, winnerPlayer);
         }
+
+        #endregion
+
+        #region ButtonColumns
 
         private void createButtonColumns()
         {
@@ -69,6 +75,34 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 // Set button:
                 ButtonColumns[i - 1] = button;
             }
+        }
+
+        private void addButtonColumns()
+        {
+            foreach (Button button in ButtonColumns)
+            {
+                Controls.Add(button);
+            }
+        }
+
+        private void createButtonColumn(Button io_Button, int i_X, int i_I,
+            int i_Y, int i_Height)
+        {
+            io_Button.BackColor = SystemColors.Highlight;
+            io_Button.Location = new Point(i_X + (i_I - 1) * k_Width, i_Y);
+            io_Button.Name = "buttonColumn" + i_I;
+            io_Button.Size = new Size(k_Width, i_Height);
+            io_Button.TabIndex = i_I;
+            io_Button.Text = i_I.ToString();
+            io_Button.UseVisualStyleBackColor = false;
+            io_Button.Cursor = Cursors.Hand;
+            io_Button.Click += buttonColumn_Click;
+        }
+
+        private void buttonColumn_Click(object i_Sender, EventArgs i_)
+        {
+            r_ButtonColumnClickBuilder.PostButtonColumnClick(i_Sender,
+                out Player winnerPlayer, out bool isGameOver);
         }
 
         private void createButtonColumnWithEventHandler(Button io_Button,
@@ -103,27 +137,9 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             button.BackColor = SystemColors.GrayText;
         }
 
-        private void createButtonColumn(Button io_Button, int i_X, int i_I,
-            int i_Y, int i_Height)
-        {
-            io_Button.BackColor = SystemColors.Highlight;
-            io_Button.Location = new Point(i_X + (i_I - 1) * k_Width, i_Y);
-            io_Button.Name = "buttonColumn" + i_I;
-            io_Button.Size = new Size(k_Width, i_Height);
-            io_Button.TabIndex = i_I;
-            io_Button.Text = i_I.ToString();
-            io_Button.UseVisualStyleBackColor = false;
-            io_Button.Cursor = Cursors.Hand;
-            io_Button.Click += buttonColumn_Click;
-        }
+        #endregion
 
-        private void addButtonColumns()
-        {
-            foreach (Button button in ButtonColumns)
-            {
-                Controls.Add(button);
-            }
-        }
+        #region ButtonCoins
 
         private void createButtonCoins()
         {
@@ -152,6 +168,14 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     // Set button:
                     ButtonCoins[row - 1, col - 1] = button;
                 }
+            }
+        }
+
+        private void addButtonCoins()
+        {
+            foreach (Button button in ButtonCoins)
+            {
+                Controls.Add(button);
             }
         }
 
@@ -192,14 +216,6 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 .CharModify += buttonCoin_CharModify;
         }
 
-        private void addButtonCoins()
-        {
-            foreach (Button button in ButtonCoins)
-            {
-                Controls.Add(button);
-            }
-        }
-
         private void buttonCoin_CharModify(object i_Sender, EventArgs i_)
         {
             char coinChar = ((Coin) i_Sender).Char;
@@ -208,11 +224,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 coinChar.ToString();
         }
 
-        private void buttonForfeit_Click(object i_Sender, EventArgs i_E)
-        {
-            GameController.Forfeit(out Player winnerPlayer);
-            r_Dialog.CheckForAnotherGameDialogAndInvoke(true, winnerPlayer);
-        }
+        #endregion
 
         private class Dialog
         {
