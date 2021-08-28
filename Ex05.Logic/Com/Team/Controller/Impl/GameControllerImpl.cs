@@ -25,14 +25,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             out Player o_WinnerPlayer, out bool o_IsGameOver)
         {
             playTurn(i_ChosenColumnIndex);
-            Database.Players.SwitchCurrentPlayerTurn(Database.Players
-                .GetCurrentPlayer());
-            o_WinnerPlayer = getWinnerPlayer();
-            o_IsGameOver = o_WinnerPlayer != null;
-            if (!o_IsGameOver)
-            {
-                o_IsGameOver = isTie();
-            }
+            checkWinAndTie(out o_WinnerPlayer, out o_IsGameOver);
         }
 
         /// <summary />
@@ -52,6 +45,11 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
                 return;
             }
 
+            checkWinAndTie(out o_WinnerPlayer, out o_IsGameOver);
+        }
+        
+        private void checkWinAndTie(out Player o_WinnerPlayer, out bool o_IsGameOver)
+        {
             Database.Players.SwitchCurrentPlayerTurn(Database.Players
                 .GetCurrentPlayer());
             o_WinnerPlayer = getWinnerPlayer();
