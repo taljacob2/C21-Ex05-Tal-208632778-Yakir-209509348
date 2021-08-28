@@ -18,16 +18,16 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         private const int k_Width = 69;
         private const string k_LabelPlayer1Text = "Player 1: ";
         private const string k_LabelPlayer2Text = "Player 2: ";
-        private readonly ButtonColumnClickBuilder r_ButtonColumnClickBuilder;
+        private readonly ButtonCoinBuilder r_ButtonCoinBuilder;
+        private readonly ButtonColumnBuilder r_ButtonColumnBuilder;
         private readonly Dialog r_Dialog;
-        private readonly LabelPlayersBuilder r_LabelPlayersBuilder;
         private int m_CenterWidth;
         private int m_MaxButtonCoinHeight;
         private int m_MaxButtonCoinWidth;
 
         public GameForm()
         {
-            // Run settings windows.
+            // Run settings window.
             Application.Run(new GameSettingsForm());
 
             // Set ActuatorService:
@@ -39,10 +39,12 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             ButtonColumns =
                 new Button[GameControllerImpl.Database.Board.Cols];
 
-            initializeComponent();
+            // Initialize:
             r_Dialog = new Dialog(this);
-            r_ButtonColumnClickBuilder = new ButtonColumnClickBuilder(this);
-            r_LabelPlayersBuilder = new LabelPlayersBuilder(this);
+            r_ButtonColumnBuilder = new ButtonColumnBuilder(this);
+            r_ButtonCoinBuilder = new ButtonCoinBuilder(this);
+            initializeComponent();
+            new LabelPlayersBuilder(this);
         }
 
         public IGameController GameController { get; } =
@@ -69,8 +71,8 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 const int k_X = k_Padding;
                 const int k_Y = k_Padding;
 
-                createButtonColumnWithEventHandler(button, k_X, i, k_Y,
-                    k_Height);
+                r_ButtonColumnBuilder.CreateButtonColumnWithEventHandler(
+                    button, k_X, i, k_Y, k_Height);
 
                 // Set button:
                 ButtonColumns[i - 1] = button;
@@ -83,58 +85,6 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             {
                 Controls.Add(button);
             }
-        }
-
-        private void createButtonColumn(Button io_Button, int i_X, int i_I,
-            int i_Y, int i_Height)
-        {
-            io_Button.BackColor = SystemColors.Highlight;
-            io_Button.Location = new Point(i_X + (i_I - 1) * k_Width, i_Y);
-            io_Button.Name = "buttonColumn" + i_I;
-            io_Button.Size = new Size(k_Width, i_Height);
-            io_Button.TabIndex = i_I;
-            io_Button.Text = i_I.ToString();
-            io_Button.UseVisualStyleBackColor = false;
-            io_Button.Cursor = Cursors.Hand;
-            io_Button.Click += buttonColumn_Click;
-        }
-
-        private void buttonColumn_Click(object i_Sender, EventArgs i_)
-        {
-            r_ButtonColumnClickBuilder.PostButtonColumnClick(i_Sender,
-                out Player winnerPlayer, out bool isGameOver);
-        }
-
-        private void createButtonColumnWithEventHandler(Button io_Button,
-            int i_X, int i_I, int i_Y, int i_Height)
-        {
-            createButtonColumn(io_Button, i_X, i_I, i_Y, i_Height);
-
-            ColumnHeader columnHeader =
-                GameControllerImpl.Database.Board.ColumnHeaders[i_I - 1];
-
-            // Set ColumnFilledUp EventHandler:
-            columnHeader.ColumnFilledUp += buttonColumn_ColumnFilledUp;
-
-            // Set ColumnNotFilledUp EventHandler:
-            columnHeader.ColumnNotFilledUp += buttonColumn_ColumnNotFilledUp;
-        }
-
-        private void buttonColumn_ColumnNotFilledUp(object i_Sender,
-            EventArgs i_E)
-        {
-            byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
-            Button button = ButtonColumns[columnNumber - 1];
-            button.Enabled = true;
-            button.BackColor = SystemColors.Highlight;
-        }
-
-        private void buttonColumn_ColumnFilledUp(object i_Sender, EventArgs i_E)
-        {
-            byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
-            Button button = ButtonColumns[columnNumber - 1];
-            button.Enabled = false;
-            button.BackColor = SystemColors.GrayText;
         }
 
         #endregion
@@ -156,8 +106,8 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     const int k_X = k_Padding;
                     const int k_Y = 56;
 
-                    createButtonCoinWithEventHandler(button, k_X, col, k_Y, row,
-                        k_Height);
+                    r_ButtonCoinBuilder.CreateButtonCoinWithEventHandler(button,
+                        k_X, col, k_Y, row, k_Height);
 
                     // Update max height and width
                     m_MaxButtonCoinHeight = k_Y + (row - 1) * k_Height;
@@ -177,51 +127,6 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             {
                 Controls.Add(button);
             }
-        }
-
-        private static void createButtonCoin(Button io_Button, int i_X,
-            byte i_Col, int i_Y, byte i_Row, int i_Height)
-        {
-            io_Button.BackColor = SystemColors.Control;
-            io_Button.Font = new Font("Microsoft Sans Serif",
-                12F);
-            io_Button.Location = new Point(
-                i_X + (i_Col - 1) * k_Width,
-                i_Y + (i_Row - 1) * i_Height);
-            io_Button.Name = "buttonCoin" + (i_Row + i_Col);
-            io_Button.Size = new Size(k_Width, i_Height);
-            io_Button.TabIndex = i_Row + i_Col;
-            io_Button.Text =
-                GameControllerImpl.Database.Board.GetElement(
-                    (byte) (i_Row - 1),
-                    (byte) (i_Col - 1)).Char.ToString();
-            io_Button.UseVisualStyleBackColor = false;
-            disableAndColorButtonCoin(io_Button);
-        }
-
-        private static void disableAndColorButtonCoin(Button io_Button)
-        {
-            io_Button.Enabled = false;
-            io_Button.BackColor = Color.Azure;
-        }
-
-        private void createButtonCoinWithEventHandler(Button io_Button, int i_X,
-            byte i_Col, int i_Y, byte i_Row, int i_Height)
-        {
-            createButtonCoin(io_Button, i_X, i_Col, i_Y, i_Row, i_Height);
-
-            // Set CharModify EventHandler:
-            GameControllerImpl.Database.Board
-                .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
-                .CharModify += buttonCoin_CharModify;
-        }
-
-        private void buttonCoin_CharModify(object i_Sender, EventArgs i_)
-        {
-            char coinChar = ((Coin) i_Sender).Char;
-            Coordinate coinCoordinate = ((Coin) i_Sender).Coordinate;
-            ButtonCoins[coinCoordinate.Y, coinCoordinate.X].Text =
-                coinChar.ToString();
         }
 
         #endregion
@@ -294,14 +199,68 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             }
         }
 
-        private class ButtonColumnClickBuilder
+        private class ButtonColumnBuilder
         {
-            public ButtonColumnClickBuilder(GameForm i_GameForm)
+            public ButtonColumnBuilder(GameForm i_GameForm)
             {
                 GameForm = i_GameForm;
             }
 
             private GameForm GameForm { get; }
+
+            private void createButtonColumn(Button io_Button, int i_X, int i_I,
+                int i_Y, int i_Height)
+            {
+                io_Button.BackColor = SystemColors.Highlight;
+                io_Button.Location = new Point(i_X + (i_I - 1) * k_Width, i_Y);
+                io_Button.Name = "buttonColumn" + i_I;
+                io_Button.Size = new Size(k_Width, i_Height);
+                io_Button.TabIndex = i_I;
+                io_Button.Text = i_I.ToString();
+                io_Button.UseVisualStyleBackColor = false;
+                io_Button.Cursor = Cursors.Hand;
+                io_Button.Click += buttonColumn_Click;
+            }
+
+            private void buttonColumn_Click(object i_Sender, EventArgs i_)
+            {
+                PostButtonColumnClick(i_Sender, out Player winnerPlayer,
+                    out bool isGameOver);
+            }
+
+            public void CreateButtonColumnWithEventHandler(Button io_Button,
+                int i_X, int i_I, int i_Y, int i_Height)
+            {
+                createButtonColumn(io_Button, i_X, i_I, i_Y, i_Height);
+
+                ColumnHeader columnHeader =
+                    GameControllerImpl.Database.Board.ColumnHeaders[i_I - 1];
+
+                // Set ColumnFilledUp EventHandler:
+                columnHeader.ColumnFilledUp += buttonColumn_ColumnFilledUp;
+
+                // Set ColumnNotFilledUp EventHandler:
+                columnHeader.ColumnNotFilledUp +=
+                    buttonColumn_ColumnNotFilledUp;
+            }
+
+            private void buttonColumn_ColumnNotFilledUp(object i_Sender,
+                EventArgs i_E)
+            {
+                byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
+                Button button = GameForm.ButtonColumns[columnNumber - 1];
+                button.Enabled = true;
+                button.BackColor = SystemColors.Highlight;
+            }
+
+            private void buttonColumn_ColumnFilledUp(object i_Sender,
+                EventArgs i_E)
+            {
+                byte columnNumber = ((ColumnHeader) i_Sender).ColumnNumber;
+                Button button = GameForm.ButtonColumns[columnNumber - 1];
+                button.Enabled = false;
+                button.BackColor = SystemColors.GrayText;
+            }
 
             private void postChooseColumnAsComputerPlayerIfExists(
                 out Player o_WinnerPlayer,
@@ -334,6 +293,62 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                     out o_IsGameOver, columnChosen);
                 postChooseColumnAsComputerPlayerIfExists(out o_WinnerPlayer,
                     out o_IsGameOver);
+            }
+        }
+
+        private class ButtonCoinBuilder
+        {
+            public ButtonCoinBuilder(GameForm i_GameForm)
+            {
+                GameForm = i_GameForm;
+            }
+
+            public GameForm GameForm { get; }
+
+            private static void createButtonCoin(Button io_Button, int i_X,
+                byte i_Col, int i_Y, byte i_Row, int i_Height)
+            {
+                io_Button.BackColor = SystemColors.Control;
+                io_Button.Font = new Font("Microsoft Sans Serif",
+                    12F);
+                io_Button.Location = new Point(
+                    i_X + (i_Col - 1) * k_Width,
+                    i_Y + (i_Row - 1) * i_Height);
+                io_Button.Name = "buttonCoin" + (i_Row + i_Col);
+                io_Button.Size = new Size(k_Width, i_Height);
+                io_Button.TabIndex = i_Row + i_Col;
+                io_Button.Text =
+                    GameControllerImpl.Database.Board.GetElement(
+                        (byte) (i_Row - 1),
+                        (byte) (i_Col - 1)).Char.ToString();
+                io_Button.UseVisualStyleBackColor = false;
+                disableAndColorButtonCoin(io_Button);
+            }
+
+            private static void disableAndColorButtonCoin(Button io_Button)
+            {
+                io_Button.Enabled = false;
+                io_Button.BackColor = Color.Azure;
+            }
+
+            public void CreateButtonCoinWithEventHandler(Button io_Button,
+                int i_X,
+                byte i_Col, int i_Y, byte i_Row, int i_Height)
+            {
+                createButtonCoin(io_Button, i_X, i_Col, i_Y, i_Row, i_Height);
+
+                // Set CharModify EventHandler:
+                GameControllerImpl.Database.Board
+                    .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
+                    .CharModify += buttonCoin_CharModify;
+            }
+
+            private void buttonCoin_CharModify(object i_Sender, EventArgs i_)
+            {
+                char coinChar = ((Coin) i_Sender).Char;
+                Coordinate coinCoordinate = ((Coin) i_Sender).Coordinate;
+                GameForm.ButtonCoins[coinCoordinate.Y, coinCoordinate.X].Text =
+                    coinChar.ToString();
             }
         }
 
