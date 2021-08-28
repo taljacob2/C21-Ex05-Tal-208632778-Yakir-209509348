@@ -65,7 +65,6 @@
     <Compile Include="Com\Team\Misc\StringIndentation.cs" />
     <Compile Include="Com\Team\Service\IGameService.cs" />
     <Compile Include="Com\Team\Service\Impl\GameServiceImpl.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
