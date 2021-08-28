@@ -1,6 +1,6 @@
 ﻿#region
 
-using C21_Ex02_01.Com.Team.Database.Players.Player;
+using C21_Ex02_01.Com.Team.Entity.Players.Player;
 using C21_Ex02_01.Com.Team.Service;
 
 #endregion
@@ -11,7 +11,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
     {
         public static Database.Database Database { get; set; }
 
-        public static IActuatorService ActuatorService { get; set; }
+        public static IGameService GameService { get; set; }
 
         /// <summary />
         /// <param name="i_ChosenColumnIndex" />
@@ -63,24 +63,24 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 
         public void Forfeit(out Player o_WinnerPlayer)
         {
-            ActuatorService.Forfeit(out o_WinnerPlayer);
+            GameService.Forfeit(out o_WinnerPlayer);
         }
 
         private static void resetForfeitAndWinner()
         {
-            ActuatorService.ResetForfeitAndWinner(); // Database Update.
+            GameService.ResetForfeitAndWinner(); // Database Update.
         }
 
         private void setTie()
         {
-            ActuatorService.SetTie(); // Database Update.
+            GameService.SetTie(); // Database Update.
         }
 
         private static Player getWinnerPlayer()
         {
             // Check for algorithm WIN here:
             Player returnValue =
-                ActuatorService.GetWinnerPlayer(); // Database Update.
+                GameService.GetWinnerPlayer(); // Database Update.
 
             if (returnValue != null)
             {

@@ -1,4 +1,4 @@
-﻿using C21_Ex02_01.Com.Team.Database.Players.Player;
+﻿using C21_Ex02_01.Com.Team.Entity.Players.Player;
 
 namespace C21_Ex02_01.Com.Team.Controller
 {

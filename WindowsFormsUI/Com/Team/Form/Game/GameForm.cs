@@ -3,12 +3,12 @@ using System.Drawing;
 using System.Windows.Forms;
 using C21_Ex02_01.Com.Team.Controller;
 using C21_Ex02_01.Com.Team.Controller.Impl;
-using C21_Ex02_01.Com.Team.Database.Board.Coin;
-using C21_Ex02_01.Com.Team.Database.Players;
-using C21_Ex02_01.Com.Team.Database.Players.Player;
+using C21_Ex02_01.Com.Team.Entity.Board.Coin;
+using C21_Ex02_01.Com.Team.Entity.Players;
+using C21_Ex02_01.Com.Team.Entity.Players.Player;
 using C21_Ex02_01.Com.Team.Service.Impl;
 using ColumnHeader =
-    C21_Ex02_01.Com.Team.Database.Board.ColumnHeader.ColumnHeader;
+    C21_Ex02_01.Com.Team.Entity.Board.ColumnHeader.ColumnHeader;
 
 namespace WindowsFormsUI.Com.Team.Form.Game
 {
@@ -31,7 +31,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             Application.Run(new GameSettingsForm());
 
             // Set ActuatorService:
-            GameControllerImpl.ActuatorService = new ActuatorServiceImpl();
+            GameControllerImpl.GameService = new GameServiceImpl();
 
             // Create arrays:
             ButtonCoins = new Button[GameControllerImpl.Database.Board.Rows,

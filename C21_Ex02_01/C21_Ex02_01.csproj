@@ -33,12 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ex02.ConsoleUtils, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-      <HintPath>..\..\..\..\..\..\..\Temp\Ex02.ConsoleUtils.dll</HintPath>
-    </Reference>
-    <Reference Include="MiscUtil, Version=0.2.0.0, Culture=neutral, PublicKeyToken=d3c42c4bfacf7596, processorArchitecture=MSIL">
-      <HintPath>..\packages\JonSkeet.MiscUtil.0.2.0\lib\net35\MiscUtil.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -47,41 +41,32 @@
   <ItemGroup>
     <Compile Include="Com\Team\Controller\IGameController.cs" />
     <Compile Include="Com\Team\Controller\Impl\GameControllerImpl.cs" />
-    <Compile Include="Com\Team\Database\Board\Board.cs" />
-    <Compile Include="Com\Team\Database\Board\Coin\Coin.cs" />
-    <Compile Include="Com\Team\Database\Board\Coin\Coordinate.cs" />
-    <Compile Include="Com\Team\Database\Board\ColumnHeader\ColumnHeader.cs" />
-    <Compile Include="Com\Team\Database\Board\ColumnHeader\ColumnHeadersBuilder.cs" />
-    <Compile Include="Com\Team\Database\Board\EvaluationBoard.cs" />
-    <Compile Include="Com\Team\Database\Board\IBoardActuator.cs" />
-    <Compile Include="Com\Team\Database\Board\Matrix\Wrapper\MatrixWrapper.cs" />
     <Compile Include="Com\Team\Database\Database.cs" />
-    <Compile Include="Com\Team\Database\Players\Players.cs" />
-    <Compile Include="Com\Team\Database\Players\Player\AIPlayer.cs" />
-    <Compile Include="Com\Team\Database\Players\Player\AI\IAI.cs" />
-    <Compile Include="Com\Team\Database\Players\Player\AI\MinMaxAI.cs" />
-    <Compile Include="Com\Team\Database\Players\Player\ComputerPlayer.cs" />
-    <Compile Include="Com\Team\Database\Players\Player\eID.cs" />
-    <Compile Include="Com\Team\Database\Players\Player\eType.cs" />
-    <Compile Include="Com\Team\Database\Players\Player\HumanPlayer.cs" />
-    <Compile Include="Com\Team\Database\Players\Player\Player.cs" />
-    <Compile Include="Com\Team\Database\Players\Settings.cs" />
+    <Compile Include="Com\Team\Entity\Board\Board.cs" />
+    <Compile Include="Com\Team\Entity\Board\Coin\Coin.cs" />
+    <Compile Include="Com\Team\Entity\Board\Coin\Coordinate.cs" />
+    <Compile Include="Com\Team\Entity\Board\ColumnHeader\ColumnHeader.cs" />
+    <Compile Include="Com\Team\Entity\Board\ColumnHeader\ColumnHeadersBuilder.cs" />
+    <Compile Include="Com\Team\Entity\Board\EvaluationBoard.cs" />
+    <Compile Include="Com\Team\Entity\Board\IBoardActuator.cs" />
+    <Compile Include="Com\Team\Entity\Board\Matrix\Wrapper\MatrixWrapper.cs" />
+    <Compile Include="Com\Team\Entity\Players\Players.cs" />
+    <Compile Include="Com\Team\Entity\Players\Player\AIPlayer.cs" />
+    <Compile Include="Com\Team\Entity\Players\Player\AI\IAI.cs" />
+    <Compile Include="Com\Team\Entity\Players\Player\AI\MinMaxAI.cs" />
+    <Compile Include="Com\Team\Entity\Players\Player\ComputerPlayer.cs" />
+    <Compile Include="Com\Team\Entity\Players\Player\eID.cs" />
+    <Compile Include="Com\Team\Entity\Players\Player\eType.cs" />
+    <Compile Include="Com\Team\Entity\Players\Player\HumanPlayer.cs" />
+    <Compile Include="Com\Team\Entity\Players\Player\Player.cs" />
+    <Compile Include="Com\Team\Entity\Players\Settings.cs" />
     <Compile Include="Com\Team\Misc\EnumeratorGetter.cs" />
-    <Compile Include="Com\Team\Misc\InputUtil.cs" />
     <Compile Include="Com\Team\Misc\ObjectExtensions.cs" />
     <Compile Include="Com\Team\Misc\StringIndentation.cs" />
-    <Compile Include="Com\Team\Service\IActuatorService.cs" />
-    <Compile Include="Com\Team\Service\Impl\ActuatorServiceImpl.cs" />
-    <Compile Include="Com\Team\Service\Impl\RequesterServiceImpl.cs" />
-    <Compile Include="Com\Team\Service\Impl\ResponderServiceImpl.cs" />
-    <Compile Include="Com\Team\Service\IRequesterService.cs" />
-    <Compile Include="Com\Team\Service\IResponderService.cs" />
-    <Compile Include="Com\Team\UI\Console\ConsoleUI.cs" />
+    <Compile Include="Com\Team\Service\IGameService.cs" />
+    <Compile Include="Com\Team\Service\Impl\GameServiceImpl.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Com" />

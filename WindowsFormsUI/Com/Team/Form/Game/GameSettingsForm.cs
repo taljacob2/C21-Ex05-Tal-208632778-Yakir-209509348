@@ -1,9 +1,9 @@
 ﻿using System;
 using C21_Ex02_01.Com.Team.Controller.Impl;
 using C21_Ex02_01.Com.Team.Database;
-using C21_Ex02_01.Com.Team.Database.Board;
-using C21_Ex02_01.Com.Team.Database.Players;
-using C21_Ex02_01.Com.Team.Database.Players.Player;
+using C21_Ex02_01.Com.Team.Entity.Board;
+using C21_Ex02_01.Com.Team.Entity.Players;
+using C21_Ex02_01.Com.Team.Entity.Players.Player;
 
 namespace WindowsFormsUI.Com.Team.Form.Game
 {
