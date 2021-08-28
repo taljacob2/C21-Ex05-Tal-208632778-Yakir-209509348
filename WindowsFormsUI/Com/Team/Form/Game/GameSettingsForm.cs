@@ -7,16 +7,16 @@ using C21_Ex02_01.Com.Team.Database.Players.Player;
 
 namespace WindowsFormsUI.Com.Team.Form.Game
 {
-    public partial class GameSettingsForm : System.Windows.Forms.Form
+    public class DatabaseBuilder
     {
-        public GameSettingsForm()
+        public DatabaseBuilder(GameSettingsForm i_GameSettingsForm)
         {
-            initializeComponent();
+            SettingsForm = i_GameSettingsForm;
         }
 
-        public eType Opponent { get; private set; } = eType.Computer;
+        public GameSettingsForm SettingsForm { get; }
 
-        private void initializeDatabase()
+        public void InitializeDatabase()
         {
             initializeBoard();
             initializePlayersNames();
@@ -26,37 +26,52 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         {
             GameControllerImpl.Database =
                 new Database(
-                    new Board((byte) m_RowsNumericUpDown.Value,
-                        (byte) m_ColsNumericUpDown.Value),
-                    new Players(new Settings(Opponent)));
+                    new Board((byte) SettingsForm.RowsNumericUpDown.Value,
+                        (byte) SettingsForm.ColsNumericUpDown.Value),
+                    new Players(new Settings(SettingsForm.Opponent)));
         }
-        
+
         private void initializePlayersNames()
         {
             Players players = GameControllerImpl.Database.Players;
-            players.GetPlayerOne().Name = m_TextBoxPlayer1.Text;
-            players.GetPlayerTwo().Name = m_TextBoxPlayer2.Text;
+            players.GetPlayerOne().Name =
+                SettingsForm.TextBoxPlayer1.Text;
+            players.GetPlayerTwo().Name =
+                SettingsForm.TextBoxPlayer2.Text;
         }
+    }
+
+    public partial class GameSettingsForm : System.Windows.Forms.Form
+    {
+        public GameSettingsForm()
+        {
+            initializeComponent();
+            DatabaseBuilder = new DatabaseBuilder(this);
+        }
+
+        public eType Opponent { get; private set; } = eType.Computer;
+
+        public DatabaseBuilder DatabaseBuilder { get; }
 
         private void buttonPlay_Click(object i_Sender, EventArgs i_)
         {
-            initializeDatabase();
+            DatabaseBuilder.InitializeDatabase();
             Close();
         }
-        
+
         private void checkBoxPlayer2_CheckedChanged(object i_Sender,
             EventArgs i_)
         {
-            if (m_CheckBoxPlayer2.Checked)
+            if (CheckBoxPlayer2.Checked)
             {
-                m_TextBoxPlayer2.Text = @"Player 2";
-                m_TextBoxPlayer2.Enabled = true;
+                TextBoxPlayer2.Text = @"Player 2";
+                TextBoxPlayer2.Enabled = true;
                 Opponent = eType.Human;
             }
             else
             {
-                m_TextBoxPlayer2.Text = @"[Computer]";
-                m_TextBoxPlayer2.Enabled = false;
+                TextBoxPlayer2.Text = @"[Computer]";
+                TextBoxPlayer2.Enabled = false;
                 Opponent = eType.Computer;
             }
         }
