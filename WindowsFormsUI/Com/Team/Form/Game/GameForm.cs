@@ -12,133 +12,18 @@ using ColumnHeader =
 
 namespace WindowsFormsUI.Com.Team.Form.Game
 {
-    public class Dialog
-    {
-        public Dialog(GameForm i_GameForm)
-        {
-            GameForm = i_GameForm;
-        }
-
-        private GameForm GameForm { get; }
-
-        public void CheckForAnotherGameDialogAndInvoke(
-            bool i_IsGameOver, Player i_WinnerPlayer)
-        {
-            const string k_AnotherGameMessage =
-                "Do you want to play another round?";
-            const string k_TieMessage = "It is a tie!";
-
-            if (i_IsGameOver)
-            {
-                if (i_WinnerPlayer != null)
-                {
-                    // There is a WIN, and there is a winnerPlayer:
-                    showWinnerDialog(i_WinnerPlayer, k_AnotherGameMessage);
-                }
-                else
-                {
-                    // It is a TIE:
-                    showTieDialog(k_TieMessage, k_AnotherGameMessage);
-                }
-            }
-        }
-
-        private void showTieDialog(string i_TieMessage,
-            string i_AnotherGameMessage)
-        {
-            DialogResult dialogResult = MessageBox.Show(
-                i_AnotherGameMessage,
-                i_TieMessage, MessageBoxButtons.YesNo);
-            switchDialogGameReplay(dialogResult);
-        }
-
-        private void showWinnerDialog(Player i_WinnerPlayer,
-            string i_AnotherGameMessage)
-        {
-            DialogResult dialogResult = MessageBox.Show(
-                i_AnotherGameMessage,
-                winnerPlayerMessage(i_WinnerPlayer),
-                MessageBoxButtons.YesNo);
-            switchDialogGameReplay(dialogResult);
-        }
-
-        private static string winnerPlayerMessage(Player i_WinnerPlayer)
-        {
-            return "The winner is " + i_WinnerPlayer.Name + "!";
-        }
-
-        private void switchDialogGameReplay(DialogResult i_DialogResult)
-        {
-            if (i_DialogResult == DialogResult.Yes)
-            {
-                GameForm.GameController.NewGame();
-            }
-            else if (i_DialogResult == DialogResult.No)
-            {
-                GameForm.Close();
-            }
-        }
-    }
-
-    public class ButtonColumnClickBuilder
-    {
-        public ButtonColumnClickBuilder(GameForm i_GameForm)
-        {
-            GameForm = i_GameForm;
-        }
-
-        private GameForm GameForm { get; }
-
-        private void postChooseColumnAsComputerPlayerIfExists(
-            out Player o_WinnerPlayer,
-            out bool o_IsGameOver)
-        {
-            GameForm.GameController.PostChooseColumnAsComputerPlayerIfExists
-                (out o_WinnerPlayer, out o_IsGameOver);
-            GameForm.Dialog.CheckForAnotherGameDialogAndInvoke(o_IsGameOver,
-                o_WinnerPlayer);
-        }
-
-        private void postChooseColumnAsHumanPlayer(
-            out Player o_WinnerPlayer,
-            out bool o_IsGameOver, byte i_ColumnChosen)
-        {
-            GameForm.GameController.PostChooseColumnAsHumanPlayer(
-                i_ColumnChosen, out o_WinnerPlayer, out o_IsGameOver);
-            GameForm.Dialog.CheckForAnotherGameDialogAndInvoke(o_IsGameOver,
-                o_WinnerPlayer);
-        }
-
-        public void PostButtonColumnClick(object i_Sender,
-            out Player o_WinnerPlayer, out bool o_IsGameOver)
-        {
-            string text = ((Button) i_Sender).Text;
-            byte columnChosen = (byte) (byte.Parse(text) - 1);
-
-            postChooseColumnAsHumanPlayer(out o_WinnerPlayer,
-                out o_IsGameOver, columnChosen);
-            postChooseColumnAsComputerPlayerIfExists(out o_WinnerPlayer,
-                out o_IsGameOver);
-
-            if (GameControllerImpl.Database.Board.IsColumnFull(columnChosen))
-            {
-                // Disable this columnButton.
-                // TODO: need to implement -> implement here, or in the logic module with events for bonus.
-            }
-        }
-    }
-
     public partial class GameForm : System.Windows.Forms.Form
     {
         private const int k_Padding = 20;
         private const int k_Width = 69;
         private const string k_LabelPlayer1Text = "Player 1: ";
         private const string k_LabelPlayer2Text = "Player 2: ";
-
+        private readonly ButtonColumnClickBuilder r_ButtonColumnClickBuilder;
+        private readonly Dialog r_Dialog;
         private int m_CenterWidth;
         private int m_MaxButtonCoinHeight;
         private int m_MaxButtonCoinWidth;
-
+        
         public GameForm()
         {
             // Run settings windows.
@@ -154,19 +39,15 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 new Button[GameControllerImpl.Database.Board.Cols];
 
             initializeComponent();
-            initializeLabelPlayersScoreEventHandler();
-            Dialog = new Dialog(this);
-            ButtonColumnClickBuilder = new ButtonColumnClickBuilder(this);
+            initializeLabelPlayersScoreWithEventHandler();
+            r_Dialog = new Dialog(this);
+            r_ButtonColumnClickBuilder = new ButtonColumnClickBuilder(this);
         }
 
         public IGameController GameController { get; } =
             new GameControllerImpl();
 
-        private ButtonColumnClickBuilder ButtonColumnClickBuilder { get; }
-
-        public Dialog Dialog { get; }
-
-        private void initializeLabelPlayersScoreEventHandler()
+        private void initializeLabelPlayersScoreWithEventHandler()
         {
             initializeLabelPlayersText();
 
@@ -209,7 +90,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void buttonColumn_Click(object i_Sender, EventArgs i_)
         {
-            ButtonColumnClickBuilder.PostButtonColumnClick(i_Sender,
+            r_ButtonColumnClickBuilder.PostButtonColumnClick(i_Sender,
                 out Player winnerPlayer,
                 out bool isGameOver);
         }
@@ -371,7 +252,126 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         private void buttonForfeit_Click(object i_Sender, EventArgs i_E)
         {
             GameController.Forfeit(out Player winnerPlayer);
-            Dialog.CheckForAnotherGameDialogAndInvoke(true, winnerPlayer);
+            r_Dialog.CheckForAnotherGameDialogAndInvoke(true, winnerPlayer);
+        }
+
+        private class Dialog
+        {
+            public Dialog(GameForm i_GameForm)
+            {
+                GameForm = i_GameForm;
+            }
+
+            private GameForm GameForm { get; }
+
+            public void CheckForAnotherGameDialogAndInvoke(
+                bool i_IsGameOver, Player i_WinnerPlayer)
+            {
+                const string k_AnotherGameMessage =
+                    "Do you want to play another round?";
+                const string k_TieMessage = "It is a tie!";
+
+                if (i_IsGameOver)
+                {
+                    if (i_WinnerPlayer != null)
+                    {
+                        // There is a WIN, and there is a winnerPlayer:
+                        showWinnerDialog(i_WinnerPlayer, k_AnotherGameMessage);
+                    }
+                    else
+                    {
+                        // It is a TIE:
+                        showTieDialog(k_TieMessage, k_AnotherGameMessage);
+                    }
+                }
+            }
+
+            private void showTieDialog(string i_TieMessage,
+                string i_AnotherGameMessage)
+            {
+                DialogResult dialogResult = MessageBox.Show(
+                    i_AnotherGameMessage,
+                    i_TieMessage, MessageBoxButtons.YesNo);
+                switchDialogGameReplay(dialogResult);
+            }
+
+            private void showWinnerDialog(Player i_WinnerPlayer,
+                string i_AnotherGameMessage)
+            {
+                DialogResult dialogResult = MessageBox.Show(
+                    i_AnotherGameMessage,
+                    winnerPlayerMessage(i_WinnerPlayer),
+                    MessageBoxButtons.YesNo);
+                switchDialogGameReplay(dialogResult);
+            }
+
+            private static string winnerPlayerMessage(Player i_WinnerPlayer)
+            {
+                return "The winner is " + i_WinnerPlayer.Name + "!";
+            }
+
+            private void switchDialogGameReplay(DialogResult i_DialogResult)
+            {
+                if (i_DialogResult == DialogResult.Yes)
+                {
+                    GameForm.GameController.NewGame();
+                }
+                else if (i_DialogResult == DialogResult.No)
+                {
+                    GameForm.Close();
+                }
+            }
+        }
+
+        private class ButtonColumnClickBuilder
+        {
+            public ButtonColumnClickBuilder(GameForm i_GameForm)
+            {
+                GameForm = i_GameForm;
+            }
+
+            private GameForm GameForm { get; }
+
+            private void postChooseColumnAsComputerPlayerIfExists(
+                out Player o_WinnerPlayer,
+                out bool o_IsGameOver)
+            {
+                GameForm.GameController.PostChooseColumnAsComputerPlayerIfExists
+                    (out o_WinnerPlayer, out o_IsGameOver);
+                GameForm.r_Dialog.CheckForAnotherGameDialogAndInvoke
+                (o_IsGameOver,
+                    o_WinnerPlayer);
+            }
+
+            private void postChooseColumnAsHumanPlayer(
+                out Player o_WinnerPlayer,
+                out bool o_IsGameOver, byte i_ColumnChosen)
+            {
+                GameForm.GameController.PostChooseColumnAsHumanPlayer(
+                    i_ColumnChosen, out o_WinnerPlayer, out o_IsGameOver);
+                GameForm.r_Dialog.CheckForAnotherGameDialogAndInvoke
+                (o_IsGameOver,
+                    o_WinnerPlayer);
+            }
+
+            public void PostButtonColumnClick(object i_Sender,
+                out Player o_WinnerPlayer, out bool o_IsGameOver)
+            {
+                string text = ((Button) i_Sender).Text;
+                byte columnChosen = (byte) (byte.Parse(text) - 1);
+
+                postChooseColumnAsHumanPlayer(out o_WinnerPlayer,
+                    out o_IsGameOver, columnChosen);
+                postChooseColumnAsComputerPlayerIfExists(out o_WinnerPlayer,
+                    out o_IsGameOver);
+
+                if (GameControllerImpl.Database.Board.IsColumnFull(columnChosen)
+                )
+                {
+                    // Disable this columnButton.
+                    // TODO: need to implement -> implement here, or in the logic module with events for bonus.
+                }
+            }
         }
     }
 }
