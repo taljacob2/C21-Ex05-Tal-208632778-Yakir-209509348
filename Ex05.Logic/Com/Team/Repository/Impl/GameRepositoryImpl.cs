@@ -15,27 +15,14 @@ namespace C21_Ex02_01.Com.Team.Repository.Impl
             return GameDatabase.GetRefPlayers().GetNotCurrentPlayer();
         }
 
+        public Player GetCurrentPlayer()
+        {
+            return GameDatabase.GetRefPlayers().GetCurrentPlayer();
+        }
+
         public bool IsVictory()
         {
             return GameDatabase.GetRefBoard().IsVictory();
-        }
-
-        public void IncreaseScoreOfPlayerOne()
-        {
-            Players players = GameDatabase.GetRefPlayers();
-            increaseScoreOfPlayer(players.GetPlayerOne());
-        }
-
-        public void IncreaseScoreOfPlayerTwo()
-        {
-            Players players = GameDatabase.GetRefPlayers();
-            increaseScoreOfPlayer(players.GetPlayerTwo());
-        }
-
-        private static void increaseScoreOfPlayer(Player io_Player)
-        {
-            io_Player.Score++;
-            io_Player.ScoreModified();
         }
 
         public void ResetScoresOfPlayers()
@@ -44,16 +31,6 @@ namespace C21_Ex02_01.Com.Team.Repository.Impl
             {
                 player.ChosenColumnIndex = 0;
             }
-        }
-
-        public Player Forfeit()
-        {
-            Players players = GameDatabase.GetRefPlayers();
-            Player winnerPlayer = players.GetNotCurrentPlayer();
-            increaseScoreOfPlayer(winnerPlayer);
-            ResetScoresOfPlayers();
-
-            return winnerPlayer;
         }
 
         public void SwitchCurrentPlayerTurn()
@@ -69,6 +46,21 @@ namespace C21_Ex02_01.Com.Team.Repository.Impl
         public void ResetBoard()
         {
             GameDatabase.GetRefBoard().ResetBoard();
+        }
+
+        public Player GetRefPlayerOne()
+        {
+            return GameDatabase.GetRefPlayers().GetPlayerOne();
+        }
+
+        public Player GetRefPlayerTwo()
+        {
+            return GameDatabase.GetRefPlayers().GetPlayerTwo();
+        }
+
+        public bool IsFull()
+        {
+            return GameDatabase.GetRefBoard().IsFull();
         }
     }
 }

@@ -25,5 +25,11 @@ namespace C21_Ex02_01.Com.Team.Service
         void SetCurrentPlayer(eID i_PlayerID);
         
         void ResetBoard();
+
+        bool IsFull();
+
+        void PlayTurnWithCurrentPlayer(byte i_ChosenColumnIndex);
+
+        bool IsComputerPlayerExistsAndPlayed();
     }
 }

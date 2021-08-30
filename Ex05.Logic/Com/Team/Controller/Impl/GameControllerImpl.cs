@@ -25,7 +25,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         public void PostChooseColumnAsHumanPlayer(byte i_ChosenColumnIndex,
             out Player o_WinnerPlayer, out bool o_IsGameOver)
         {
-            playTurn(i_ChosenColumnIndex);
+            GameService.PlayTurnWithCurrentPlayer(i_ChosenColumnIndex);
             checkWinAndTie(out o_WinnerPlayer, out o_IsGameOver);
         }
 
@@ -39,7 +39,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         public void PostChooseColumnAsComputerPlayerIfExists(
             out Player o_WinnerPlayer, out bool o_IsGameOver)
         {
-            if (!isComputerPlayerExistsAndPlayed())
+            if (!GameService.IsComputerPlayerExistsAndPlayed())
             {
                 o_WinnerPlayer = null;
                 o_IsGameOver = false;
@@ -96,26 +96,9 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
             return returnValue;
         }
 
-        private static bool isComputerPlayerExistsAndPlayed()
-        {
-            bool returnValue = true;
-            Player currentPlayer = GameDatabaseImpl.Players.GetCurrentPlayer();
-
-            if (currentPlayer is ComputerPlayer)
-            {
-                currentPlayer.PlayTurn();
-            }
-            else
-            {
-                returnValue = false;
-            }
-
-            return returnValue;
-        }
-
         private bool isTie()
         {
-            bool returnValue = GameDatabaseImpl.Board.IsFull();
+            bool returnValue = GameService.IsFull();
 
             if (returnValue)
             {
@@ -125,12 +108,6 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 
             return returnValue;
         }
-
-        private static void playTurn(byte i_ChosenColumnIndex)
-        {
-            Player currentPlayer = GameDatabaseImpl.Players.GetCurrentPlayer();
-            currentPlayer.ChosenColumnIndex = i_ChosenColumnIndex;
-            currentPlayer.PlayTurn();
-        }
+        
     }
 }

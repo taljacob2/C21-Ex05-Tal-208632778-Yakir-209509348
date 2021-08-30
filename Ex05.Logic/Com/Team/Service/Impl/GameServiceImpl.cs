@@ -38,10 +38,8 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
             }
             else if (GameRepository.IsVictory())
             {
-                Player nonCurrentPlayer = GameRepository.GetNotCurrentPlayer();
-                returnValue = nonCurrentPlayer;
-                nonCurrentPlayer.Score++;
-                nonCurrentPlayer.ScoreModified();
+                returnValue = GameRepository.GetNotCurrentPlayer();
+                increaseScoreOfPlayer(returnValue);
             }
 
             return returnValue;
@@ -49,13 +47,15 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
 
         public void SetTie()
         {
-            GameRepository.IncreaseScoreOfPlayerOne();
-            GameRepository.IncreaseScoreOfPlayerTwo();
+            increaseScoreOfPlayer(GameRepository.GetRefPlayerOne());
+            increaseScoreOfPlayer(GameRepository.GetRefPlayerTwo());
         }
 
         public void Forfeit(out Player o_WinnerPlayer)
         {
-            o_WinnerPlayer = GameRepository.Forfeit();
+            o_WinnerPlayer = GameRepository.GetNotCurrentPlayer();
+            increaseScoreOfPlayer(o_WinnerPlayer);
+            GameRepository.ResetScoresOfPlayers();
         }
 
         public void ResetScoresAndWinner()
@@ -77,6 +77,41 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
         public void ResetBoard()
         {
             GameRepository.ResetBoard();
+        }
+
+        public bool IsFull()
+        {
+            return GameRepository.IsFull();
+        }
+
+        private static void increaseScoreOfPlayer(Player io_Player)
+        {
+            io_Player.Score++;
+            io_Player.ScoreModified();
+        }
+        
+        public void PlayTurnWithCurrentPlayer(byte i_ChosenColumnIndex)
+        {
+            Player currentPlayer = GameRepository.GetCurrentPlayer();
+            currentPlayer.ChosenColumnIndex = i_ChosenColumnIndex;
+            currentPlayer.PlayTurn();
+        }
+        
+        public bool IsComputerPlayerExistsAndPlayed()
+        {
+            bool returnValue = true;
+            Player currentPlayer = GameRepository.GetCurrentPlayer();
+
+            if (currentPlayer is ComputerPlayer)
+            {
+                currentPlayer.PlayTurn();
+            }
+            else
+            {
+                returnValue = false;
+            }
+
+            return returnValue;
         }
     }
 }
