@@ -28,8 +28,13 @@ namespace C21_Ex02_01.Com.Team.Service
 
         bool IsFull();
 
-        void PlayTurnWithCurrentPlayer(byte i_ChosenColumnIndex);
+        bool TryPlayTurnAsHumanPlayer(byte i_ChosenColumnIndex);
 
-        bool IsComputerPlayerExistsAndPlayed();
+        bool TryPlayTurnAsComputerPlayer();
+
+        byte GetCols();
+        
+        byte GetRows();
+        
     }
 }

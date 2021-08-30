@@ -23,7 +23,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         public void PostChooseColumnAsHumanPlayer(byte i_ChosenColumnIndex,
             out Player o_WinnerPlayer, out bool o_IsGameOver)
         {
-            GameService.PlayTurnWithCurrentPlayer(i_ChosenColumnIndex);
+            GameService.TryPlayTurnAsHumanPlayer(i_ChosenColumnIndex);
             checkWinAndTie(out o_WinnerPlayer, out o_IsGameOver);
         }
 
@@ -37,7 +37,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         public void PostChooseColumnAsComputerPlayerIfExists(
             out Player o_WinnerPlayer, out bool o_IsGameOver)
         {
-            if (!GameService.IsComputerPlayerExistsAndPlayed())
+            if (!GameService.TryPlayTurnAsComputerPlayer())
             {
                 o_WinnerPlayer = null;
                 o_IsGameOver = false;

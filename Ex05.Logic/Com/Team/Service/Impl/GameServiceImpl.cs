@@ -2,6 +2,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using C21_Ex02_01.Com.Team.Controller.Impl;
 using C21_Ex02_01.Com.Team.Entity.Board;
 using C21_Ex02_01.Com.Team.Entity.Players;
@@ -92,42 +93,45 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
             io_Player.ScoreModified();
         }
 
-        public void PlayTurnWithCurrentPlayer(byte i_ChosenColumnIndex)
+        public bool TryPlayTurnAsHumanPlayer(byte i_ChosenColumnIndex)
         {
-            Player currentPlayer = GameRepository.GetCurrentPlayer();
-            currentPlayer.ChosenColumnIndex = i_ChosenColumnIndex;
-            currentPlayer.PlayTurn();
+            Player player = GameRepository.GetCurrentPlayer();
+            bool returnValue = false;
+            if (player is HumanPlayer)
+            {
+                playTurnWithGivenColumn(i_ChosenColumnIndex, player);
+                returnValue = true;
+            }
+
+            return returnValue;
         }
 
-        private void playTurn(Player i_Player)
+        private void playTurnWithGivenColumn(byte i_ChosenColumnIndex,
+            Player io_Player)
         {
-            if (i_Player is HumanPlayer humanPlayer)
-            {
-                chooseColumnAndTryToInsert(humanPlayer,
-                    GameRepository.GetValidMoves());
-            }
-            else if (i_Player is ComputerPlayer computerPlayer)
-            {
-                chooseColumnAndTryToInsert(computerPlayer,
-                    GameRepository.GetValidMoves());
-            }
+            io_Player.ChosenColumnIndex = i_ChosenColumnIndex;
+            GameRepository.InsertCoin(i_ChosenColumnIndex, io_Player.Char);
         }
 
-        private void chooseColumnAndTryToInsert(
-            ComputerPlayer io_ComputerPlayer,
-            List<byte> i_ListValidMovesIndexes)
+        public bool TryPlayTurnAsComputerPlayer()
         {
-            chooseRandomColumn(io_ComputerPlayer, i_ListValidMovesIndexes);
-            try
+            Player player = GameRepository.GetCurrentPlayer();
+            bool returnValue = false;
+
+            if (player is ComputerPlayer)
             {
-                // Thread.Sleep(300); // Add delay for realism.
-                GameRepository.InsertCoin(io_ComputerPlayer.ChosenColumnIndex,
-                    io_ComputerPlayer.Char);
+                playTurnWithRandomColumn(player);
+                returnValue = true;
             }
-            catch (Exception)
-            {
-                // ignored. Always works.
-            }
+
+            return returnValue;
+        }
+
+        private void playTurnWithRandomColumn(Player io_Player)
+        {
+            chooseRandomColumn(io_Player, GameRepository.GetValidMoves());
+            GameRepository.InsertCoin(io_Player.ChosenColumnIndex,
+                io_Player.Char);
         }
 
         private void chooseRandomColumn(Player io_Player,
@@ -140,21 +144,14 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
                 i_ListValidMovesIndexes[(byte) randomIndex];
         }
 
-        public bool IsComputerPlayerExistsAndPlayed()
+        public byte GetCols()
         {
-            bool returnValue = true;
-            Player currentPlayer = GameRepository.GetCurrentPlayer();
+            return GameRepository.GetCols();
+        }
 
-            if (currentPlayer is ComputerPlayer)
-            {
-                currentPlayer.PlayTurn();
-            }
-            else
-            {
-                returnValue = false;
-            }
-
-            return returnValue;
+        public byte GetRows()
+        {
+            return GameRepository.GetRows();
         }
     }
 }
