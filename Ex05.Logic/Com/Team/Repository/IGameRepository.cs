@@ -17,5 +17,11 @@ namespace C21_Ex02_01.Com.Team.Repository
         /// <summary />
         /// <returns>The winner player.</returns>
         Player Forfeit();
+
+        void SwitchCurrentPlayerTurn();
+        
+        void SetCurrentPlayer(eID i_PlayerID);
+        
+        void ResetBoard();
     }
 }

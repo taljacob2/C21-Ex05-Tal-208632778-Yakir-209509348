@@ -19,5 +19,11 @@ namespace C21_Ex02_01.Com.Team.Service
         void Forfeit(out Player o_WinnerPlayer);
 
         void ResetScoresAndWinner();
+
+        void SwitchCurrentPlayerTurn();
+        
+        void SetCurrentPlayer(eID i_PlayerID);
+        
+        void ResetBoard();
     }
 }

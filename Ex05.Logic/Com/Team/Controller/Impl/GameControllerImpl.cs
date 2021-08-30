@@ -1,5 +1,6 @@
 ﻿#region
 
+using C21_Ex02_01.Com.Team.Database;
 using C21_Ex02_01.Com.Team.Entity.Players.Player;
 using C21_Ex02_01.Com.Team.Service;
 
@@ -50,8 +51,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         
         private void checkWinAndTie(out Player o_WinnerPlayer, out bool o_IsGameOver)
         {
-            GameDatabaseImpl.Players.SwitchCurrentPlayerTurn(GameDatabaseImpl.Players
-                .GetCurrentPlayer());
+            GameService.SwitchCurrentPlayerTurn();
             o_WinnerPlayer = getWinnerPlayer();
             o_IsGameOver = o_WinnerPlayer != null;
             if (!o_IsGameOver)
@@ -62,9 +62,8 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 
         public void NewGame()
         {
-            GameDatabaseImpl.Players.SwitchCurrentPlayerTurn(GameDatabaseImpl.Players
-                .GetPlayerTwo());
-            GameDatabaseImpl.Board.ResetBoard();
+            GameService.SetCurrentPlayer(eID.One);
+            GameService.ResetBoard();
         }
 
         public void Forfeit(out Player o_WinnerPlayer)

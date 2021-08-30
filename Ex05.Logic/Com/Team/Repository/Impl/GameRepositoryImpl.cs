@@ -55,5 +55,20 @@ namespace C21_Ex02_01.Com.Team.Repository.Impl
 
             return winnerPlayer;
         }
+
+        public void SwitchCurrentPlayerTurn()
+        {
+            GameDatabase.GetRefPlayers().SwitchCurrentPlayerTurn();
+        }
+
+        public void SetCurrentPlayer(eID i_PlayerID)
+        {
+            GameDatabase.GetRefPlayers().SetCurrentPlayer(i_PlayerID);
+        }
+
+        public void ResetBoard()
+        {
+            GameDatabase.GetRefBoard().ResetBoard();
+        }
     }
 }

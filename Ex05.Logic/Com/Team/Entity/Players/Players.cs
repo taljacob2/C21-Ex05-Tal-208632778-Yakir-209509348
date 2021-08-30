@@ -67,8 +67,7 @@ namespace C21_Ex02_01.Com.Team.Entity.Players
             }
 
             r_PlayersGetterNestedService.GetRefPlayerOne() = new HumanPlayer(
-                eID.One,
-                k_PlayerOneChar);
+                eID.One, k_PlayerOneChar);
         }
 
         public void PlayTurn()
@@ -82,6 +81,11 @@ namespace C21_Ex02_01.Com.Team.Entity.Players
             return r_PlayersGetterNestedService.GetCurrentPlayer();
         }
 
+        public void SetCurrentPlayer(eID i_PlayerID)
+        {
+            CurrentPlayerTurn = i_PlayerID;
+        }
+
         public Player.Player GetNotCurrentPlayer()
         {
             Player.Player current = GetCurrentPlayer();
@@ -91,10 +95,40 @@ namespace C21_Ex02_01.Com.Team.Entity.Players
             return nonCurrentPlayer;
         }
 
-        public void SwitchCurrentPlayerTurn(
+        private void switchCurrentPlayerTurn(
             Player.Player i_CurrentPlayingPlayer)
         {
             switch (i_CurrentPlayingPlayer.ID)
+            {
+                case eID.One:
+                    CurrentPlayerTurn = eID.Two;
+                    break;
+                case eID.Two:
+                    CurrentPlayerTurn = eID.One;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        
+        private void switchCurrentPlayerTurn(eID i_PlayerID)
+        {
+            switch (i_PlayerID)
+            {
+                case eID.One:
+                    CurrentPlayerTurn = eID.Two;
+                    break;
+                case eID.Two:
+                    CurrentPlayerTurn = eID.One;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+
+        public void SwitchCurrentPlayerTurn()
+        {
+            switch (GetCurrentPlayer().ID)
             {
                 case eID.One:
                     CurrentPlayerTurn = eID.Two;

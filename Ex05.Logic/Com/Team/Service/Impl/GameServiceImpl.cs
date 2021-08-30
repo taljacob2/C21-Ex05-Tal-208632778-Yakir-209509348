@@ -63,5 +63,20 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
             GameRepository.ResetScoresOfPlayers();
             WinnerPlayer = null;
         }
+
+        public void SwitchCurrentPlayerTurn()
+        {
+            GameRepository.SwitchCurrentPlayerTurn();
+        }
+
+        public void SetCurrentPlayer(eID i_PlayerID)
+        {
+            GameRepository.SetCurrentPlayer(i_PlayerID);
+        }
+
+        public void ResetBoard()
+        {
+            GameRepository.ResetBoard();
+        }
     }
 }
