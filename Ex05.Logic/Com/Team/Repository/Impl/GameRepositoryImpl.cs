@@ -1,4 +1,5 @@
-﻿using C21_Ex02_01.Com.Team.Database;
+﻿using System.Collections.Generic;
+using C21_Ex02_01.Com.Team.Database;
 using C21_Ex02_01.Com.Team.Database.Impl;
 using C21_Ex02_01.Com.Team.Entity.Players;
 using C21_Ex02_01.Com.Team.Entity.Players.Player;
@@ -61,6 +62,26 @@ namespace C21_Ex02_01.Com.Team.Repository.Impl
         public bool IsFull()
         {
             return GameDatabase.GetRefBoard().IsFull();
+        }
+
+        public byte GetCols()
+        {
+            return GameDatabase.GetRefBoard().Cols;
+        }
+
+        public byte GetRows()
+        {
+            return GameDatabase.GetRefBoard().Rows;
+        }
+
+        public List<byte> GetValidMoves()
+        {
+            return GameDatabase.GetRefBoard().GetValidMoves();
+        }
+
+        public void InsertCoin(byte i_ChosenColumnIndex, char i_Char)
+        {
+            GameDatabase.GetRefBoard().InsertCoin(i_ChosenColumnIndex, i_Char);
         }
     }
 }

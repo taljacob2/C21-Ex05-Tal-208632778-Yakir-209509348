@@ -10,8 +10,6 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 {
     public class GameControllerImpl : IGameController
     {
-        public static Database.Impl.GameDatabaseImpl GameDatabaseImpl { get; set; }
-
         public static IGameService GameService { get; set; }
 
         /// <summary />
@@ -48,8 +46,9 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 
             checkWinAndTie(out o_WinnerPlayer, out o_IsGameOver);
         }
-        
-        private void checkWinAndTie(out Player o_WinnerPlayer, out bool o_IsGameOver)
+
+        private void checkWinAndTie(out Player o_WinnerPlayer,
+            out bool o_IsGameOver)
         {
             GameService.SwitchCurrentPlayerTurn();
             o_WinnerPlayer = getWinnerPlayer();
@@ -108,6 +107,5 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 
             return returnValue;
         }
-        
     }
 }

@@ -21,7 +21,7 @@ namespace C21_Ex02_01.Com.Team.Entity.Board
         /// <summary>
         ///     Function to get the valid moves
         /// </summary>
-        /// <returns>list of <see langword="byte" />s with valid columns</returns>
+        /// <returns>List of <see langword="byte" />s with valid column-indexes.</returns>
         List<byte> GetValidMoves();
     }
 }

@@ -14,10 +14,8 @@ namespace C21_Ex02_01.Com.Team.Entity.Players.Player
 
         public override void PlayTurn()
         {
-            Database.Impl.GameDatabaseImpl gameDatabaseImpl = GameControllerImpl.GameDatabaseImpl;
             byte numberOfColumns = gameDatabaseImpl.Board.Cols;
-            List<byte> listOfIndexesOfNotFullColumns =
-                initializeListOfIndexesOfNotFullColumns(numberOfColumns);
+            List<byte> listOfIndexesOfNotFullColumns =F
 
             chooseColumnAndTryToInsert(listOfIndexesOfNotFullColumns, gameDatabaseImpl);
         }
@@ -25,7 +23,7 @@ namespace C21_Ex02_01.Com.Team.Entity.Players.Player
         private void chooseColumnAndTryToInsert(
             List<byte> i_ListOfIndexesOfNotFullColumns, Database.Impl.GameDatabaseImpl i_GameDatabaseImpl)
         {
-            chooseColumnAsComputerPlayer(this, i_ListOfIndexesOfNotFullColumns);
+            ChooseColumnAsComputerPlayer(this, i_ListOfIndexesOfNotFullColumns);
             try
             {
                 // Thread.Sleep(300); // Add delay for realism.
@@ -48,7 +46,7 @@ namespace C21_Ex02_01.Com.Team.Entity.Players.Player
         /// <param name="i_ListOfIndexesOfNotFullColumns">
         ///     Each element represents an index of a not-full column.
         /// </param>
-        private void chooseColumnAsComputerPlayer(
+        public void ChooseColumnAsComputerPlayer(
             ComputerPlayer io_ComputerPlayer,
             List<byte> i_ListOfIndexesOfNotFullColumns)
         {

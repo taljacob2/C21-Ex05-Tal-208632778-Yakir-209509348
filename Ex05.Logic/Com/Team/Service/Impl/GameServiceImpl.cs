@@ -1,5 +1,7 @@
 ﻿#region
 
+using System;
+using System.Collections.Generic;
 using C21_Ex02_01.Com.Team.Controller.Impl;
 using C21_Ex02_01.Com.Team.Entity.Board;
 using C21_Ex02_01.Com.Team.Entity.Players;
@@ -89,14 +91,55 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
             io_Player.Score++;
             io_Player.ScoreModified();
         }
-        
+
         public void PlayTurnWithCurrentPlayer(byte i_ChosenColumnIndex)
         {
             Player currentPlayer = GameRepository.GetCurrentPlayer();
             currentPlayer.ChosenColumnIndex = i_ChosenColumnIndex;
             currentPlayer.PlayTurn();
         }
-        
+
+        private void playTurn(Player i_Player)
+        {
+            if (i_Player is HumanPlayer humanPlayer)
+            {
+                chooseColumnAndTryToInsert(humanPlayer,
+                    GameRepository.GetValidMoves());
+            }
+            else if (i_Player is ComputerPlayer computerPlayer)
+            {
+                chooseColumnAndTryToInsert(computerPlayer,
+                    GameRepository.GetValidMoves());
+            }
+        }
+
+        private void chooseColumnAndTryToInsert(
+            ComputerPlayer io_ComputerPlayer,
+            List<byte> i_ListValidMovesIndexes)
+        {
+            chooseRandomColumn(io_ComputerPlayer, i_ListValidMovesIndexes);
+            try
+            {
+                // Thread.Sleep(300); // Add delay for realism.
+                GameRepository.InsertCoin(io_ComputerPlayer.ChosenColumnIndex,
+                    io_ComputerPlayer.Char);
+            }
+            catch (Exception)
+            {
+                // ignored. Always works.
+            }
+        }
+
+        private void chooseRandomColumn(Player io_Player,
+            List<byte> i_ListValidMovesIndexes)
+        {
+            Random random = new Random();
+            int randomIndex =
+                random.Next(i_ListValidMovesIndexes.Count);
+            io_Player.ChosenColumnIndex =
+                i_ListValidMovesIndexes[(byte) randomIndex];
+        }
+
         public bool IsComputerPlayerExistsAndPlayed()
         {
             bool returnValue = true;

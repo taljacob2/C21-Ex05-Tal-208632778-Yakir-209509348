@@ -22,8 +22,6 @@ namespace C21_Ex02_01.Com.Team.Entity.Players.Player
 
         public string Name { get; set; }
 
-        public abstract void PlayTurn();
-
         public override string ToString()
         {
             return

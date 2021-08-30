@@ -1,4 +1,5 @@
-﻿using C21_Ex02_01.Com.Team.Entity.Players.Player;
+﻿using System.Collections.Generic;
+using C21_Ex02_01.Com.Team.Entity.Players.Player;
 
 namespace C21_Ex02_01.Com.Team.Repository
 {
@@ -23,6 +24,13 @@ namespace C21_Ex02_01.Com.Team.Repository
         Player GetRefPlayerTwo();
 
         bool IsFull();
+
+        byte GetCols();
+
+        byte GetRows();
         
+        List<byte> GetValidMoves();
+        
+        void InsertCoin(byte i_ChosenColumnIndex, char i_Char);
     }
 }
