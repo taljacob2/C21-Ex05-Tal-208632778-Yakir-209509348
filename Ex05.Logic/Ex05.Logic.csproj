@@ -41,7 +41,8 @@
   <ItemGroup>
     <Compile Include="Com\Team\Controller\IGameController.cs" />
     <Compile Include="Com\Team\Controller\Impl\GameControllerImpl.cs" />
-    <Compile Include="Com\Team\Database\Database.cs" />
+    <Compile Include="Com\Team\Database\IGameDatabase.cs" />
+    <Compile Include="Com\Team\Database\Impl\GameDatabaseImpl.cs" />
     <Compile Include="Com\Team\Entity\Board\Board.cs" />
     <Compile Include="Com\Team\Entity\Board\Coin\Coin.cs" />
     <Compile Include="Com\Team\Entity\Board\Coin\Coordinate.cs" />
@@ -63,6 +64,8 @@
     <Compile Include="Com\Team\Misc\EnumeratorGetter.cs" />
     <Compile Include="Com\Team\Misc\ObjectExtensions.cs" />
     <Compile Include="Com\Team\Misc\StringIndentation.cs" />
+    <Compile Include="Com\Team\Repository\IGameRepository.cs" />
+    <Compile Include="Com\Team\Repository\Impl\GameRepositoryImpl.cs" />
     <Compile Include="Com\Team\Service\IGameService.cs" />
     <Compile Include="Com\Team\Service\Impl\GameServiceImpl.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

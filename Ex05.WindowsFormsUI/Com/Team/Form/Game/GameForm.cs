@@ -34,10 +34,10 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             GameControllerImpl.GameService = new GameServiceImpl();
 
             // Create arrays:
-            ButtonCoins = new Button[GameControllerImpl.Database.Board.Rows,
-                GameControllerImpl.Database.Board.Cols];
+            ButtonCoins = new Button[GameControllerImpl.GameDatabaseImpl.Board.Rows,
+                GameControllerImpl.GameDatabaseImpl.Board.Cols];
             ButtonColumns =
-                new Button[GameControllerImpl.Database.Board.Cols];
+                new Button[GameControllerImpl.GameDatabaseImpl.Board.Cols];
 
             // Initialize:
             r_Dialog = new Dialog(this);
@@ -64,7 +64,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
         private void createButtonColumns()
         {
-            for (int i = 1; i <= GameControllerImpl.Database.Board.Cols; i++)
+            for (int i = 1; i <= GameControllerImpl.GameDatabaseImpl.Board.Cols; i++)
             {
                 Button button = new Button();
                 const int k_Height = 34;
@@ -94,11 +94,11 @@ namespace WindowsFormsUI.Com.Team.Form.Game
         private void createButtonCoins()
         {
             for (byte row = 1;
-                row <= GameControllerImpl.Database.Board.Rows;
+                row <= GameControllerImpl.GameDatabaseImpl.Board.Rows;
                 row++)
             {
                 for (byte col = 1;
-                    col <= GameControllerImpl.Database.Board.Cols;
+                    col <= GameControllerImpl.GameDatabaseImpl.Board.Cols;
                     col++)
                 {
                     Button button = new Button();
@@ -214,7 +214,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 createButtonColumn(io_Button, i_X, i_I, i_Y, i_Height);
 
                 ColumnHeader columnHeader =
-                    GameControllerImpl.Database.Board.ColumnHeaders[i_I - 1];
+                    GameControllerImpl.GameDatabaseImpl.Board.ColumnHeaders[i_I - 1];
 
                 // Set ColumnFilledUp EventHandler:
                 columnHeader.ColumnFilledUp += buttonColumn_ColumnFilledUp;
@@ -303,7 +303,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 createButtonCoin(io_Button, i_X, i_Col, i_Y, i_Row, i_Height);
 
                 // Set CharModify EventHandler:
-                GameControllerImpl.Database.Board
+                GameControllerImpl.GameDatabaseImpl.Board
                     .GetElement((byte) (i_Row - 1), (byte) (i_Col - 1))
                     .CharModify += buttonCoin_CharModify;
             }
@@ -320,7 +320,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 io_Button.Size = new Size(k_Width, i_Height);
                 io_Button.TabIndex = i_Row + i_Col;
                 io_Button.Text =
-                    GameControllerImpl.Database.Board.GetElement(
+                    GameControllerImpl.GameDatabaseImpl.Board.GetElement(
                         (byte) (i_Row - 1),
                         (byte) (i_Col - 1)).Char.ToString();
                 io_Button.UseVisualStyleBackColor = false;
@@ -357,15 +357,15 @@ namespace WindowsFormsUI.Com.Team.Form.Game
                 initializeLabelPlayersText();
 
                 // Set ScoreModify EventHandler:
-                GameControllerImpl.Database.Players.GetPlayerOne()
+                GameControllerImpl.GameDatabaseImpl.Players.GetPlayerOne()
                     .ScoreModify += labelPlayer1_ScoreModify;
-                GameControllerImpl.Database.Players.GetPlayerTwo()
+                GameControllerImpl.GameDatabaseImpl.Players.GetPlayerTwo()
                     .ScoreModify += labelPlayer2_ScoreModify;
             }
 
             private void initializeLabelPlayersText()
             {
-                Players players = GameControllerImpl.Database.Players;
+                Players players = GameControllerImpl.GameDatabaseImpl.Players;
                 string player1Name = players.GetPlayerOne().Name;
                 string player2Name = players.GetPlayerTwo().Name;
 
@@ -378,7 +378,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             private void labelPlayer1_ScoreModify(object i_Sender, EventArgs i_)
             {
                 byte score = ((Player) i_Sender).Score;
-                Players players = GameControllerImpl.Database.Players;
+                Players players = GameControllerImpl.GameDatabaseImpl.Players;
                 string player1Name = players.GetPlayerOne().Name;
                 GameForm.LabelPlayer1.Text = player1Name + ":";
                 GameForm.LabelPlayer1.Text += Environment.NewLine + score;
@@ -387,7 +387,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
             private void labelPlayer2_ScoreModify(object i_Sender, EventArgs i_)
             {
                 byte score = ((Player) i_Sender).Score;
-                Players players = GameControllerImpl.Database.Players;
+                Players players = GameControllerImpl.GameDatabaseImpl.Players;
                 string player2Name = players.GetPlayerTwo().Name;
                 GameForm.LabelPlayer2.Text = player2Name + ":";
                 GameForm.LabelPlayer2.Text += Environment.NewLine + score;

@@ -14,28 +14,28 @@ namespace C21_Ex02_01.Com.Team.Entity.Players.Player
 
         public override void PlayTurn()
         {
-            Database.Database database = GameControllerImpl.Database;
-            byte numberOfColumns = database.Board.Cols;
+            Database.Impl.GameDatabaseImpl gameDatabaseImpl = GameControllerImpl.GameDatabaseImpl;
+            byte numberOfColumns = gameDatabaseImpl.Board.Cols;
             List<byte> listOfIndexesOfNotFullColumns =
                 initializeListOfIndexesOfNotFullColumns(numberOfColumns);
 
-            chooseColumnAndTryToInsert(listOfIndexesOfNotFullColumns, database);
+            chooseColumnAndTryToInsert(listOfIndexesOfNotFullColumns, gameDatabaseImpl);
         }
 
         private void chooseColumnAndTryToInsert(
-            List<byte> i_ListOfIndexesOfNotFullColumns, Database.Database i_Database)
+            List<byte> i_ListOfIndexesOfNotFullColumns, Database.Impl.GameDatabaseImpl i_GameDatabaseImpl)
         {
             chooseColumnAsComputerPlayer(this, i_ListOfIndexesOfNotFullColumns);
             try
             {
                 // Thread.Sleep(300); // Add delay for realism.
-                i_Database.Board.InsertCoin(ChosenColumnIndex, Char);
+                i_GameDatabaseImpl.Board.InsertCoin(ChosenColumnIndex, Char);
             }
             catch (Exception)
             {
                 i_ListOfIndexesOfNotFullColumns.Remove(ChosenColumnIndex);
                 chooseColumnAndTryToInsert(i_ListOfIndexesOfNotFullColumns,
-                    i_Database);
+                    i_GameDatabaseImpl);
             }
         }
 

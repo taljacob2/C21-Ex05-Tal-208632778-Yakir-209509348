@@ -4,6 +4,8 @@ using C21_Ex02_01.Com.Team.Controller.Impl;
 using C21_Ex02_01.Com.Team.Entity.Board;
 using C21_Ex02_01.Com.Team.Entity.Players;
 using C21_Ex02_01.Com.Team.Entity.Players.Player;
+using C21_Ex02_01.Com.Team.Repository;
+using C21_Ex02_01.Com.Team.Repository.Impl;
 
 #endregion
 
@@ -11,10 +13,14 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
 {
     public class GameServiceImpl : IGameService
     {
-        private readonly Board r_Board = GameControllerImpl.Database.Board;
+        public IGameRepository GameRepository { get; private set; } =
+            new GameRepositoryImpl();
 
-        private readonly Players
-            r_Players = GameControllerImpl.Database.Players;
+        // private readonly Board r_Board =
+        //     GameControllerImpl.GameDatabaseImpl.Board;
+        //
+        // private readonly Players
+        //     r_Players = GameControllerImpl.GameDatabaseImpl.Players;
 
         public Player WinnerPlayer { get; set; }
 
@@ -30,9 +36,9 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
             {
                 returnValue = WinnerPlayer;
             }
-            else if (r_Board.IsVictory())
+            else if (GameRepository.IsVictory())
             {
-                Player nonCurrentPlayer = r_Players.GetNotCurrentPlayer();
+                Player nonCurrentPlayer = GameRepository.GetNotCurrentPlayer();
                 returnValue = nonCurrentPlayer;
                 nonCurrentPlayer.Score++;
                 nonCurrentPlayer.ScoreModified();
@@ -43,36 +49,19 @@ namespace C21_Ex02_01.Com.Team.Service.Impl
 
         public void SetTie()
         {
-            Player playerOne = r_Players.GetPlayerOne();
-            Player playerTwo = r_Players.GetPlayerTwo();
-            playerOne.Score++;
-            playerOne.ScoreModified();
-            playerTwo.Score++;
-            playerTwo.ScoreModified();
+            GameRepository.IncreaseScoreOfPlayerOne();
+            GameRepository.IncreaseScoreOfPlayerTwo();
         }
 
         public void Forfeit(out Player o_WinnerPlayer)
         {
-            o_WinnerPlayer = r_Players.GetNotCurrentPlayer();
-            setWinnerPlayer(o_WinnerPlayer);
-            ResetForfeitAndWinner();
+            o_WinnerPlayer = GameRepository.Forfeit();
         }
 
-        public void ResetForfeitAndWinner()
+        public void ResetScoresAndWinner()
         {
-            foreach (Player player in r_Players)
-            {
-                player.ChosenColumnIndex = 0;
-            }
-
+            GameRepository.ResetScoresOfPlayers();
             WinnerPlayer = null;
-        }
-
-        private void setWinnerPlayer(Player io_Player)
-        {
-            WinnerPlayer = io_Player;
-            WinnerPlayer.Score++;
-            WinnerPlayer.ScoreModified();
         }
     }
 }

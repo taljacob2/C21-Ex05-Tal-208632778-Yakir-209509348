@@ -18,6 +18,6 @@ namespace C21_Ex02_01.Com.Team.Service
 
         void Forfeit(out Player o_WinnerPlayer);
 
-        void ResetForfeitAndWinner();
+        void ResetScoresAndWinner();
     }
 }

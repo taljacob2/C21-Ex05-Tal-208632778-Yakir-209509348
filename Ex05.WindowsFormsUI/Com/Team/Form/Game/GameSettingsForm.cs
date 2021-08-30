@@ -1,6 +1,7 @@
 ﻿using System;
 using C21_Ex02_01.Com.Team.Controller.Impl;
 using C21_Ex02_01.Com.Team.Database;
+using C21_Ex02_01.Com.Team.Database.Impl;
 using C21_Ex02_01.Com.Team.Entity.Board;
 using C21_Ex02_01.Com.Team.Entity.Players;
 using C21_Ex02_01.Com.Team.Entity.Players.Player;
@@ -59,8 +60,8 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
             private void initializeBoard()
             {
-                GameControllerImpl.Database =
-                    new Database(
+                GameControllerImpl.GameDatabaseImpl =
+                    new GameDatabaseImpl(
                         new Board(
                             (byte) GameSettingsForm.RowsNumericUpDown.Value,
                             (byte) GameSettingsForm.ColsNumericUpDown.Value),
@@ -69,7 +70,7 @@ namespace WindowsFormsUI.Com.Team.Form.Game
 
             private void initializePlayersNames()
             {
-                Players players = GameControllerImpl.Database.Players;
+                Players players = GameControllerImpl.GameDatabaseImpl.Players;
                 players.GetPlayerOne().Name =
                     GameSettingsForm.TextBoxPlayer1.Text;
                 players.GetPlayerTwo().Name =

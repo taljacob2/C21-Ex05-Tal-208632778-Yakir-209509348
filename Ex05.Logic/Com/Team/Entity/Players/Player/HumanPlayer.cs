@@ -21,7 +21,7 @@ namespace C21_Ex02_01.Com.Team.Entity.Players.Player
         private void chooseColumnAndTryToInsert()
         {
             // r_RequesterService.ChooseColumnAsHumanPlayer(this); // UI Request.
-            Database.Database database = GameControllerImpl.Database;
+            Database.Impl.GameDatabaseImpl gameDatabaseImpl = GameControllerImpl.GameDatabaseImpl;
             if (ChosenColumnIndex == k_QuitSignal)
             {
                 // Database Update.
@@ -32,7 +32,7 @@ namespace C21_Ex02_01.Com.Team.Entity.Players.Player
 
             try
             {
-                database.Board.InsertCoin(ChosenColumnIndex, Char);
+                gameDatabaseImpl.Board.InsertCoin(ChosenColumnIndex, Char);
             }
             catch (Exception) {}
         }

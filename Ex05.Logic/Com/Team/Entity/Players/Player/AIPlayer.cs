@@ -16,16 +16,16 @@ namespace C21_Ex02_01.Com.Team.Entity.Players.Player
 
         public override void PlayTurn()
         {
-            Database.Database database = GameControllerImpl.Database;
+            Database.Impl.GameDatabaseImpl gameDatabaseImpl = GameControllerImpl.GameDatabaseImpl;
 
             // Thread.Sleep(300); // Add delay for realism.
-            database.Board.InsertCoin(getBestMove(), Char);
+            gameDatabaseImpl.Board.InsertCoin(getBestMove(), Char);
         }
 
         private byte getBestMove()
         {
             return r_MinMaxAI.GetBestMove(this,
-                GameControllerImpl.Database.Board);
+                GameControllerImpl.GameDatabaseImpl.Board);
         }
     }
 }

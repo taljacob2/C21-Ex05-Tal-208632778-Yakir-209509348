@@ -9,7 +9,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 {
     public class GameControllerImpl : IGameController
     {
-        public static Database.Database Database { get; set; }
+        public static Database.Impl.GameDatabaseImpl GameDatabaseImpl { get; set; }
 
         public static IGameService GameService { get; set; }
 
@@ -50,7 +50,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         
         private void checkWinAndTie(out Player o_WinnerPlayer, out bool o_IsGameOver)
         {
-            Database.Players.SwitchCurrentPlayerTurn(Database.Players
+            GameDatabaseImpl.Players.SwitchCurrentPlayerTurn(GameDatabaseImpl.Players
                 .GetCurrentPlayer());
             o_WinnerPlayer = getWinnerPlayer();
             o_IsGameOver = o_WinnerPlayer != null;
@@ -62,9 +62,9 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 
         public void NewGame()
         {
-            Database.Players.SwitchCurrentPlayerTurn(Database.Players
+            GameDatabaseImpl.Players.SwitchCurrentPlayerTurn(GameDatabaseImpl.Players
                 .GetPlayerTwo());
-            Database.Board.ResetBoard();
+            GameDatabaseImpl.Board.ResetBoard();
         }
 
         public void Forfeit(out Player o_WinnerPlayer)
@@ -74,7 +74,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 
         private static void resetForfeitAndWinner()
         {
-            GameService.ResetForfeitAndWinner(); // Database Update.
+            GameService.ResetScoresAndWinner(); // Database Update.
         }
 
         private void setTie()
@@ -100,7 +100,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
         private static bool isComputerPlayerExistsAndPlayed()
         {
             bool returnValue = true;
-            Player currentPlayer = Database.Players.GetCurrentPlayer();
+            Player currentPlayer = GameDatabaseImpl.Players.GetCurrentPlayer();
 
             if (currentPlayer is ComputerPlayer)
             {
@@ -116,7 +116,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 
         private bool isTie()
         {
-            bool returnValue = Database.Board.IsFull();
+            bool returnValue = GameDatabaseImpl.Board.IsFull();
 
             if (returnValue)
             {
@@ -129,7 +129,7 @@ namespace C21_Ex02_01.Com.Team.Controller.Impl
 
         private static void playTurn(byte i_ChosenColumnIndex)
         {
-            Player currentPlayer = Database.Players.GetCurrentPlayer();
+            Player currentPlayer = GameDatabaseImpl.Players.GetCurrentPlayer();
             currentPlayer.ChosenColumnIndex = i_ChosenColumnIndex;
             currentPlayer.PlayTurn();
         }
